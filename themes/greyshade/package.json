@@ -1,0 +1,54 @@
+{
+  "_from": "hexo-theme-greyshade",
+  "_id": "hexo-theme-greyshade@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-hl+sz/3jGbEIMOTk3GeyLvN9m78=",
+  "_location": "/hexo-theme-greyshade",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "hexo-theme-greyshade",
+    "name": "hexo-theme-greyshade",
+    "escapedName": "hexo-theme-greyshade",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hexo-theme-greyshade/-/hexo-theme-greyshade-0.0.2.tgz",
+  "_shasum": "865faccffde319b10830e4e4dc67b22ef37d9bbf",
+  "_spec": "hexo-theme-greyshade",
+  "_where": "F:\\chenzuoli\\Project\\Hexo\\myproject",
+  "author": {
+    "name": "Nuk"
+  },
+  "bugs": {
+    "url": "https://github.com/nuklly/hexo-theme-greyshade/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Ported from Octopress Theme Greyshade to Hexo.",
+  "homepage": "https://github.com/nuklly/hexo-theme-greyshade#readme",
+  "keywords": [
+    "hexo",
+    "theme",
+    "greyshade"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "hexo-theme-greyshade",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuklly/hexo-theme-greyshade.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}

@@ -1,0 +1,2 @@
+# Hexo项目框架
+使用markdown手法编写文档，hexo generate生成html页面，hexo deploy发布到github.io上，即可在github上放置自己的项目了

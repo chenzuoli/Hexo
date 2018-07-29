@@ -78,7 +78,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/chenzuoli/chenzuoli.github.io.git
+  # repo: https://github.com/chenzuoli/chenzuoli.github.io.git
+  repo: git@39.106.167.223:/home/git/data/repository/wetech.top
   branch: master
 
 # Baidu Analytics ID

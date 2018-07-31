@@ -92,9 +92,3 @@ search:
   limit: 10000
   
 since: 2017
-
-# add post views
-leancloud_visitors:
-  enable: true
-  app_id: KgyvQ4R9TmAv57FJfg6qg4I9-gzGzoHsz
-  app_key: YMUrXMrnWJ8Bm2ntqIHxUHrB

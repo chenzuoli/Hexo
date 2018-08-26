@@ -7,6 +7,10 @@
 
 <html class="{{ html_class | lower }}" lang="{{ config.language }}">
 <head>
+  <!-- ad start -->
+    <!-- <%- partial('_custom_ad/google_adsense') %> -->
+  <!-- ad end -->
+
   {% include '_partials/head.swig' %}
   <title>{% block title %}{% endblock %}</title>
   {% include '_third-party/analytics/index.swig' %}

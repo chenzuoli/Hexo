@@ -332,9 +332,7 @@
     {#####################}
     {### END POST BODY ###}
     {#####################}
-		<!-- ad start -->
-		<%- partial('_custom_ad/google_adsense.ejs') %>
-		<!-- ad end -->
+
 		{% if theme.article_end_tag.enabled and not is_index %}
       <div>
         {% include 'article-end-tag.swig' %}

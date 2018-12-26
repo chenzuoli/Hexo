@@ -8,7 +8,7 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/4b89afe4aab99960027691888f6312c8.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/4b89afe4aab99960027691888f6312c8.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
 瞿依贤
 “未来，平安智慧医疗的医疗AI技术将向医疗资源缺乏的地方下沉。”平安科技总经理助理兼平安智慧城市-智慧医疗负责人高孟轩，日前在第二届平安集团SMART科技大会期间接受第一财经记者采访时，透露了平安智慧医疗业务未来的发展方向。

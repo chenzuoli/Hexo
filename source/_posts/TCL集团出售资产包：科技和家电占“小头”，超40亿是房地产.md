@@ -8,11 +8,11 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/f307ab91c1e4f3593739df7026fb900e.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/f307ab91c1e4f3593739df7026fb900e.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
-https://imgcdn.yicai.com/uppics/images/2018/12/35d4c2a37305e63c9d10f7d3da0808cf.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/35d4c2a37305e63c9d10f7d3da0808cf.jpg" />
 李隽
-https://imgcdn.yicai.com/uppics/images/2018/12/1ff6b1a304a2f474f72c75b177efaca3.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/1ff6b1a304a2f474f72c75b177efaca3.jpg" />
 TCL集团（000100.SZ）的重组依然是当前资本市场热点话题，计划出售的47.6亿元资产，到底应该怎么估值？交易对价怎样才能平衡各方利益？这是投资者争论最多的焦点，董事长李东生也被推至风口浪尖之上。
 出让的资产当中，真正值钱的是TCL产业园、惠州家电和酷友科技，对应的产业分别是房地产、空调、O2O（线上到线下）。上述三者资产评估值在评估基准日2018年6月30日分别为32.94亿元、10.63亿元和4.74亿元。
 然而算上评估基准日后，在2018年8月划转给TCL产业园新增价值7.55亿元的附属公司股权，这也使得47.6亿元的转让对价当中，转让的资产有超过40亿元是房地产业务。

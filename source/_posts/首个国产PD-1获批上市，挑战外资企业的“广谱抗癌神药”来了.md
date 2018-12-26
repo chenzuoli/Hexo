@@ -8,7 +8,7 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/e28295b20be337db1f0bbacf8c001cd6.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/e28295b20be337db1f0bbacf8c001cd6.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
 林志吟
 挑战外资企业的“广谱抗癌神药”终于来了！

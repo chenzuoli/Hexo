@@ -8,9 +8,9 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/891dfc64ba230ff2f493c8f67383d46a.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/891dfc64ba230ff2f493c8f67383d46a.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
-https://imgcdn.yicai.com/uppics/images/2018/12/0f077e8fc1044639a6df796244263352.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/0f077e8fc1044639a6df796244263352.jpg" />
 郭丽琴
 当地时间12月19日，日内瓦对美国的贸易政策审议进入第二天。虽然17日已有64个成员发言，并有40个成员向美国提出了1700多个书面问题，但成员们的热情并未减弱。
 同一日，外交部新闻发言人华春莹在例行发布会上回应称，这次贸易政策审议中，许多WTO成员代表都表达了对美国奉行单边主义和保护主义贸易政策的关切、担忧和批评。希望美方能认真虚心地倾听广大WTO成员的呼声，切实承担责任，忠实履行对多边贸易体制的义务。

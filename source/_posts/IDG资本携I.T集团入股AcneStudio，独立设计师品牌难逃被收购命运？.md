@@ -8,13 +8,13 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/17358f0a57c2d3e1842d7823c86969ff.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/17358f0a57c2d3e1842d7823c86969ff.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
-https://imgcdn.yicai.com/uppics/images/2018/12/ba3ab21d409975e5e32144ea644f9975.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/ba3ab21d409975e5e32144ea644f9975.jpg" />
 王一乔
-https://imgcdn.yicai.com/uppics/images/2018/12/ec22ab468dc06457a1207a0017af97ea.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/ec22ab468dc06457a1207a0017af97ea.jpg" />
 12月22日，香港时装零售和代理商I.T集团与IDG资本共同宣布对瑞典奢侈时尚品牌Acne Studios共同进行少数股权投资。交易完成后，IDG资本和I.T集团将分别持有Acne Studios 30.1%和10.9%的股份。Acne Studios集团的财务业绩将不会并入I.T集团的财务业绩。不过，待交易完成后，I.T将有权提名一名董事及一名无表决权的观察员加入Acne Studios董事会以监察Acne Studios集团的表现及参与其策略发展的决策。
-https://imgcdn.yicai.com/uppics/images/2018/12/9caa1ccd8a5915f269a666bf04a49cff.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/9caa1ccd8a5915f269a666bf04a49cff.jpg" />
 本次收购的完成并不让人意外，早在今年3月，Acne Studios就被传出正在委托高盛寻找潜在买家，并收到多位投资人的收购要约，最终与10个候选买家进行了洽谈。潜在买家包括私募基金、全球奢侈品集团以及近期收购动作频繁的复星国际和山东如意控股集团。
 Acne Studios由Jonny Johansson和Mikael Schiller在1996年创立于瑞典斯德哥尔摩，运营至今已经有21年的历史。在品牌创立第二年，Acne设计的红色缝线牛仔裤就成为了斯德哥尔摩人手必备的单品。Acne一词的来源是“Ambition to Create Novel Expressions”，即“创造新鲜表达方式的野心”。Acne Studios品牌创立最初的想法是要打造一个安迪沃霍博物馆式的创意实验室。Acne Studios以简洁的设计风格，简单而流畅的剪裁，干净冷淡的气质形成了独有的品牌特点。
 21年后的今天，Acne Studios已经拥有了包括成衣、配饰等非常完备的产品线。同时，Acne也不再只是一家单纯的服装公司，还是一个集合数字艺术、影视、视觉设计、空间设计、家居产品的综合性品牌，他们甚至还创办了自有杂志《ACNE PAPER》。

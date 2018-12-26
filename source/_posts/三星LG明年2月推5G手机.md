@@ -8,7 +8,7 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-https://imgcdn.yicai.com/uppics/images/2018/12/405e16dceebd8f024cdb1e814f130f83.jpg
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/405e16dceebd8f024cdb1e814f130f83.jpg" />
 使用“扫一扫”即可将网页分享至朋友圈。
 权小星
 随着5G时代的逐步靠进，各大跨国巨头纷纷布局市场，韩系企业也不例外。

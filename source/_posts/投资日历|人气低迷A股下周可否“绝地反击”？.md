@@ -8,9 +8,9 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
-http://invest-images-external.cbndata.org/5LiA6LSiQUJT/images/3d2c9aaab857afe370916d47fbf3e9bb21e6ab54.jpeg
+<img align="center" border="0" src="http://invest-images-external.cbndata.org/5LiA6LSiQUJT/images/3d2c9aaab857afe370916d47fbf3e9bb21e6ab54.jpeg" />
 使用“扫一扫”即可将网页分享至朋友圈。
-http://invest-images-external.cbndata.org/5LiA6LSiQUJT/images/2abcfb930120a830b062f299277ce5b066e387ef.jpeg
+<img align="center" border="0" src="http://invest-images-external.cbndata.org/5LiA6LSiQUJT/images/2abcfb930120a830b062f299277ce5b066e387ef.jpeg" />
 绝对值
 （绝对值 朱钰云）
  

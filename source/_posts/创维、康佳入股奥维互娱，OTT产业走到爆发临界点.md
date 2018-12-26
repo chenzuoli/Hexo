@@ -8,6 +8,7 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
+https://imgcdn.yicai.com/uppics/images/2018/12/5d1e98db43c0f6efc70dd5fa76de03e3.jpg
 使用“扫一扫”即可将网页分享至朋友圈。
 王珍
 往日在彩电市场刺刀见红的创维、康佳、长虹，如今坐在一起，为了智能电视的未来。

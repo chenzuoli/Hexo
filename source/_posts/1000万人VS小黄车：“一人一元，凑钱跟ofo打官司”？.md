@@ -8,8 +8,11 @@ categories:
 打开微信，点击底部的“发现”，
 <!-- more -->
 打开微信，点击底部的“发现”，
+https://imgcdn.yicai.com/uppics/images/2018/12/bb9096ad696c76d89a7d54a1b39627ee.jpg
 使用“扫一扫”即可将网页分享至朋友圈。
+https://imgcdn.yicai.com/uppics/images/2018/12/a1a634f69a12e395e2744a93ea457593.jpg
 吕倩
+https://imgcdn.yicai.com/uppics/images/2018/12/707f8cd348ac21327f64580ec9cf31c2.jpg
 在燃烧人民币取暖的好日子过去后，共享单车的凛冬突然而至。
 北京市海淀区北四环西路的一栋大厦。一墙之隔，阻断了ofo小黄车内部与单车押金用户的愤怒情绪。
 墙内，ofo创始人、北京拜克洛克科技有限公司（下称“拜克洛克公司”）首席执行官戴威继续劝勉着员工认同与坚定信念，不逃避，勇敢活下去；墙外，对ofo与戴威不再抱有信任的消费者正通过法律等多种途径，寻求一个结果。

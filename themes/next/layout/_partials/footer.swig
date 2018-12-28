@@ -1,4 +1,4 @@
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </script>
 <div class="copyright" style="text-align:center">{#
 #}{% set current = date(Date.now(), "YYYY") %}{#
@@ -57,4 +57,5 @@
 <span id="busuanzi_container_site_uv">
   &nbsp;&nbsp;&nbsp本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
-</div> -->
+</div>
+-->

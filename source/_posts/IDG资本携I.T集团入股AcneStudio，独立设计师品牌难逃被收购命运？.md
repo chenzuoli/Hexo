@@ -1,15 +1,13 @@
 ---
 title: IDG资本携I.T集团入股AcneStudio，独立设计师品牌难逃被收购命运？
-author: 第一财经
+author: wetech
 date: 2018-12-26 20:00:44
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+12月22日，香港时装零售和代理商I.T集团与IDG资本共同宣布对瑞典奢侈时尚品牌Acne Studios共同进行少数股权投资。交易完成后，IDG资本和I.T集团将分别持有Acne Studios 30.1%和10.9%的股份。Acne Studios集团的财务业绩将不会并入I.T集团的财务业绩。不过，待交易完成后，I.T将有权提名一名董事及一名无表决权的观察员加入Acne Studios董事会以监察Acne Studios集团的表现及参与其策略发展的决策。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/17358f0a57c2d3e1842d7823c86969ff.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/ba3ab21d409975e5e32144ea644f9975.jpg" />
 王一乔
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/ec22ab468dc06457a1207a0017af97ea.jpg" />
@@ -31,11 +29,3 @@ Acne Studios的创始人Mikael Schiller曾在采访中提到，Acne的零售扩�
 近些年来，日本大米，尤其是高端品牌大米在日本国内时常面临着“有价无市”的尴尬局面，于是中国市场成为了日本大米拓展海外之路的首选。
 今世缘拟收购景芝酒业至少34%的股权入局山东市场，这将给一向内耗严重的鲁酒市场带来些什么
 不打折的I.T很酷，可是年轻消费者也这么觉得吗？
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

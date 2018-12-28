@@ -1,15 +1,13 @@
 ---
 title: 价值链里的SaaS软件
-author: 第一财经
+author: wetech
 date: 2018-12-18 21:24:41
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+“云”和“SaaS（软件即服务）”可能是本世纪第二个十年初的科技流行词，但很快就被人工智能、区块链等新名词盖过了风头，毕竟软件生意没法像人工智能那样抓人眼球，也没虚拟货币那么能吸金。我们看技术喜欢找一些已经过了泡沫期，在大家视野之外默默耕耘的技术。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/c63cd8ba6d262d884f290434912e5b3b.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/d695ede48fe6f86b992847c82a4c0a53.jpg" />
 刘谷砚
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/bc4e772e35667a5a0c8bcb0c6136c7d3.jpg" />
@@ -35,11 +33,3 @@ Apex使第三方开发商能够在Salesforce的平台上开发、运行应用同
 中国授权市场规模可以进入全球前五，去年市场规模约90亿美元，同比增长已经超过10%。
 2017年中国智能物流行业市场规模达3380亿，增长21.1%，预计2020年市场规模将达5850亿
 “光靠软件赚钱是不行的，硬件层面云化，软件层面也需要SaaS化，当交易数据建立，金融服务、第三方插件(智能客户、大数据分析等)增值服务都可以进来，商业模式就变得更加开放。”
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

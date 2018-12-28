@@ -1,15 +1,13 @@
 ---
 title: TCL集团出售资产包：科技和家电占“小头”，超40亿是房地产
-author: 第一财经
+author: wetech
 date: 2018-12-26 11:34:13
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+TCL集团（000100.SZ）的重组依然是当前资本市场热点话题，计划出售的47.6亿元资产，到底应该怎么估值？交易对价怎样才能平衡各方利益？这是投资者争论最多的焦点，董事长李东生也被推至风口浪尖之上。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/f307ab91c1e4f3593739df7026fb900e.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/35d4c2a37305e63c9d10f7d3da0808cf.jpg" />
 李隽
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/1ff6b1a304a2f474f72c75b177efaca3.jpg" />
@@ -41,11 +39,3 @@ TCL集团称，TCL商标仍归上市公司所有，TCL实业估值为负是因�
 李东生让TCL集团几乎是要抛弃价值号称800亿的品牌，股东们会同意么？
 李东生要解释清楚的，为何对华星光电“孤注一掷”？交易对价为什么是47亿元？等等。
 TCL集团的重组方案把消费电子和家电业务出售，保留华星光电作为盈利主体。方案在市场中引发较大争议，也使公司董事长李东生被推到风口浪尖。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

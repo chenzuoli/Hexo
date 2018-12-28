@@ -1,15 +1,13 @@
 ---
 title: 合作45年后，Adidas与StanSmith本人宣布终身合作协议
-author: 第一财经
+author: wetech
 date: 2018-12-26 20:09:23
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+最近，Adidas Originals和Stan Smith系列同名代言人、著名网球运动员Stan Smith宣布了他们将以合作伙伴的形式开始终身合作的决定。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/d04ed2f623d596815da361ab67cefcbb.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/a9a707380114ce3e98f01bc0de428f6a.jpg" />
 曹翊
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/33bc52ce1eb7ee31485a841006b08dc4.jpg" />
@@ -33,11 +31,3 @@ Stan Smith系列外观设计上采用了具有特色的白色皮革和绿色鞋�
 安全产业发展战略合作协议利好安全产业相关子行业
 报告称，全球有超过20亿人有微量营养素缺乏症，诸如缺乏维生素A、碘、铁、锌等微量元素。
 业界普遍认为，合作协议不再续签后，将对趣店在风控及营销获客方面造成影响。对此，双方均对第一财经表示，“这是正常的商业决定”。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

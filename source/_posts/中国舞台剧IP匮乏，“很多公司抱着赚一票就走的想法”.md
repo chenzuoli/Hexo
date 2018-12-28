@@ -1,15 +1,13 @@
 ---
 title: 中国舞台剧IP匮乏，“很多公司抱着赚一票就走的想法”
-author: 第一财经
+author: wetech
 date: 2018-12-16 19:35:56
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+乐琰
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/27d01d7d9c81203ee3582ec4d7e2da90.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/ab4f1bc567951614bb15b100ad1ceed8.jpg" />
 何天骄
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/a92a75d879d9adf9de4159a746ac8874.jpg" />
@@ -40,11 +38,3 @@ categories:
  
 郝景芳曾评论刘宇昆的科幻小说独树一帜，有很多情感生活的画面，包括夫妻之间的亲密和隔阂、父母和孩子之间的不理解，这是他在科幻元素之外讨论的重要主题。
 开心麻花表示，公司计划借助国内资本市场，抓住机遇，进行新一轮跨越式发展。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

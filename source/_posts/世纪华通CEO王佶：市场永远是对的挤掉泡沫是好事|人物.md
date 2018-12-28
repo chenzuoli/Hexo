@@ -1,15 +1,13 @@
 ---
 title: 世纪华通CEO王佶：市场永远是对的挤掉泡沫是好事|人物
-author: 第一财经
+author: wetech
 date: 2018-12-24 21:30:49
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+近日，A股热门游戏公司世纪华通整合老牌明星游戏企业盛大游戏引发资本市场的关注，然而，对于一手操盘这次整合的世纪华通CEO、盛大游戏董事长王佶，外界却知之甚少，甚至关于其采访报道也少见报端。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/7f7b1c26a91eb6e7c3d242d79cb7880f.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/17a8e9cca31030f5364ed60296725f03.jpg" />
 何天骄
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/dc4dfa7d7e58e92d4901303def358ec1.jpg" />
@@ -49,11 +47,3 @@ categories:
 周三早盘，世纪华通复牌开盘跌停，股价报18.23元，截至发稿成交额3.23亿元，换手率1.38%。
 刚入盛大游戏大楼就被门厅巨大的“G”字标志吸引。
 公司拟购买盛跃网络100%股权，交易价格预估为298亿元，同时拟募集配资不超31亿元。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

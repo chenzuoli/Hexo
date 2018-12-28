@@ -1,15 +1,13 @@
 ---
 title: 情报|RafSimons提前8个月离开CalvinKlein、Burberry转型艰难或将被收购等
-author: 第一财经
+author: wetech
 date: 2018-12-26 20:16:29
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+12月21日，自2016年8月开始担任Calvin Klein首席创意官的Raf Simons宣布立即离任，这比合同协议上的离任时间足足提前了八个月。目前集团暂未公布接替Raf Simons的人选。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/796335a7361a69f4ccf5ea2a4229d0fa.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/6acd6e05204a97502e61634ba2d98829.jpg" />
 于子添
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/05c037bcf69e6cc59f600fc9c96d2ee3.jpg" />
@@ -33,11 +31,3 @@ Acne Studios由Jonny Johansson和Mikael Schiller创立于1996年，取名自“A
 得益于山东如意集团的收购，SMCP集团的业绩保持良好发展态势。
 途牛网第二季净营收为5.253亿元(人民币，下同)(约合7940万美元)，同比增长14.2%。
 小米集团CFO周受资在接受第一财经采访时透露，关于小米申请虚拟银行牌照一事，小米正在论证、调研虚拟银行相关的机会，这是个值得考虑的选择，小米对香港金融创新的机会非常看好。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

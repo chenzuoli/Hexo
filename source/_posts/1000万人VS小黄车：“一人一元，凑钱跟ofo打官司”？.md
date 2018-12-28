@@ -1,15 +1,13 @@
 ---
 title: 1000万人VS小黄车：“一人一元，凑钱跟ofo打官司”？
-author: 第一财经
+author: wetech
 date: 2018-12-19 23:15:53
 tags: 
 categories: 
 ---
-打开微信，点击底部的“发现”，
+在燃烧人民币取暖的好日子过去后，共享单车的凛冬突然而至。
 <!-- more -->
-打开微信，点击底部的“发现”，
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/bb9096ad696c76d89a7d54a1b39627ee.jpg" />
-使用“扫一扫”即可将网页分享至朋友圈。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/a1a634f69a12e395e2744a93ea457593.jpg" />
 吕倩
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/12/707f8cd348ac21327f64580ec9cf31c2.jpg" />
@@ -49,11 +47,3 @@ categories:
 ofo创始人戴威发布全员信，称希望每一位ofo人都能认同并坚定信念：不逃避，勇敢活下去，为欠着的每一分钱负责。
 要知道，押金一直是共享单车行业备受诟病的存在。从去年下半年开始，部分共享单车企业陷入资金困境、出现押金退还难题。
 目前收取押金的共享单车企业一般将押金统一存放在银行进行专户管理，退款时效、具体金额与支付方式、余额组成有关。
-第一财经
-APP
-第一财经
-日报微博
-第一财经
-微信服务号
-第一财经
-微信订阅号

@@ -5,30 +5,31 @@ date: 2019-01-03 07:46:28
 tags: 
 categories: 
 ---
-14:00 德国11月实际零售销售同、环比数据
+亚洲市场开市，韩国综合指数开盘微涨0.09%，报2011.81点，日股继续休市。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/5795dce2c13c12cd19ef68151420a6d2.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/8a584fa76c9510fa8e119d442f650089.jpg" />
 2019年首个交易日，美股低开高走，三大股指全线收涨。道琼斯工业平均指数报收23346.24点，涨0.08%；标普500指数报收2510.03点，涨0.13%；纳斯达克综合指数报收6665.94点，涨0.46%。盘面上，能源股和银行股涨幅居前。欧洲股市低开高走，三大股指收盘涨跌不一。德国DAX指数涨0.2%报10580.19点，法国CAC40指数跌0.87%报4689.39点，英国富时100指数涨0.09%报6734.23点。商品期货方面，WTI原油期货收涨2.49%，报46.54美元/桶；COMEX2月黄金期货收涨0.2%，报1284.10美元/盎司。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/1115fd943822077aad8679290e0a4854.jpg" />
-14:00 德国11月实际零售销售同、环比数据
+亚洲市场开市，韩国综合指数开盘微涨0.09%，报2011.81点，日股继续休市。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/0b75110e89bc47fa797efb2be5b1e11d.jpg" />
-17:00 欧元区11月M3货币供应同比
+14:00 德国11月实际零售销售同、环比数据
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/334f11c9a2cf3844d46dd8995a3b3e73.jpg" />
-20:00 美国12月28日当周MBA抵押贷款申请活动指数周环比
+17:00 欧元区11月M3货币供应同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/043e825c865ea5e0ea151cf5a46da133.jpg" />
-21:15 美国12月ADP就业人数
+20:00 美国12月28日当周MBA抵押贷款申请活动指数周环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/b1fa9bd7d966424e8ac6118f75c95477.jpg" />
-21:30 美国11月批发库存环比初值
+21:15 美国12月ADP就业人数
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/9d8e2d90a2b37391ca779f15a10018b0.jpg" />
-21:30 美国截至12月29日当周初请失业金人数及四周均值
+21:30 美国11月批发库存环比初值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/3fe87f78bb215979ccf7a8b1a382813c.jpg" />
-23:00 美国12月ISM制造业PMI
+21:30 美国截至12月29日当周初请失业金人数及四周均值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/10271f820278a7057d79730f65d39711.jpg" />
-无
+23:00 美国12月ISM制造业PMI
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/06ebb0c1f97884024ce9d6bd3391a6f6.jpg" />
-国务院总理李克强1月2日主持召开国务院常务会议，部署对标国际先进水平促进综合保税区升级，打造高水平开放新平台；决定推出便利化改革措施，解决企业反映强烈的“注销难”问题。
+无
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/781b132626e7c57022d1491e8f3a175c.jpg" />
+国务院总理李克强1月2日主持召开国务院常务会议，部署对标国际先进水平促进综合保税区升级，打造高水平开放新平台；决定推出便利化改革措施，解决企业反映强烈的“注销难”问题。
 中国政府网公布《国务院关于河北雄安新区总体规划（2018—2035年）的批复》。批复指出，经中共中央、国务院同意，原则同意《河北雄安新区总体规划（2018—2035年）》。总体规划是雄安新区发展、建设、管理的基本依据，必须严格执行，任何部门和个人不得随意修改、违规变更。
 中国人民银行行长易纲近期表示，2018年中央外汇业务中心实现了外汇储备资产风险和收益的平衡，为服务国家发展战略、保障国家经济金融安全作出了重要贡献。截至11月末，我国外汇储备规模约为3.09万亿美元，近两年来保持基本稳定。
 中国人民银行决定，自2019年起，将普惠金融定向降准小型和微型企业贷款考核标准由“单户授信小于500万元”调整为“单户授信小于1000万元”。 这有利于扩大普惠金融定向降准优惠政策的覆盖面，引导金融机构更好地满足小微企业的贷款需求，使更多的小微企业受益。

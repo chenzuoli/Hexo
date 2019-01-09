@@ -7,7 +7,7 @@ categories:
 ---
 一系列压力之下，车企被倒逼调整，智能定制成为转型的尝试方向之一。
 <!-- more -->
-<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/6cd698ed02aaea7a48d71c45078b432f.jpg" />
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/4c8d43adc20d98ca96210a6f262c8174.jpg" />
 杨海艳
 一系列压力之下，车企被倒逼调整，智能定制成为转型的尝试方向之一。
 多家车企对外发布了2018年销售数据，包括吉利、长城等多家车企都未能完成年初定下的销量目标，一直独步车市的上汽集团也没能成为例外。据官方发布的数据，虽然上汽集团在2018年仍然实现了1.75%的增长，全年销量达到705.17万辆，但与年初定下的 725万辆的销量目标相比，足足差了20万辆。

@@ -7,12 +7,11 @@ categories:
 ---
 这两天，一篇经济学家写的文章，引发了一场资本市场的热议。
 <!-- more -->
-<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/53a1776d2a836f2d601f6e92737d7457.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/45465717901b25d3b4cb2d6b003686f0.jpg" />
-巴九灵 
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/cc9e219742ce04388e97a4eb652f61ce.jpg" />
-这两天，一篇经济学家写的文章，引发了一场资本市场的热议。
+巴九灵 
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/c6dc864d1dd7e27d67da0db84fdb70e0.jpg" />
+这两天，一篇经济学家写的文章，引发了一场资本市场的热议。
 东兴证券首席经济学家张岸元发文称：央行持有本国股票资产大有可为。
 主要意思是：各国中央银行都大量持有外国股票资产，作为其外汇储备多元化投资策略的一部分。出于稳定市场等多种原因，中央银行持有本国股市资产，并不出格。
 以日本央行为例，该行自2002年开始持有本国股票资产，并于2010年大幅增持ETF。

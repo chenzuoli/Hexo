@@ -5,12 +5,13 @@ date: 2019-01-11 11:05:23
 tags: 
 categories: 
 ---
-京东方面，从1月11日零点开始，iPhone8 64GB版本价格下调至3999元，iPhone8 Plus 64GB下调至4799元，较变动前分别下调了600元和800元。与苹果官网报价5099元和5999元分别相差1100元和1200元。
+继苹果公司股价经过一轮大跌之后，iPhone降价潮悄然来袭。1月11日，京东、苏宁相继下调iPhone价格，相较苹果官网报价相差千元。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/e731b988cf4cf3e4d6aab58cafe23014.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/43ceaa61ed61bf888c404acf22cb6bf6.jpg" />
-继苹果公司股价经过一轮大跌之后，iPhone降价潮悄然来袭。1月11日，京东、苏宁相继下调iPhone价格，相较苹果官网报价相差千元。
+一财资讯
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/1afc141003a6088f69a2efcf80428e23.jpg" />
+继苹果公司股价经过一轮大跌之后，iPhone降价潮悄然来袭。1月11日，京东、苏宁相继下调iPhone价格，相较苹果官网报价相差千元。
 京东方面，从1月11日零点开始，iPhone8 64GB版本价格下调至3999元，iPhone8 Plus 64GB下调至4799元，较变动前分别下调了600元和800元。与苹果官网报价5099元和5999元分别相差1100元和1200元。
 紧接着，苏宁也大幅度下调iPhone价格，其中，iPhone8 64GB版本价格下调至3899元，iPhone8 Plus 64GB下调至4788元。iPhone XR 128GB版本到手价5799元，相较于苹果官网6999元的价格也便宜了1200元。iPhone X 64GB到手价为5788元。
 此前，苹果CEO蒂姆·库克在给投资者的一封信中下调了苹果一季度的销售预期，在最新的销售展望中将今年一季度的销售预期下调至840亿美元，大幅低于原先的890亿美元至930亿美元区间，还将毛利率下调至38%。库克称，iPhone销售疲乏导致的收入下滑是苹果下调营收预期的主要原因。

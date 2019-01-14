@@ -5,26 +5,27 @@ date: 2019-01-14 07:57:54
 tags: 
 categories: 
 ---
-21:30 美国11月贸易账(亿美元)(1/14-1/18)
+周一亚洲市场开市，韩国KOSPI指数开盘下跌4.90点，跌幅0.24%，报2075.57点。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/5795dce2c13c12cd19ef68151420a6d2.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/aa8c5d289dc15a4794e36176d6b622e6.jpg" />
 美国三大股指小幅收跌，结束五日连涨。标普500指数下跌0.38点，跌幅0.01%，报2596.26点；纳斯达克综合指数收盘下跌14.60点，跌幅0.21%，报6971.48点；道琼斯工业指数下跌5.97点，跌幅0.02%，报23995.95点。大型科技股多数下跌。欧洲三大股指均小幅收跌，富时100指数跌0.36%，法国CAC40指数跌0.51%，德国DAX指数跌0.31%。商品市场，美原油1902合约跌0.89美元/桶，跌幅1.69%，报51.7美元/桶，美黄金1902合约涨0.5美元/盎司，涨幅为0.04%，报1287.9美元/盎司。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/1115fd943822077aad8679290e0a4854.jpg" />
-21:30 美国11月贸易账(亿美元)(1/14-1/18)
+周一亚洲市场开市，韩国KOSPI指数开盘下跌4.90点，跌幅0.24%，报2075.57点。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/a566752790c7ce57939aefde68bcb6aa.jpg" />
-21:30 美国11月批发库存环比初值(%)(1/14-1/18)
+21:30 美国11月贸易账(亿美元)(1/14-1/18)
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/56626bdfab6eb3a6ce4d839da509a295.jpg" />
-23:00 美国11月工厂订单环比(%)(1/14-1/18)
+21:30 美国11月批发库存环比初值(%)(1/14-1/18)
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/9d8e2d90a2b37391ca779f15a10018b0.jpg" />
-23:30 美国11月耐用品订单环比终值(%)(1/14-1/18)
+23:00 美国11月工厂订单环比(%)(1/14-1/18)
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/3fe87f78bb215979ccf7a8b1a382813c.jpg" />
-无
+23:30 美国11月耐用品订单环比终值(%)(1/14-1/18)
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/10271f820278a7057d79730f65d39711.jpg" />
 无
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/bf63e02ed404f6a3e050ef4e929eaa79.jpg" />
 无
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/781b132626e7c57022d1491e8f3a175c.jpg" />
+无
 中国政府网12日消息，李克强总理1月9日主持召开国务院常务会议，决定再推出一批针对小微企业的普惠性减税措施。“小微企业是吸纳就业的主渠道，对小微企业实施减税主要是为了支撑就业。”李克强说，“发展并壮大小微企业，关系经济平稳运行和就业稳定。这件事既利当前，又惠长远：通过对小微企业实施普惠性减税，更大激发市场活力，从长远看，这会不断扩大税基，涵养税源，最终实现群众就业、企业利润和财政税收多赢。”
 国务院港澳事务办公室主任张晓明1月11日表示，粤港澳大湾区的战略定位有五个：一是充满活力的世界级城市群。二是具有全球影响力的国际科技创新中心。三是“一带一路”建设的重要支撑。四是内地与港澳深度合作示范区。五是宜居宜业宜游的优质生活圈。
 1月12日，第二十三届中国资本市场论坛在北京举行。证监会副主席方星海会上表示，新股第一天价格涨了44%，没有交易量，没有交易量的价格是虚幻的不准确的价格，而且前几天都没有交易量，非常不合理。首日涨停板这个事情要研究，我个人觉得应该取消。

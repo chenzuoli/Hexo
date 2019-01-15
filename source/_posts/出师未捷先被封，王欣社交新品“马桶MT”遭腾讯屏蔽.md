@@ -5,22 +5,20 @@ date: 2019-01-15 14:16:57
 tags: 
 categories: 
 ---
-15日，前快播创始人、现云歌人工智能科技有限公司CEO王欣复出后终于推出首款软件“马桶MT”，不过，产品刚刚上线，还没正式发布，就已经被微信屏蔽了，无法打开分享链接。
+15日，王欣复出后终于推出首款产品“马桶MT”，不过，产品刚刚上线，还没正式发布，就已经被微信屏蔽了，无法打开分享链接。
 <!-- more -->
-<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/0b1c2d68dcc3068bfe2d72c5b9ac2da0.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/43a5a433b9f26176d5c87e255cb0a7f6.jpg" />
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/0b1c2d68dcc3068bfe2d72c5b9ac2da0.jpg" />
 一财资讯
-<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/c353feb5213e92853b8ced0cd464b2ae.jpg" />
-15日，前快播创始人、现云歌人工智能科技有限公司CEO王欣复出后终于推出首款软件“马桶MT”，不过，产品刚刚上线，还没正式发布，就已经被微信屏蔽了，无法打开分享链接。
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/616ee3d3c9877e386e5542db7c6cf525.jpg" />
+15日，王欣复出后终于推出首款产品“马桶MT”，不过，产品刚刚上线，还没正式发布，就已经被微信屏蔽了，无法打开分享链接。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/f8fb2fe0c6ebdfeb6e40a4221f208d6c.jpg" />
-王欣14日晚在微博上连发三条消息，控诉其公司开发的匿名社交产品“马桶MT”遭到屏蔽。
+前快播创始人王欣现任云歌人工智能科技有限公司CEO，14日晚王欣在微博上连发三条消息，称其公司开发的匿名社交产品“马桶MT”遭到屏蔽。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/70a0a3d1374e300f6bdf2c883fa6f419.jpg" />
 从王欣发布的消息来看，腾讯大王卡短信封了马桶MT，微信屏蔽了马桶MT。在微信中无法打开马桶MT官网，只能通过浏览器打开。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/5db437b31445707bab275df6d031d1dc.jpg" />
 为什么马桶MT被腾讯多渠道封杀？王欣14日晚间发布的最后一条微博似乎可以窥得一二：疑似涉黄。
 对于此举，王欣在微博上抗议“不知道你怕什么？”，随后回应“怎么办？”可见已经把王欣给急坏了。
- 
- 
 天眼查信息显示，“马桶MT”所属公司为深圳市云歌人工智能技术有限公司，公司注册于2018年2月，法定代表人为王欣妻子彭鹏，创始人王欣为最大股东，占股91.5%。其他股东包括云歌人工智能CTO吴铭、小鹏汽车董事长何小鹏等。
 马桶MT官网的官方描述称，“马桶MT是一个人脉暗网，是朋友圈的影子，所有微信上看不到的听不到，甚至是被删除的内容都可能出现在这里。”由于是匿名的，用户还可以吐槽或发泄内心想法。
 早在1月11日，王欣曾在微博上发文称，“人与人之间的弱连接，是被严重低估的一种人脉，这些不稳固的人脉、弱连接构成了人脉暗网，它有更大的空间和自由让你表达。”

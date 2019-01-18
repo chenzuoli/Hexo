@@ -5,26 +5,27 @@ date: 2019-01-18 07:38:39
 tags: 
 categories: 
 ---
-17:30 英国12月季调后零售销售环比
+亚洲市场开市，日经225指数开盘涨0.35%，报20472.81点。韩国综合指数涨0.44%，报2116.43点。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/5795dce2c13c12cd19ef68151420a6d2.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/6aa1d14942cf23c4aec97170e24f3aea.jpg" />
 隔夜欧美市场涨跌互现，美股收高，道琼斯指数涨0.67%报24370.10点，纳斯达克指数涨0.71%报7084.46点，标普500指数涨0.76%报2635.95点。摩根士丹利跌超4%，因业绩不及预期。欧洲市场上，三大股指集体收跌，德国DAX指数跌0.14%报10915.99点；英国富时100指数跌0.40%报6835.25点；法国CAC40指数跌0.34%报4794.37点。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/1115fd943822077aad8679290e0a4854.jpg" />
-17:30 英国12月季调后零售销售环比
+亚洲市场开市，日经225指数开盘涨0.35%，报20472.81点。韩国综合指数涨0.44%，报2116.43点。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/4316f838c8438bb20365a7faf505b250.jpg" />
-17:30 英国12月季调后核心零售销售环比
+17:30 英国12月季调后零售销售环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/5bde78f8975a11037d0b9ad02d3eedb1.jpg" />
-21:30 加拿大12月CPI同比
+17:30 英国12月季调后核心零售销售环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/9d8e2d90a2b37391ca779f15a10018b0.jpg" />
-21:30 加拿大12月核心CPI同比
+21:30 加拿大12月CPI同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/3fe87f78bb215979ccf7a8b1a382813c.jpg" />
-21:30 美国12月零售销售环比
+21:30 加拿大12月核心CPI同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/10271f820278a7057d79730f65d39711.jpg" />
-21:30 美国12月核心零售销售环比
+21:30 美国12月零售销售环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/a7bab9032c500f47e6b4416f587fa100.jpg" />
-21:30 美国11月贸易账(亿美元)
+21:30 美国12月核心零售销售环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/781b132626e7c57022d1491e8f3a175c.jpg" />
+21:30 美国11月贸易账(亿美元)
 21:30 美国11月批发库存环比初值
 23:00 美国11月耐用品订单环比终值
 无
@@ -65,3 +66,8 @@ categories:
 周四晚间多家公司披露业绩预告，中航高科、丝路视觉、雅本化学、上峰水泥等2018年净利润预增幅度均超过100%，其中，中航高科全年净利润预增270%。
  
  
+机构分析指出，周三两市缩量调整，没有大的反复，市场下行投资者没有跟风砸盘，预计后市调整过后继续反弹的可能性偏大。
+彭文生再度呼吁财政扩张，并预判未来2~3年是不是牛市，要看财政赤字的增加如何支持减税。
+11日，在前期公开征求意见的基础上，上交所、深交所正式发布实施《上市公司回购股份实施细则》。12日，证监会副主席方星海谈论A股改革，建议取消新股首日涨停板限制。分析认为，当前阶段应继续把握这段有所作为的窗口期。
+市场普遍预计，梅政府会在15日的议会投票中落败，这种可能性已大部分体现在近期英镑的定价中，因此很难看到大幅波动。
+两市已有1232家上市公司公布了全年业绩预告，披露比例超过1/3。其中，除72家公司业绩不确定之外，预喜（包括续盈）企业数目达到792家，预喜比例达65%。

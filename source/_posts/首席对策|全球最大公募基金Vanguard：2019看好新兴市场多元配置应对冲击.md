@@ -7,7 +7,6 @@ categories:
 ---
 任绍敏
 <!-- more -->
-<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/2305f5308dd4cf7717675c0a200f6ba9.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/a10bf96a17e20deb5df542104d1eba55.jpg" />
 李策
 任绍敏

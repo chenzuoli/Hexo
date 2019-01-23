@@ -1,5 +1,5 @@
 ---
-title: 宝马和戴姆勒将把合并后的共享汽车公司命名为“Jurbey”。
+title: 宝马和戴姆勒将把合并后的共享汽车公司命名为“Jurbey”
 author: None
 date: 2019-01-23 13:58:15
 tags: 

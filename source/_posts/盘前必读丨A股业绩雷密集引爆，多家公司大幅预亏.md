@@ -5,30 +5,31 @@ date: 2019-01-30 07:40:26
 tags: 
 categories: 
 ---
-08:30 澳大利亚四季度CPI同、季环比
+亚洲市场开市，日经225指数开盘涨0.18%，报20701.62点。韩国综合指数基本平开，报2183.49点。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/5795dce2c13c12cd19ef68151420a6d2.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/6c4ef2585bbcf76dbc340478c80e9f6a.jpg" />
 美股三大股指收盘涨跌不一，道指收涨0.21%；标普500收跌0.15%；纳指收跌0.81%。当日，美联储开始召开为期两天的货币政策会议，投资者密切关注美联储关于加息和缩减资产负债表所作的最新表述及其对股市的影响。欧洲市场上，欧股普遍收高，英国富时100指数收涨1.3%；德国DAX指数涨0.08%；法国CAC40指数收涨0.81%。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/1115fd943822077aad8679290e0a4854.jpg" />
-08:30 澳大利亚四季度CPI同、季环比
+亚洲市场开市，日经225指数开盘涨0.18%，报20701.62点。韩国综合指数基本平开，报2183.49点。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/d523fcb30eb1790a91d4b3c425e0ffea.jpg" />
-14:30 法国第四季度GDP同、季环比初值
+08:30 澳大利亚四季度CPI同、季环比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/a2381028ca7be5515928707d5fc1776b.jpg" />
-18:00 欧元区1月消费者信心指数终值
+14:30 法国第四季度GDP同、季环比初值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/009fd5d44393d699a9ee7535b3a38841.jpg" />
-21:15 美国1月ADP就业人数
+18:00 欧元区1月消费者信心指数终值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/f232144822f3dba74a72c691bbf6cc7a.jpg" />
-21:30 美国12月耐用品订单环比初值
+21:15 美国1月ADP就业人数
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/9d8e2d90a2b37391ca779f15a10018b0.jpg" />
-21:30 美国第四季度实际GDP年化季环比初值
+21:30 美国12月耐用品订单环比初值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/3fe87f78bb215979ccf7a8b1a382813c.jpg" />
-23:30 美国截至1月25日当周EIA原油、汽油库存变动
+21:30 美国第四季度实际GDP年化季环比初值
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/10271f820278a7057d79730f65d39711.jpg" />
-无
+23:30 美国截至1月25日当周EIA原油、汽油库存变动
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/01/7e0d0e04e99d185d94a31cd16559abd2.jpg" />
-中国银保监会发文称，为进一步落实党中央、国务院“放管服”工作部署，支持保险机构加大股权投资力度，提高股权投资计划和保险私募基金注册效率，根据《保险资金运用管理办法》等相关规定，即日起，保险资产管理机构及其下属机构发起设立股权投资计划和保险私募基金，由中国保险资产管理业协会办理注册工作。下一步，银保监会将加强对保险资管协会的业务指导，强化对股权投资计划和保险私募基金的业务监管，确保两类产品注册有序、顺畅进行。
+无
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/781b132626e7c57022d1491e8f3a175c.jpg" />
+中国银保监会发文称，为进一步落实党中央、国务院“放管服”工作部署，支持保险机构加大股权投资力度，提高股权投资计划和保险私募基金注册效率，根据《保险资金运用管理办法》等相关规定，即日起，保险资产管理机构及其下属机构发起设立股权投资计划和保险私募基金，由中国保险资产管理业协会办理注册工作。下一步，银保监会将加强对保险资管协会的业务指导，强化对股权投资计划和保险私募基金的业务监管，确保两类产品注册有序、顺畅进行。
 1月29日下午，外商投资法草案再次提请全国人大常委会审议。这是继去年12月下旬全国人大常委会初次审议该法律草案后的第二次审议。一个多月的时间里两次审议，释放出外商投资立法按下“加速键”的信号，彰显中国进一步扩大开放的决心。
 成都市住房公积金管理中心发布《成都住房公积金个人住房贷款实施细则》的通知，属于无住房且无未结清的住房贷款，可认定为购买首套住房，执行首套房公积金贷款政策。根据《细则》，公积金贷款支持缴存职工家庭购买首套自住住房或第二套改善居住条件的自住住房，不支持购买第三套及以上住房。
 1月29日，交通运输部军民融合工作领导小组召开会议，会议指出，交通运输是贯彻落实军民融合发展战略的重点领域。各单位要把抓好军民融合发展工作作为各级党组（党委）重大政治责任，强化执行力度，全力以赴组织落实好2019军民融合发展任务。

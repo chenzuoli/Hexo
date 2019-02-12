@@ -1,0 +1,18 @@
+---
+title: MSCI指数新纳入12家中国公司股票，小米、美团点评涨2
+author: wetech
+date: 2019-02-12 09:39:47
+tags: 
+categories: 
+---
+消息面上，2月11日，全球最大的指数公司MSCI公布2019年2月MSCI股票指数季度指数评估结果。MSCI称，在MSCI全球所有国家指数（ACWI）中增加17只、移除1只股票。所有变动将在2月28日收盘后生效。
+<!-- more -->
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/940b6f032fefcc6b92da7df54216ae98.jpg" />
+<img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/17735e498971f5840d825b50f8813a17.jpg" />
+2月12日，恒生指数开盘跌0.18%，报28093.31点，小米集团开盘涨2.24%，美团点评涨2%。
+消息面上，2月11日，全球最大的指数公司MSCI公布2019年2月MSCI股票指数季度指数评估结果。MSCI称，在MSCI全球所有国家指数（ACWI）中增加17只、移除1只股票。所有变动将在2月28日收盘后生效。
+其中，中国股票新增12支。A股新增中国铝业（601600.SH）、工业富联(601138.SH)、广汇能源（600256.SH）、华西证券（002926.SZ）、国投资本(600061。SH)；港股新增美团点评（03690.HK）、小米集团（01810.HK）；美股新增哔哩哔哩（BILI.O）、爱奇艺（IQ.O）、拼多多（PDD.O）、腾讯音乐（TME.N）、中通快递（ZTO.N）。
+新增：中国铝业，哔哩哔哩，工业富联（A股），广汇能源，华西证券，爱奇艺，美团点评（B类股），拼多多，国投资本，腾讯音乐，小米，中通快递。上海商银。Adyen N.V、Altice USA，KKR&；Co．，Tableau Software
+删除：Antero Resources
+ 
+ 

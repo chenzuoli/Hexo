@@ -5,28 +5,29 @@ date: 2019-02-13 07:30:14
 tags: 
 categories: 
 ---
-10:00 中国1月贸易账
+亚洲市场开市，日经225指数开盘涨0.79%报21028.38点，韩国综合指数涨0.44%报2200点。
 <!-- more -->
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/5795dce2c13c12cd19ef68151420a6d2.jpg" />
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/7acc5cf9d857afae54611dee50b32c7e.jpg" />
 当地时间周二，欧美股市普涨，美国三大股指均收涨逾1.2%，道指涨约370点，标普500指数收盘于200日均线上方，为12月3日以来首次。美国政府有望避免再次关门，令市场情绪乐观。趣头条收涨逾19%，领涨中概股。美国大型科技股多数收涨，苹果涨0.86%，亚马逊涨2.95%，奈飞涨4.12%，谷歌涨2.31%，Facebook跌0.45%，微软涨1.56%。欧洲市场上，三大股指集体收涨，米其林的业绩提振汽车股走高。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/1115fd943822077aad8679290e0a4854.jpg" />
-10:00 中国1月贸易账
+亚洲市场开市，日经225指数开盘涨0.79%报21028.38点，韩国综合指数涨0.44%报2200点。
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/48c1b58e2349e1000b0a28dc8a9b11b7.jpg" />
-10:00 中国1月进出口同比
+10:00 中国1月贸易账
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/09facaba8606d6c067a1a53a575794dd.jpg" />
-16:00 中国1月M2货币供应同比
+10:00 中国1月进出口同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/d6bdc11480f3430358c0ca6418ecbf14.jpg" />
-16:00 中国1月社会融资规模
+16:00 中国1月M2货币供应同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/9d8e2d90a2b37391ca779f15a10018b0.jpg" />
-17:30 英国1月CPI同比
+16:00 中国1月社会融资规模
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/3fe87f78bb215979ccf7a8b1a382813c.jpg" />
-21:30 美国1月未季调CPI指数
+17:30 英国1月CPI同比
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/10271f820278a7057d79730f65d39711.jpg" />
-23:30 美国截至2月8日当周EIA原油库存变动
+21:30 美国1月未季调CPI指数
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2019/02/dae5e1ce069ac2a314b8ab913a44b1a9.jpg" />
-无
+23:30 美国截至2月8日当周EIA原油库存变动
 <img align="center" border="0" src="https://imgcdn.yicai.com/uppics/images/2018/11/781b132626e7c57022d1491e8f3a175c.jpg" />
+无
 国务院副总理韩正12日到国家发展改革委调研并主持召开座谈会。韩正表示，要抓住疏解北京非首都功能这个“牛鼻子”推动京津冀协同发展，按照开放式、市场化机制推进雄安新区建设。要坚持共抓大保护推动长江经济带高质量发展，对生态环境领域的突出问题紧盯不放、一抓到底。要明确目标和重点任务，推动粤港澳大湾区建设，加快推进国际科技创新中心建设。要完善海南自贸试验区政策框架，研究推进中国特色自由贸易港建设的政策制度体系。要推动长三角区域一体化发展，为全国经济社会发展作出更大贡献。
 农历新年伊始，商务部12日举行首场新闻发布会。从发布会现场了解到，2018年消费对经济贡献加大，对外贸易创历史新高，利用外资量稳质优，对外投资质量效益稳步提升，多双边经贸合作持续推进。商务部副部长钱克明表示，2019年将全力做好“一促两稳三重点”工作，促进形成强大国内市场，扩大全方位开放，推进经贸强国建设。
 央行、外管局印发《境内上市公司外籍员工参与股权激励资金管理办法》，积极支持上市公司外籍员工股权激励，稳步提升境内资本市场对外开放程度。办法明确境内上市公司外籍员工参与股权激励所涉资金的管理原则，实行登记管理，可由外籍员工自主选择参与资金来源。

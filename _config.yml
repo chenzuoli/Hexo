@@ -4,15 +4,15 @@
 
 # Site
 title: 百草园
-subtitle: Focus on big data. welcome to correct.
+subtitle: Focus on truth. welcome to correct.
 description:
-author: chenzuoli
+author: wetech
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://chenzuoli.github.io
+url: http://wetech.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,8 +78,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:chenzuoli/chenzuoli.github.io.git
-  #repo: git@39.106.167.223:/home/git/data/repository/wetech.top
+  #repo: git@github.com:chenzuoli/chenzuoli.github.io.git
+  repo: git@39.106.167.223:/home/git/data/repository/wetech.top
   branch: master
 
 # Baidu Analytics ID
@@ -92,3 +92,22 @@ search:
   limit: 10000
   
 since: 2017
+
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-shizuku
+  display:
+    position: left
+    width: 150
+    height: 300
+  mobile:
+    show: true
+  react:
+    opacity: 0.7

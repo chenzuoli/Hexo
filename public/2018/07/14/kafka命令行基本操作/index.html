@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,11 +84,11 @@
 <meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kafka命令行基本操作">
-<meta property="og:url" content="https://chenzuoli.github.io/2018/07/14/kafka命令行基本操作/index.html">
+<meta property="og:url" content="http://wetech.top/2018/07/14/kafka命令行基本操作/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="这里先介绍下kafka的基本知识及应用场景：它是一个分布式、高吞吐量、容错性好的消息队列，基于生产者、消费者模型来实现消息的生产消费，在我们的应用系统中，可以起到数据流缓存、解耦合、高效的作用。下面是kafka命令行的基本操作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.376Z">
+<meta property="og:updated_time" content="2018-12-11T13:57:12.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka命令行基本操作">
 <meta name="twitter:description" content="这里先介绍下kafka的基本知识及应用场景：它是一个分布式、高吞吐量、容错性好的消息队列，基于生产者、消费者模型来实现消息的生产消费，在我们的应用系统中，可以起到数据流缓存、解耦合、高效的作用。下面是kafka命令行的基本操作。">
@@ -121,14 +121,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2018/07/14/kafka命令行基本操作/">
+  <link rel="canonical" href="http://wetech.top/2018/07/14/kafka命令行基本操作/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -318,10 +318,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2018/07/14/kafka命令行基本操作/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2018/07/14/kafka命令行基本操作/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -411,16 +411,27 @@
       
 
       
-        <p>这里先介绍下kafka的基本知识及应用场景：它是一个分布式、高吞吐量、容错性好的消息队列，基于生产者、消费者模型来实现消息的生产消费，在我们的应用系统中，可以起到数据流缓存、解耦合、高效的作用。<br>下面是kafka命令行的基本操作。<br><a id="more"></a><br>对于kafka集群的安装配置，这里就不讲解了，apache官网有详细配置方案，可参考：<a href="http://kafka.apache.org/documentation/#configuration" target="_blank" rel="noopener">apache kafka配置详解</a><br>注：本次使用操作的基本环境为kafka 1.1.0、centos 7.4</p>
+        <p>这里先介绍下kafka的基本知识及应用场景：它是一个分布式、高吞吐量、容错性好的消息队列，基于生产者、消费者模型来实现消息的生产消费，在我们的应用系统中，可以起到数据流缓存、解耦合、高效的作用。<br>下面是kafka命令行的基本操作。</p>
+<a id="more"></a>
+<p>对于kafka集群的安装配置，这里就不讲解了，apache官网有详细配置方案，可参考：<a href="http://kafka.apache.org/documentation/#configuration" target="_blank" rel="noopener">apache kafka配置详解</a><br>注：本次使用操作的基本环境为kafka 1.1.0、centos 7.4</p>
 <h1 id="1-后台启动kafka-broker"><a href="#1-后台启动kafka-broker" class="headerlink" title="1.后台启动kafka broker"></a>1.后台启动kafka broker</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-server-start.sh -daemon config/server.properties</span><br></pre></td></tr></table></figure>
+
 <h1 id="2-关闭kafka-broker："><a href="#2-关闭kafka-broker：" class="headerlink" title="2.关闭kafka broker："></a>2.关闭kafka broker：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-server-stop.sh</span><br></pre></td></tr></table></figure>
+
 <h1 id="3-创建topic："><a href="#3-创建topic：" class="headerlink" title="3.创建topic："></a>3.创建topic：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 2 --topic test</span><br></pre></td></tr></table></figure>
+
 <h1 id="4-创建生产者："><a href="#4-创建生产者：" class="headerlink" title="4.创建生产者："></a>4.创建生产者：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-console-producer.sh --broker-list hadoop31:9092,hadoop32:9092,hadoop33:9092 --topic test</span><br></pre></td></tr></table></figure>
+
 <h1 id="5-创建消费者："><a href="#5-创建消费者：" class="headerlink" title="5.创建消费者："></a>5.创建消费者：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
+
 <h1 id="6-查看所有topic："><a href="#6-查看所有topic：" class="headerlink" title="6.查看所有topic："></a>6.查看所有topic：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure>
+
 <h1 id="7-查看topic状态："><a href="#7-查看topic状态：" class="headerlink" title="7.查看topic状态："></a>7.查看topic状态：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test</span><br></pre></td></tr></table></figure>
+
 <h1 id="8-查看topic消费情况："><a href="#8-查看topic消费情况：" class="headerlink" title="8.查看topic消费情况："></a>8.查看topic消费情况：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list hadoop31:9092,hadoop32:9092,hadoop33:9092 --topic sparktest --time -1</span><br></pre></td></tr></table></figure>
+
 <h1 id="9-删除某个topic："><a href="#9-删除某个topic：" class="headerlink" title="9.删除某个topic："></a>9.删除某个topic：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-topics.sh --delete --zookeeper hadoop31:2181,hadoop32:2181,hadoop33:2181 --topic sparktest  注意设置配置参数delete.topic.enable=true，然后重启kafka和zookeeper才可以生效；</span><br></pre></td></tr></table></figure>
+
 <p>好了，到这里还没完，后期会持续更新，我会把我工作中使用到的经过测试没问题的kafka知识记录下来分享给大家，如果有什么问题，请大家mail我，希望大家支持。</p>
 
       
@@ -437,6 +448,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -496,6 +514,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -548,7 +604,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -559,7 +615,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -570,7 +626,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -581,7 +637,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,9 +657,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -625,9 +681,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -713,6 +769,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -775,6 +885,8 @@
   
 
 
+  
+
 
 
 
@@ -813,6 +925,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1252,8 +1369,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

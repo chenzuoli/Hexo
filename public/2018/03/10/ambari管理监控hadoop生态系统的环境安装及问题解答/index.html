@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,16 +84,16 @@
 <meta name="keywords" content="ambari,hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ambari管理监控hadoop生态系统的环境安装及问题解答">
-<meta property="og:url" content="https://chenzuoli.github.io/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/index.html">
+<meta property="og:url" content="http://wetech.top/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="首先来介绍下ambari，它是一个apache的一个顶级项目，hadoop生态组件的监控、管理工具，相比较于cloudera公司的CDH，它的特点是完全开源，一键部署安装、管理、监控大数据各组件，省时省力，下面就来介绍ambari环境是如何安装的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://chenzuoli.github.io/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.376Z">
+<meta property="og:image" content="http://wetech.top/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png">
+<meta property="og:updated_time" content="2018-12-11T13:57:12.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ambari管理监控hadoop生态系统的环境安装及问题解答">
 <meta name="twitter:description" content="首先来介绍下ambari，它是一个apache的一个顶级项目，hadoop生态组件的监控、管理工具，相比较于cloudera公司的CDH，它的特点是完全开源，一键部署安装、管理、监控大数据各组件，省时省力，下面就来介绍ambari环境是如何安装的。">
-<meta name="twitter:image" content="https://chenzuoli.github.io/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png">
+<meta name="twitter:image" content="http://wetech.top/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png">
 
 
 
@@ -123,14 +123,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/">
+  <link rel="canonical" href="http://wetech.top/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -186,7 +186,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -320,10 +320,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -413,26 +413,50 @@
       
 
       
-        <p>首先来介绍下ambari，它是一个apache的一个顶级项目，hadoop生态组件的监控、管理工具，相比较于cloudera公司的CDH，它的特点是完全开源，一键部署安装、管理、监控大数据各组件，省时省力，下面就来介绍ambari环境是如何安装的。<br><a id="more"></a><br>本安装教程适用于操作系统centos7，在某一台服务器上安装，原理就是虚拟化该服务器成多个virtual box，然后启动ambari服务，管理这些虚拟机。</p>
+        <p>首先来介绍下ambari，它是一个apache的一个顶级项目，hadoop生态组件的监控、管理工具，相比较于cloudera公司的CDH，它的特点是完全开源，一键部署安装、管理、监控大数据各组件，省时省力，下面就来介绍ambari环境是如何安装的。</p>
+<a id="more"></a>
+<p>本安装教程适用于操作系统centos7，在某一台服务器上安装，原理就是虚拟化该服务器成多个virtual box，然后启动ambari服务，管理这些虚拟机。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装步骤可以参考官网：<br><a href="https://cwiki.apache.org/confluence/display/AMBARI/Quick+Start+Guide" target="_blank" rel="noopener">ambari.apache.org</a></p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lrzsz openssl openssh-clients git maven -y</span><br></pre></td></tr></table></figure>
+
 <h2 id="下载安装VirtualBox、Vagrant"><a href="#下载安装VirtualBox、Vagrant" class="headerlink" title="下载安装VirtualBox、Vagrant"></a>下载安装VirtualBox、Vagrant</h2><p><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">VirtualBox</a><br><a href="http://downloads.vagrantup.com" target="_blank" rel="noopener"></a><br>选择最新稳定版.rpm文件下载即可<br>上传到服务器使用yum安装</p>
 <h2 id="下载ambari-vagrant"><a href="#下载ambari-vagrant" class="headerlink" title="下载ambari-vagrant"></a>下载ambari-vagrant</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/u39kun/ambari-vagrant.git</span><br><span class="line">cat ambari-vagrant/append-to-etc-hosts.txt &gt;&gt; /etc/hosts --配置ip、域名映射</span><br><span class="line">vagrant --生成密钥</span><br></pre></td></tr></table></figure>
+
 <h2 id="启动VMs"><a href="#启动VMs" class="headerlink" title="启动VMs"></a>启动VMs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ambari-vagrant</span><br></pre></td></tr></table></figure>
-<p>你可以看到在该文件夹下有许多centos的版本，官方说centos6.8对ambari的兼容性最好，我们就用centos6.8吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd centos6.8</span><br><span class="line">cp ~/.vagrant.d/insecure_private_key .  --将密钥复制到当前文件夹，注意不要少了组后面的一个点，代表当前文件夹</span><br><span class="line">./up.sh 3 --启动3个virtual machine</span><br></pre></td></tr></table></figure></p>
+
+<p>你可以看到在该文件夹下有许多centos的版本，官方说centos6.8对ambari的兼容性最好，我们就用centos6.8吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd centos6.8</span><br><span class="line">cp ~/.vagrant.d/insecure_private_key .  --将密钥复制到当前文件夹，注意不要少了组后面的一个点，代表当前文件夹</span><br><span class="line">./up.sh 3 --启动3个virtual machine</span><br></pre></td></tr></table></figure>
+
 <p>正常的话，就启动了c6801 c6802 c6803这三台虚拟机</p>
 <h2 id="登录VMs"><a href="#登录VMs" class="headerlink" title="登录VMs"></a>登录VMs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vagrant ssh c6801</span><br><span class="line">su -</span><br></pre></td></tr></table></figure>
+
 <p>ssh没问题的话，说明安装是没问题的，下面来安装ambari-server，以root用户完成下面的操作。</p>
-<h2 id="安装ambari-server"><a href="#安装ambari-server" class="headerlink" title="安装ambari-server"></a>安装ambari-server</h2><p>下载ambari的源，安装并启动ambari-server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/ambari.repo http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.5.1.0/ambari.repo</span><br><span class="line">yum install ambari-server -y</span><br><span class="line">ambari-server setup -s</span><br><span class="line">ambari-server start</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装ambari-server"><a href="#安装ambari-server" class="headerlink" title="安装ambari-server"></a>安装ambari-server</h2><p>下载ambari的源，安装并启动ambari-server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/ambari.repo http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.5.1.0/ambari.repo</span><br><span class="line">yum install ambari-server -y</span><br><span class="line">ambari-server setup -s</span><br><span class="line">ambari-server start</span><br></pre></td></tr></table></figure>
+
 <p>启动成功后，我们可以访问ambari的web界面： <a href="http://c6801.ambari.apache.org:8080，初始的登录用户名和密码均为admin，以同样的方式可以访问c6802" target="_blank" rel="noopener">http://c6801.ambari.apache.org:8080，初始的登录用户名和密码均为admin，以同样的方式可以访问c6802</a> c6803，然后我们就可以对着三台虚拟机进行安装hadoop生态的各个组件了。</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>安装过程中会出现各种问题，具体问题及解决方案如下：</p>
-<h2 id="启动虚拟盒的时候报错"><a href="#启动虚拟盒的时候报错" class="headerlink" title="启动虚拟盒的时候报错"></a>启动虚拟盒的时候报错</h2><p>运行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./up.sh 3</span><br></pre></td></tr></table></figure></p>
-<p>错误日志如下：<br><img src="/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png" alt="VBoxMangeError"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">There was an error while excuting &apos;VBoxMange&apos;, a CLI used by vagrant for controlling VirtualBox, The command and stderr is shown below.</span><br><span class="line">Command: [&quot;startvm&quot;, &quot;afb1736b-3bab-4d1a-a968-16aba764195a&quot;, &quot;--type&quot;, &quot;gui&quot;]</span><br><span class="line">Stderr: VBoxManage: error: The virtual machine &quot;centos68-c6801-1520048454672_80399&quot; has terminated upexpectedly during startup because of singal 6.</span><br><span class="line">VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), componnent MachineWrap, interface IMachine.</span><br></pre></td></tr></table></figure></p>
-<p>错误原因：linux系统中的kernel module与ambari需要使用的kernel模块版本不匹配，导致vboxdrv服务启动异常，可以使用命令查看vboxdrv服务的启动情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status vboxdrv</span><br></pre></td></tr></table></figure></p>
-<p>解决办法：<br>1.安装更新kernel<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install kernel -y</span><br></pre></td></tr></table></figure></p>
-<p>2.安装kernel-devel<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install kernel -y</span><br></pre></td></tr></table></figure></p>
-<p>3.重启服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
-<p>4.启动vboxdrv服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vboxdrv</span><br><span class="line">systemctl status vboxdrv --查看状态</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动虚拟盒的时候报错"><a href="#启动虚拟盒的时候报错" class="headerlink" title="启动虚拟盒的时候报错"></a>启动虚拟盒的时候报错</h2><p>运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./up.sh 3</span><br></pre></td></tr></table></figure>
+
+<p>错误日志如下：<br><img src="/2018/03/10/ambari管理监控hadoop生态系统的环境安装及问题解答/VBoxManageError.png" alt="VBoxMangeError"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">There was an error while excuting &apos;VBoxMange&apos;, a CLI used by vagrant for controlling VirtualBox, The command and stderr is shown below.</span><br><span class="line">Command: [&quot;startvm&quot;, &quot;afb1736b-3bab-4d1a-a968-16aba764195a&quot;, &quot;--type&quot;, &quot;gui&quot;]</span><br><span class="line">Stderr: VBoxManage: error: The virtual machine &quot;centos68-c6801-1520048454672_80399&quot; has terminated upexpectedly during startup because of singal 6.</span><br><span class="line">VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), componnent MachineWrap, interface IMachine.</span><br></pre></td></tr></table></figure>
+
+<p>错误原因：linux系统中的kernel module与ambari需要使用的kernel模块版本不匹配，导致vboxdrv服务启动异常，可以使用命令查看vboxdrv服务的启动情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status vboxdrv</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：<br>1.安装更新kernel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install kernel -y</span><br></pre></td></tr></table></figure>
+
+<p>2.安装kernel-devel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install kernel -y</span><br></pre></td></tr></table></figure>
+
+<p>3.重启服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>4.启动vboxdrv服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vboxdrv</span><br><span class="line">systemctl status vboxdrv --查看状态</span><br></pre></td></tr></table></figure>
+
 <p>到这里配置就基本完成了，谢谢大家，如果有什么问题，请留言。</p>
 
       
@@ -449,6 +473,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -510,6 +541,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -562,7 +631,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -573,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +653,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -595,7 +664,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -615,9 +684,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -639,9 +708,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -727,6 +796,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -789,6 +912,8 @@
   
 
 
+  
+
 
 
 
@@ -827,6 +952,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1266,8 +1396,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

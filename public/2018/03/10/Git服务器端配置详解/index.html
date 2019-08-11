@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,11 +84,11 @@
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git服务器端配置详解">
-<meta property="og:url" content="https://chenzuoli.github.io/2018/03/10/Git服务器端配置详解/index.html">
+<meta property="og:url" content="http://wetech.top/2018/03/10/Git服务器端配置详解/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="我们在公司中，一个项目在开发过程中必定要涉及到同事之间的协同作战，此时代码管理就必不可少了，程序员用的最多的就是git了吧，但是公司的代码是禁止上传到github上的，所以需要自己搭建一个内部的git server服务器供公司内部使用，下面来具体就介绍。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.376Z">
+<meta property="og:updated_time" content="2019-07-20T03:12:37.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git服务器端配置详解">
 <meta name="twitter:description" content="我们在公司中，一个项目在开发过程中必定要涉及到同事之间的协同作战，此时代码管理就必不可少了，程序员用的最多的就是git了吧，但是公司的代码是禁止上传到github上的，所以需要自己搭建一个内部的git server服务器供公司内部使用，下面来具体就介绍。">
@@ -121,14 +121,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2018/03/10/Git服务器端配置详解/">
+  <link rel="canonical" href="http://wetech.top/2018/03/10/Git服务器端配置详解/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -318,10 +318,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2018/03/10/Git服务器端配置详解/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2018/03/10/Git服务器端配置详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -411,29 +411,49 @@
       
 
       
-        <p>我们在公司中，一个项目在开发过程中必定要涉及到同事之间的协同作战，此时代码管理就必不可少了，程序员用的最多的就是git了吧，但是公司的代码是禁止上传到github上的，所以需要自己搭建一个内部的git server服务器供公司内部使用，下面来具体就介绍。<br><a id="more"></a><br>本安装教程适用于centos服务器，其他版本linux服务器步骤一样，运行命令会不相同，自己转换即可。<br>配置git server，原理就是将客户端的公钥id_rsa.pub添加到服务端的密钥文件authorized_keys中，多个用户另起一行拼接到该文件中即可。下面介绍安装的两种方法：</p>
+        <p>我们在公司中，一个项目在开发过程中必定要涉及到同事之间的协同作战，此时代码管理就必不可少了，程序员用的最多的就是git了吧，但是公司的代码是禁止上传到github上的，所以需要自己搭建一个内部的git server服务器供公司内部使用，下面来具体就介绍。</p>
+<a id="more"></a>
+<p>本安装教程适用于centos服务器，其他版本linux服务器步骤一样，运行命令会不相同，自己转换即可。<br>配置git server，原理就是将客户端的公钥id_rsa.pub添加到服务端的密钥文件authorized_keys中，多个用户另起一行拼接到该文件中即可。下面介绍安装的两种方法：</p>
 <h1 id="方法一：yum安装"><a href="#方法一：yum安装" class="headerlink" title="方法一：yum安装"></a>方法一：yum安装</h1><h2 id="安装git软件"><a href="#安装git软件" class="headerlink" title="安装git软件"></a>安装git软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install git -y</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p>git –version可以查看安装的git版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[git@hadoop3 gitrepo]$ git --version</span><br><span class="line">git version 1.8.3.1</span><br></pre></td></tr></table></figure></p>
+
+<p>git –version可以查看安装的git版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[git@hadoop3 gitrepo]$ git --version</span><br><span class="line">git version 1.8.3.1</span><br></pre></td></tr></table></figure>
+
 <p>系统是centos7，自带git版本太低，但可以使用。</p>
 <h2 id="添加git用户组和用户"><a href="#添加git用户组和用户" class="headerlink" title="添加git用户组和用户"></a>添加git用户组和用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd git</span><br><span class="line">useradd git -g git</span><br></pre></td></tr></table></figure>
+
 <h2 id="创建登录证书"><a href="#创建登录证书" class="headerlink" title="创建登录证书"></a>创建登录证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd</span><br><span class="line">mkdir .ssh &amp;&amp; chmod 700 .ssh</span><br><span class="line">touch .ssh/authorized_keys &amp;&amp; chmod 600 .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
 <p>这里注意，一定要设置authorized_keys文件的权限为600，权限太大或太小都会造成cannot access的问题，我就遇到过这个坑。</p>
 <h2 id="免秘钥"><a href="#免秘钥" class="headerlink" title="免秘钥"></a>免秘钥</h2><p>复制客户端的公钥到服务端的authorized_keys文件中</p>
-<h2 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h2><p>创建一个git仓库文件夹，专门存放项目的地方，并创建一个项目，初始化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /srv/git -p</span><br><span class="line">cd /srv/git</span><br><span class="line">mkdir project.git</span><br><span class="line">cd project.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure></p>
+<h2 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h2><p>创建一个git仓库文件夹，专门存放项目的地方，并创建一个项目，初始化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /srv/git -p</span><br><span class="line">cd /srv/git</span><br><span class="line">mkdir project.git</span><br><span class="line">cd project.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+
 <p>bare的意思就是初始化一个裸仓库，并不存储用户push的数据，只存储元数据。</p>
-<h2 id="提交项目到git-server"><a href="#提交项目到git-server" class="headerlink" title="提交项目到git server"></a>提交项目到git server</h2><p>下面的命令是在客户端（另一台机器，可以是windows，也可以是linux）上执行的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd myproject</span><br><span class="line">git init</span><br><span class="line">git config --global user.email “chenzuoli709@163.com”</span><br><span class="line">git config --global user.name “chenzuoli”</span><br><span class="line">git add .</span><br><span class="line">git commit -m “initial commit”</span><br><span class="line">git remote add origin git@gitserver:/srv/git/project.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
+<h2 id="提交项目到git-server"><a href="#提交项目到git-server" class="headerlink" title="提交项目到git server"></a>提交项目到git server</h2><p>下面的命令是在客户端（另一台机器，可以是windows，也可以是linux）上执行的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd myproject</span><br><span class="line">git init</span><br><span class="line">git config --global user.email “chenzuoli709@163.com”</span><br><span class="line">git config --global user.name “chenzuoli”</span><br><span class="line">git add .</span><br><span class="line">git commit -m “initial commit”</span><br><span class="line">git remote add origin git@gitserver:/srv/git/project.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
 <p>注意：提交的时候需要将gitserver更换成自己的git服务器的ip或者映射域名。</p>
 <h2 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@gitserver:/srv/git/project.git</span><br></pre></td></tr></table></figure>
+
 <p>也是要替换gitserver的。</p>
 <h1 id="方法二：自定义安装"><a href="#方法二：自定义安装" class="headerlink" title="方法二：自定义安装"></a>方法二：自定义安装</h1><h2 id="下载最新稳定版git"><a href="#下载最新稳定版git" class="headerlink" title="下载最新稳定版git"></a>下载最新稳定版git</h2><p><a href="https://www.kernel.org/pub/software/scm/git/git-2.9.5.tar.xz" target="_blank" rel="noopener">git最新版下载</a></p>
 <h2 id="添加git用户组和用户-1"><a href="#添加git用户组和用户-1" class="headerlink" title="添加git用户组和用户"></a>添加git用户组和用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd git</span><br><span class="line">useradd git -g git</span><br></pre></td></tr></table></figure>
+
 <h2 id="上传解压"><a href="#上传解压" class="headerlink" title="上传解压"></a>上传解压</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd $GIT_HOME</span><br><span class="line">xz -d git-2.9.5.tar.xz</span><br><span class="line">tar xvf git-2.9.5.tar</span><br></pre></td></tr></table></figure>
+
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel gcc -y</span><br></pre></td></tr></table></figure>
+
 <h2 id="预编译、编译、安装"><a href="#预编译、编译、安装" class="headerlink" title="预编译、编译、安装"></a>预编译、编译、安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd git-2.9.5</span><br><span class="line">./configure -prefix=$GIT_HOME</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
 <p>其中GIT_HOME是自己指定的git安装目录。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置跟方法一一样</p>
-<h2 id="添加链接"><a href="#添加链接" class="headerlink" title="添加链接"></a>添加链接</h2><p>上述步骤配置完成后，我们在push clone时会出现如下问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bash: git-receive-pack: command not found</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">bash: git-upload-pack: command not found</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
-<p>原因是自定义安装时git的执行文件不在/usr/bin下，添加链接即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/gitserver/install/bin/git /usr/bin/git</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-shell /usr/bin/git-shell</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-upload-archive /usr/bin/git-upload-archive</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-upload-pack /usr/bin/git-upload-pack</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-receive-pack /usr/bin/git-receive-pack</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加链接"><a href="#添加链接" class="headerlink" title="添加链接"></a>添加链接</h2><p>上述步骤配置完成后，我们在push clone时会出现如下问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bash: git-receive-pack: command not found</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">bash: git-upload-pack: command not found</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure>
+
+<p>原因是自定义安装时git的执行文件不在/usr/bin下，添加链接即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/gitserver/install/bin/git /usr/bin/git</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-shell /usr/bin/git-shell</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-upload-archive /usr/bin/git-upload-archive</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-upload-pack /usr/bin/git-upload-pack</span><br><span class="line">ln -s /usr/local/gitserver/install/bin/git-receive-pack /usr/bin/git-receive-pack</span><br></pre></td></tr></table></figure>
+
 <p>到这里配置就基本完成了，谢谢大家，如果有什么问题，请留言。</p>
 
       
@@ -450,6 +470,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -509,6 +536,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -561,7 +626,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -572,7 +637,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +648,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -594,7 +659,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -614,9 +679,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -638,9 +703,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -726,6 +791,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -788,6 +907,8 @@
   
 
 
+  
+
 
 
 
@@ -826,6 +947,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1265,8 +1391,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

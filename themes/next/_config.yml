@@ -121,16 +121,16 @@ scheme: Mist
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/chenzuoli || github
-  E-Mail: mailto:chenzuoli709@gmail.com || envelope
+  G-Mail: mailto:chenzuoli709@gmail.com || envelope
   Google: https://plus.google.com/107350128873508779089 || google
   Twitter: https://twitter.com/chenzuoli709 || twitter
   Sina: https://weibo.com/3255051645/profile?rightmod=1&wvr=6&mod=personinfo || weibo
-  Zhihu: https://www.zhihu.com/people/nihaoshijie709918 || zhihu
-  #FB Page: https://www.facebook.com/yourname || facebook
-  #VK Group: https://vk.com/yourname || vk
-  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
+  FB: https://www.facebook.com/zuoli.chen.58 || facebook
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
+  #Zhihu: https://www.zhihu.com/people/nihaoshijie709918 || zhihu
+  #VK Group: https://vk.com/yourname || vk
+  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
   #Skype: skype:yourname?call|chat || skype
 
 social_icons:
@@ -369,8 +369,6 @@ changyan:
   appkey:
 
 
-livere_uid: MTAyMC8zMjk4OC85NTUw
-
 # Valine.
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
@@ -392,7 +390,7 @@ valine:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8zMjk4OC85NTUw
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
@@ -415,8 +413,8 @@ gitment:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
-##  type: button
+baidushare:
+  type: button
 
 # Share
 # This plugin is more useful in China, make sure you known how to use it.
@@ -427,7 +425,7 @@ gitment:
 #add_this_id:
 
 # Share
-#duoshuo_share: true
+duoshuo_share: true
 
 # NeedMoreShare2
 # This plugin is a pure javascript sharing lib which is useful in China.
@@ -692,7 +690,7 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: false
+canvas_nest: true
 
 # three_waves
 three_waves: false

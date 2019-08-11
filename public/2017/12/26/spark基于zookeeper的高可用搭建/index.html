@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,11 +84,11 @@
 <meta name="keywords" content="spark,zookeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spark基于zookeeper的高可用搭建">
-<meta property="og:url" content="https://chenzuoli.github.io/2017/12/26/spark基于zookeeper的高可用搭建/index.html">
+<meta property="og:url" content="http://wetech.top/2017/12/26/spark基于zookeeper的高可用搭建/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.376Z">
+<meta property="og:updated_time" content="2018-12-11T13:57:12.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark基于zookeeper的高可用搭建">
 <meta name="twitter:description" content="spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。">
@@ -121,14 +121,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2017/12/26/spark基于zookeeper的高可用搭建/">
+  <link rel="canonical" href="http://wetech.top/2017/12/26/spark基于zookeeper的高可用搭建/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -318,10 +318,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2017/12/26/spark基于zookeeper的高可用搭建/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2017/12/26/spark基于zookeeper的高可用搭建/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -411,13 +411,21 @@
       
 
       
-        <p>spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。<br><a id="more"></a></p>
+        <p>spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。</p>
+<a id="more"></a>
 <h1 id="节点分布："><a href="#节点分布：" class="headerlink" title="节点分布："></a>节点分布：</h1><p>zookeeper: node1 node2 node3<br>spark: node1 node2 node3 node4</p>
-<h1 id="编辑SPARK-HOME-conf-spark-env-sh"><a href="#编辑SPARK-HOME-conf-spark-env-sh" class="headerlink" title="编辑SPARK_HOME/conf/spark-env.sh"></a>编辑SPARK_HOME/conf/spark-env.sh</h1><p>注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="编辑SPARK-HOME-conf-spark-env-sh"><a href="#编辑SPARK-HOME-conf-spark-env-sh" class="headerlink" title="编辑SPARK_HOME/conf/spark-env.sh"></a>编辑SPARK_HOME/conf/spark-env.sh</h1><p>注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot;</span><br></pre></td></tr></table></figure>
+
 <h1 id="同步该配置文件spark-env-sh到其他节点"><a href="#同步该配置文件spark-env-sh到其他节点" class="headerlink" title="同步该配置文件spark-env.sh到其他节点"></a>同步该配置文件spark-env.sh到其他节点</h1><p>scp spark-env.sh root@node2:$SPARK_HOME/conf<br>scp spark-env.sh root@node3:$SPARK_HOME/conf<br>scp spark-env.sh root@node4:$SPARK_HOME/conf</p>
 <h1 id="在node2节点上编辑spark-env-sh，将SPARK-MASTER-HOST修改为node2"><a href="#在node2节点上编辑spark-env-sh，将SPARK-MASTER-HOST修改为node2" class="headerlink" title="在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node2"></a>在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node2</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_MASTER_HOST=node2</span><br></pre></td></tr></table></figure>
-<h1 id="启动spark服务"><a href="#启动spark服务" class="headerlink" title="启动spark服务"></a>启动spark服务</h1><p>在node1节点上启动spark集群<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./sbin/start-all.sh</span><br></pre></td></tr></table></figure></p>
-<h1 id="启动另一个master"><a href="#启动另一个master" class="headerlink" title="启动另一个master"></a>启动另一个master</h1><p>在node2节点上只启动master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./sbin/start-master.sh</span><br></pre></td></tr></table></figure></p>
+
+<h1 id="启动spark服务"><a href="#启动spark服务" class="headerlink" title="启动spark服务"></a>启动spark服务</h1><p>在node1节点上启动spark集群</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./sbin/start-all.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动另一个master"><a href="#启动另一个master" class="headerlink" title="启动另一个master"></a>启动另一个master</h1><p>在node2节点上只启动master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./sbin/start-master.sh</span><br></pre></td></tr></table></figure>
+
 <h1 id="访问webUI查看启动情况"><a href="#访问webUI查看启动情况" class="headerlink" title="访问webUI查看启动情况"></a>访问webUI查看启动情况</h1><p>如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。</p>
 
       
@@ -434,6 +442,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -464,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/26/单台服务器安装spark、hadoop服务文档/" rel="next" title="单台服务器安装spark、hadoop服务文档">
-                <i class="fa fa-chevron-left"></i> 单台服务器安装spark、hadoop服务文档
+              <a href="/2017/12/26/2019年世界上最好的机场/" rel="next" title="2019年世界上最好的机场">
+                <i class="fa fa-chevron-left"></i> 2019年世界上最好的机场
               </a>
             
           </div>
@@ -494,6 +509,44 @@
 
 
     <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
   </div>
@@ -547,7 +600,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -558,7 +611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +622,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -580,7 +633,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -600,9 +653,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -624,9 +677,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -712,6 +765,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -774,6 +881,8 @@
   
 
 
+  
+
 
 
 
@@ -812,6 +921,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1251,8 +1365,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

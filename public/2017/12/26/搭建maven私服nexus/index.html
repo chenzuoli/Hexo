@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,11 +84,11 @@
 <meta name="keywords" content="maven,nexus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建maven私服nexus">
-<meta property="og:url" content="https://chenzuoli.github.io/2017/12/26/搭建maven私服nexus/index.html">
+<meta property="og:url" content="http://wetech.top/2017/12/26/搭建maven私服nexus/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="maven私服搭建，目的就是我们在使用maven打包时，如果私服中有相对应的包时，可以直接拉取过来，而不需要去下载，仅仅第一次使用该包时才会下载，这样会减少很多的时间，提高效率。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.436Z">
+<meta property="og:updated_time" content="2018-12-11T13:57:13.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建maven私服nexus">
 <meta name="twitter:description" content="maven私服搭建，目的就是我们在使用maven打包时，如果私服中有相对应的包时，可以直接拉取过来，而不需要去下载，仅仅第一次使用该包时才会下载，这样会减少很多的时间，提高效率。">
@@ -121,14 +121,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2017/12/26/搭建maven私服nexus/">
+  <link rel="canonical" href="http://wetech.top/2017/12/26/搭建maven私服nexus/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -318,10 +318,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2017/12/26/搭建maven私服nexus/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2017/12/26/搭建maven私服nexus/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -411,16 +411,24 @@
       
 
       
-        <p>maven私服搭建，目的就是我们在使用maven打包时，如果私服中有相对应的包时，可以直接拉取过来，而不需要去下载，仅仅第一次使用该包时才会下载，这样会减少很多的时间，提高效率。<br><a id="more"></a></p>
-<h1 id="安装配置nexus"><a href="#安装配置nexus" class="headerlink" title="安装配置nexus"></a>安装配置nexus</h1><p>下载：&lt;a href=<a href="https://www.sonatype.com/download-oss-sonatype&gt;nexus下载" target="_blank" rel="noopener">https://www.sonatype.com/download-oss-sonatype&gt;nexus下载</a><br>解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf nexus-3.6.1-02-unix.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>nexus详解文档参考&lt;a href=<a href="https://www.xncoding.com/2017/09/02/tool/nexus.html&gt;" target="_blank" rel="noopener">https://www.xncoding.com/2017/09/02/tool/nexus.html&gt;</a></p>
+        <p>maven私服搭建，目的就是我们在使用maven打包时，如果私服中有相对应的包时，可以直接拉取过来，而不需要去下载，仅仅第一次使用该包时才会下载，这样会减少很多的时间，提高效率。</p>
+<a id="more"></a>
+<h1 id="安装配置nexus"><a href="#安装配置nexus" class="headerlink" title="安装配置nexus"></a>安装配置nexus</h1><p>下载：<a href="https://www.sonatype.com/download-oss-sonatype" target="_blank" rel="noopener">nexus下载</a><br>解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf nexus-3.6.1-02-unix.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>nexus详解文档参考<a href="https://www.xncoding.com/2017/09/02/tool/nexus.html" target="_blank" rel="noopener"></a></p>
 <h2 id="修改启动用户"><a href="#修改启动用户" class="headerlink" title="修改启动用户"></a>修改启动用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim $NEXUS_HOME/bin/nexus.rc</span><br></pre></td></tr></table></figure>
+
 <h2 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim $NEXUS_HOME/ etc/nexus-default.properties</span><br></pre></td></tr></table></figure>
+
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/nexus run</span><br></pre></td></tr></table></figure>
+
 <h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p>浏览器访问8081端口，默认登陆：<br>user: admin<br>password: admin123</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>maven-central：maven中央库，默认从<a href="https://repo1.maven.org/maven2上拉取jar包；" target="_blank" rel="noopener">https://repo1.maven.org/maven2上拉取jar包；</a><br>maven-releases：私库发行版jar，初次安装nexus请将Deployment policy设置成Allow redeploy；<br>maven-snapshots：私库快照调试版本jar；<br>maven-public：仓库分组，把上面三个仓库组合起来一起对外提供服务，在本地maven配置settings.xml中使用。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>maven-central：maven中央库，默认从https://repo1.maven.org/maven2上拉取jar包；<br>maven-releases：私库发行版jar，初次安装nexus请将Deployment policy设置成Allow redeploy；<br>maven-snapshots：私库快照调试版本jar；<br>maven-public：仓库分组，把上面三个仓库组合起来一起对外提供服务，在本地maven配置settings.xml中使用。</p>
 <h1 id="本地maven使用私服nexus"><a href="#本地maven使用私服nexus" class="headerlink" title="本地maven使用私服nexus"></a>本地maven使用私服nexus</h1><h2 id="maven默认配置settings-xml"><a href="#maven默认配置settings-xml" class="headerlink" title="maven默认配置settings.xml"></a>maven默认配置settings.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;servers&gt;</span><br><span class="line">    &lt;server&gt;</span><br><span class="line">        &lt;id&gt;releases&lt;/id&gt;</span><br><span class="line">        &lt;username&gt;admin&lt;/username&gt;</span><br><span class="line">        &lt;password&gt;admin123&lt;/password&gt;</span><br><span class="line">    &lt;/server&gt;</span><br><span class="line">    &lt;server&gt;</span><br><span class="line">        &lt;id&gt;snapshots&lt;/id&gt;</span><br><span class="line">        &lt;username&gt;admin&lt;/username&gt;</span><br><span class="line">        &lt;password&gt;admin123&lt;/password&gt;</span><br><span class="line">    &lt;/server&gt;</span><br><span class="line">&lt;/servers&gt;</span><br><span class="line"></span><br><span class="line">&lt;mirrors&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">        &lt;id&gt;nexus&lt;/id&gt;</span><br><span class="line">        &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;</span><br><span class="line">        &lt;url&gt;http://123.207.66.156:8081/repository/maven-public/&lt;/url&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">&lt;/mirrors&gt;</span><br><span class="line"></span><br><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;  </span><br><span class="line">      &lt;id&gt;dev&lt;/id&gt;</span><br><span class="line">      &lt;repositories&gt;</span><br><span class="line">        &lt;repository&gt;</span><br><span class="line">          &lt;id&gt;Nexus&lt;/id&gt;</span><br><span class="line">          &lt;url&gt;http://123.207.66.156:8081/repository/maven-public/&lt;/url&gt;</span><br><span class="line">          &lt;releases&gt;</span><br><span class="line">            &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">          &lt;/releases&gt;</span><br><span class="line">          &lt;snapshots&gt;</span><br><span class="line">            &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">          &lt;/snapshots&gt;</span><br><span class="line">        &lt;/repository&gt;</span><br><span class="line">      &lt;/repositories&gt;</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br><span class="line">&lt;activeProfiles&gt;</span><br><span class="line">    &lt;activeProfile&gt;dev&lt;/activeProfile&gt;</span><br><span class="line">&lt;/activeProfiles&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="修改工程pom-xml"><a href="#修改工程pom-xml" class="headerlink" title="修改工程pom.xml"></a>修改工程pom.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;releases&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;Releases&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;http://123.207.66.156:8081/repository/maven-releases/&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">    &lt;snapshotRepository&gt;</span><br><span class="line">        &lt;id&gt;snapshots&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;Snapshot&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;http://123.207.66.156:8081/repository/maven-snapshots/&lt;/url&gt;</span><br><span class="line">    &lt;/snapshotRepository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
+
 <p>注意上面的repository的id值一定要跟settings.xml文件中配置的server一致。</p>
 
       
@@ -437,6 +445,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -498,6 +513,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -550,7 +603,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -561,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +625,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -583,7 +636,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -603,9 +656,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -627,9 +680,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -715,6 +768,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -777,6 +884,8 @@
   
 
 
+  
+
 
 
 
@@ -815,6 +924,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1254,8 +1368,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

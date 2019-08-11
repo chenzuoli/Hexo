@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
 
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,11 +84,11 @@
 <meta name="keywords" content="mysql,canal,监控">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里巴巴mysql数据库binlog的增量订阅与消费组件canal">
-<meta property="og:url" content="https://chenzuoli.github.io/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/index.html">
+<meta property="og:url" content="http://wetech.top/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:description" content="首先介绍下canal他可以做什么，基于日志增量订阅&amp;amp;消费支持的业务, 监控mysql数据，将mysql增量数据从binlog中获取过来实现数据库的镜像、数据库实时备份、多级索引、业务cache刷新等，具体参考阿里开源项目代码：canal github">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T11:37:07.448Z">
+<meta property="og:updated_time" content="2018-12-11T13:57:13.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里巴巴mysql数据库binlog的增量订阅与消费组件canal">
 <meta name="twitter:description" content="首先介绍下canal他可以做什么，基于日志增量订阅&amp;amp;消费支持的业务, 监控mysql数据，将mysql增量数据从binlog中获取过来实现数据库的镜像、数据库实时备份、多级索引、业务cache刷新等，具体参考阿里开源项目代码：canal github">
@@ -121,14 +121,14 @@
 
 
 
-  <link rel="canonical" href="https://chenzuoli.github.io/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/">
+  <link rel="canonical" href="http://wetech.top/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/">
 
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4918807377395761",
+    google_ad_client: "ca-pub-6592717531467819",
     enable_page_level_ads: true
   });
 </script>
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Focus on big data. welcome to correct.</p>
+        <p class="site-subtitle">Focus on truth. welcome to correct.</p>
       
   </div>
 
@@ -318,10 +318,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenzuoli.github.io/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2018/09/05/阿里巴巴mysql数据库binlog的增量订阅与消费组件canal/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzuoli">
+      <meta itemprop="name" content="wetech">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -411,15 +411,22 @@
       
 
       
-        <p>首先介绍下canal他可以做什么，基于日志增量订阅&amp;消费支持的业务, 监控mysql数据，将mysql增量数据从binlog中获取过来实现数据库的镜像、数据库实时备份、多级索引、业务cache刷新等，具体参考阿里开源项目代码：<br><a href="https://github.com/alibaba/canal" target="_blank" rel="noopener">canal github</a><br><a id="more"></a></p>
+        <p>首先介绍下canal他可以做什么，基于日志增量订阅&amp;消费支持的业务, 监控mysql数据，将mysql增量数据从binlog中获取过来实现数据库的镜像、数据库实时备份、多级索引、业务cache刷新等，具体参考阿里开源项目代码：<br><a href="https://github.com/alibaba/canal" target="_blank" rel="noopener">canal github</a></p>
+<a id="more"></a>
 <h1 id="canaldbkafka"><a href="#canaldbkafka" class="headerlink" title="canaldbkafka"></a>canaldbkafka</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>canaldbkafka是连接canal和kafka的一个中间件。目的是实现数据库某个表格数据变更转变成消息流的形式，以便后续业务消费kafka的消息流。 canal wiki:<a href="https://github.com/alibaba/canal/wiki" target="_blank" rel="noopener">https://github.com/alibaba/canal/wiki</a></p>
 <h2 id="消息的类型"><a href="#消息的类型" class="headerlink" title="消息的类型"></a>消息的类型</h2><p>canal的binlog 会被解析成以下3中类型的消息。其他的类型被过滤掉了。</p>
 <h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;need_sub&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;order_description&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;varchar(1024)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;pay_amount&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;pay_order&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;varchar(30)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;insert&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;need_sub&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;order_description&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;varchar(1024)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;pay_amount&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;pay_order&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;varchar(30)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;delete&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>data对象是各字段类型、是否被更新、值。olddata对象是之前的状态。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;Quota&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;tinyint(4)&quot;,</span><br><span class="line">            &quot;updated&quot;: false,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ReqAmount&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: true,</span><br><span class="line">            &quot;value&quot;: &quot;100&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;olddata&quot;: &#123;</span><br><span class="line">        &quot;Quota&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;tinyint(4)&quot;,</span><br><span class="line">            &quot;updated&quot;: false,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ReqAmount&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;int(11)&quot;,</span><br><span class="line">            &quot;updated&quot;: false,</span><br><span class="line">            &quot;value&quot;: &quot;0&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;update&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br><span class="line"></span><br><span class="line">mvn package</span><br><span class="line"></span><br><span class="line">ll target/canal-dbkafka   #可部署</span><br><span class="line">total 0</span><br><span class="line">drwxr-xr-x   5 xxx  staff   170B 12 21 21:26 bin</span><br><span class="line">drwxr-xr-x   3 xxx  staff   102B 12 21 21:26 conf</span><br><span class="line">drwxr-xr-x  24 xxx  staff   816B 12 21 21:26 lib</span><br><span class="line">drwxr-xr-x   2 xxx  staff    68B 12 21 21:26 logs</span><br><span class="line"></span><br><span class="line">ll target/canal-dbkafka/bin  #startmy.sh为启动示例</span><br><span class="line">-rwxr-xr-x  1 xxx  staff   271B 12 21 21:26 startmy.sh</span><br><span class="line">-rwxr-xr-x  1 xxx  staff   2.5K 12 21 21:26 startup.sh</span><br><span class="line">-rwxr-xr-x  1 xxx  staff   1.0K 12 21 21:26 stop.sh</span><br></pre></td></tr></table></figure>
-<h3 id="启动说明"><a href="#启动说明" class="headerlink" title="启动说明"></a>启动说明</h3><p>已startmy.sh为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">current_path=`pwd`</span><br><span class="line">case &quot;`uname`&quot; in</span><br><span class="line">    Linux)</span><br><span class="line">        bin_abs_path=$(readlink -f $(dirname $0))</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        bin_abs_path=`cd $(dirname $0); pwd`</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line">cd $&#123;bin_abs_path&#125; &amp;&amp; ./startup.sh testdb thetable 127.0.0.1:2181 127.0.0.1:9092</span><br></pre></td></tr></table></figure></p>
+
+<h3 id="启动说明"><a href="#启动说明" class="headerlink" title="启动说明"></a>启动说明</h3><p>已startmy.sh为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">current_path=`pwd`</span><br><span class="line">case &quot;`uname`&quot; in</span><br><span class="line">    Linux)</span><br><span class="line">        bin_abs_path=$(readlink -f $(dirname $0))</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        bin_abs_path=`cd $(dirname $0); pwd`</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line">cd $&#123;bin_abs_path&#125; &amp;&amp; ./startup.sh testdb thetable 127.0.0.1:2181 127.0.0.1:9092</span><br></pre></td></tr></table></figure>
+
 <ol>
 <li>testdb 是canal配置的destination</li>
 <li>thetable kafka的具体topic</li>
@@ -432,11 +439,21 @@
 <li>canal 必须配置zookeeper ha的模式 <a href="https://github.com/alibaba/canal/wiki/AdminGuide#ha%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">https://github.com/alibaba/canal/wiki/AdminGuide#ha%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE</a></li>
 <li>之前使用针对的是数据库中的一个表在canal配置中已经过滤所以消息中没有表名 可以说是个设计的缺陷。</li>
 </ol>
-<h1 id="高可用及分布式"><a href="#高可用及分布式" class="headerlink" title="高可用及分布式"></a>高可用及分布式</h1><h2 id="监控多个mysql"><a href="#监控多个mysql" class="headerlink" title="监控多个mysql"></a>监控多个mysql</h2><p>canal分服务端和客户端，我们需要监控多个mysql时，可以配置多个instance，具体编辑服务端配置文件canal.properties：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#################################################</span><br><span class="line">############     destinations       #############</span><br><span class="line">#################################################</span><br><span class="line">canal.destinations=dest21,dest14</span><br><span class="line"># conf root dir</span><br><span class="line">canal.conf.dir = ../conf</span><br><span class="line"># auto scan instance dir add/remove and start/stop instance</span><br><span class="line">canal.auto.scan = true</span><br><span class="line">canal.auto.scan.interval = 5</span><br></pre></td></tr></table></figure></p>
-<p>其中dest21和dest14为不同的instance，目录结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x 1 root root 2882 Aug 27 18:44 canal.properties</span><br><span class="line">drwxr-xr-x 2 root root 4096 Sep  5 19:08 dest14</span><br><span class="line">drwxr-xr-x 2 root root 4096 Sep  5 19:09 dest21</span><br><span class="line">-rwxr-xr-x 1 root root 3038 Jun 19 17:18 logback.xml</span><br><span class="line">drwxr-xr-x 3 root root 4096 Jun 19 17:18 spring</span><br></pre></td></tr></table></figure></p>
-<p>dest14和dest21目录分别为监控不同mysql的配置文件放置位置，具体如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#################################################</span><br><span class="line">## mysql serverId</span><br><span class="line">canal.instance.mysql.slaveId=14</span><br><span class="line"></span><br><span class="line"># position info</span><br><span class="line">canal.instance.master.address=1.1.1.1:3306</span><br><span class="line">canal.instance.master.journal.name=</span><br><span class="line">canal.instance.master.position=</span><br><span class="line">canal.instance.master.timestamp=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># table meta tsdb info</span><br><span class="line">canal.instance.tsdb.enable=true</span><br><span class="line">canal.instance.tsdb.dir=$&#123;canal.file.data.dir:../conf&#125;/$&#123;canal.instance.destination:&#125;</span><br><span class="line">canal.instance.tsdb.url=jdbc:h2:$&#123;canal.instance.tsdb.dir&#125;/h2;CACHE_SIZE=1000;MODE=MYSQL;</span><br><span class="line">#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb</span><br><span class="line">canal.instance.tsdb.dbUsername=canal</span><br><span class="line">canal.instance.tsdb.dbPassword=canal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#canal.instance.standby.address =</span><br><span class="line">#canal.instance.standby.journal.name =</span><br><span class="line">#canal.instance.standby.position =</span><br><span class="line">#canal.instance.standby.timestamp =</span><br><span class="line"></span><br><span class="line"># username/password</span><br><span class="line">canal.instance.dbUsername=canal</span><br><span class="line">canal.instance.dbPassword=*****</span><br><span class="line">canal.instance.defaultDatabaseName=</span><br><span class="line">canal.instance.connectionCharset=UTF-8</span><br><span class="line"></span><br><span class="line"># table regex</span><br><span class="line">#canal.instance.filter.regex=.*\\..*</span><br><span class="line">canal.instance.filter.regex=event_collection\.user_location_lng_lat</span><br><span class="line"># table black regex</span><br><span class="line">canal.instance.filter.black.regex=</span><br><span class="line">#################################################</span><br></pre></td></tr></table></figure></p>
-<p>你需要修改的地方：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">canal.instance.mysql.slaveId -- 不同的instance分配不同的slaveId，因为canal监控mysql的原理就是伪装成mysql的slave来获取binlog日志的</span><br><span class="line">canal.instance.master.address -- 配置监控的mysql ip地址</span><br><span class="line">canal.instance.dbUsername -- 连接mysql的用户名</span><br><span class="line">canal.instance.dbPassword -- 连接mysql的密码</span><br><span class="line">canal.instance.filter.regex -- 监控mysql中的哪个库，哪个表</span><br></pre></td></tr></table></figure></p>
-<p>其中监控mysql的哪个库哪个表编写格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.*\\..*  --表示监控mysql所有库所有表</span><br><span class="line">test\..*  --表示监控mysql test库下的所有表</span><br><span class="line">test\.test  --表示监控mysql test库下的test表</span><br></pre></td></tr></table></figure></p>
+<h1 id="高可用及分布式"><a href="#高可用及分布式" class="headerlink" title="高可用及分布式"></a>高可用及分布式</h1><h2 id="监控多个mysql"><a href="#监控多个mysql" class="headerlink" title="监控多个mysql"></a>监控多个mysql</h2><p>canal分服务端和客户端，我们需要监控多个mysql时，可以配置多个instance，具体编辑服务端配置文件canal.properties：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#################################################</span><br><span class="line">############     destinations       #############</span><br><span class="line">#################################################</span><br><span class="line">canal.destinations=dest21,dest14</span><br><span class="line"># conf root dir</span><br><span class="line">canal.conf.dir = ../conf</span><br><span class="line"># auto scan instance dir add/remove and start/stop instance</span><br><span class="line">canal.auto.scan = true</span><br><span class="line">canal.auto.scan.interval = 5</span><br></pre></td></tr></table></figure>
+
+<p>其中dest21和dest14为不同的instance，目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x 1 root root 2882 Aug 27 18:44 canal.properties</span><br><span class="line">drwxr-xr-x 2 root root 4096 Sep  5 19:08 dest14</span><br><span class="line">drwxr-xr-x 2 root root 4096 Sep  5 19:09 dest21</span><br><span class="line">-rwxr-xr-x 1 root root 3038 Jun 19 17:18 logback.xml</span><br><span class="line">drwxr-xr-x 3 root root 4096 Jun 19 17:18 spring</span><br></pre></td></tr></table></figure>
+
+<p>dest14和dest21目录分别为监控不同mysql的配置文件放置位置，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#################################################</span><br><span class="line">## mysql serverId</span><br><span class="line">canal.instance.mysql.slaveId=14</span><br><span class="line"></span><br><span class="line"># position info</span><br><span class="line">canal.instance.master.address=1.1.1.1:3306</span><br><span class="line">canal.instance.master.journal.name=</span><br><span class="line">canal.instance.master.position=</span><br><span class="line">canal.instance.master.timestamp=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># table meta tsdb info</span><br><span class="line">canal.instance.tsdb.enable=true</span><br><span class="line">canal.instance.tsdb.dir=$&#123;canal.file.data.dir:../conf&#125;/$&#123;canal.instance.destination:&#125;</span><br><span class="line">canal.instance.tsdb.url=jdbc:h2:$&#123;canal.instance.tsdb.dir&#125;/h2;CACHE_SIZE=1000;MODE=MYSQL;</span><br><span class="line">#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb</span><br><span class="line">canal.instance.tsdb.dbUsername=canal</span><br><span class="line">canal.instance.tsdb.dbPassword=canal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#canal.instance.standby.address =</span><br><span class="line">#canal.instance.standby.journal.name =</span><br><span class="line">#canal.instance.standby.position =</span><br><span class="line">#canal.instance.standby.timestamp =</span><br><span class="line"></span><br><span class="line"># username/password</span><br><span class="line">canal.instance.dbUsername=canal</span><br><span class="line">canal.instance.dbPassword=*****</span><br><span class="line">canal.instance.defaultDatabaseName=</span><br><span class="line">canal.instance.connectionCharset=UTF-8</span><br><span class="line"></span><br><span class="line"># table regex</span><br><span class="line">#canal.instance.filter.regex=.*\\..*</span><br><span class="line">canal.instance.filter.regex=event_collection\.user_location_lng_lat</span><br><span class="line"># table black regex</span><br><span class="line">canal.instance.filter.black.regex=</span><br><span class="line">#################################################</span><br></pre></td></tr></table></figure>
+
+<p>你需要修改的地方：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">canal.instance.mysql.slaveId -- 不同的instance分配不同的slaveId，因为canal监控mysql的原理就是伪装成mysql的slave来获取binlog日志的</span><br><span class="line">canal.instance.master.address -- 配置监控的mysql ip地址</span><br><span class="line">canal.instance.dbUsername -- 连接mysql的用户名</span><br><span class="line">canal.instance.dbPassword -- 连接mysql的密码</span><br><span class="line">canal.instance.filter.regex -- 监控mysql中的哪个库，哪个表</span><br></pre></td></tr></table></figure>
+
+<p>其中监控mysql的哪个库哪个表编写格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.*\\..*  --表示监控mysql所有库所有表</span><br><span class="line">test\..*  --表示监控mysql test库下的所有表</span><br><span class="line">test\.test  --表示监控mysql test库下的test表</span><br></pre></td></tr></table></figure>
+
 <p>阿里巴巴，我们程序员的梦想，开源的canal还是不错的，希望大家借助这篇文章能够熟练掌握canal的简单使用，如果遇到什么问题，欢迎一起讨论，在下方留言或者mail我：<a href="mailto:chenzuoli@gmail.com" target="_blank" rel="noopener">chenzuoli@gmail.com</a></p>
 
       
@@ -453,6 +470,13 @@
         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
         <div style="text-align:center;color: #ccc;font-size:7px;">-------------如有侵权，请联系本站删除。-------------</div>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6592717531467819",
+            enable_page_level_ads: true
+        });
+    </script>
 </div>
 
       </div>
@@ -495,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/03/windows-C盘垃圾清理/" rel="prev" title="windows_C盘垃圾清理">
-                windows_C盘垃圾清理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/26/2019年全球最具价值的餐饮品牌/" rel="prev" title="2019年全球最具价值的餐饮品牌">
+                2019年全球最具价值的餐饮品牌 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -515,6 +539,44 @@
 
 
     <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
   </div>
@@ -568,7 +630,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">chenzuoli</p>
+              <p class="site-author-name" itemprop="name">wetech</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -579,7 +641,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1749</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -590,7 +652,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -601,7 +663,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -621,9 +683,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:chenzuoli709@gmail.com" target="_blank" title="G-Mail">
                     
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                      <i class="fa fa-fw fa-envelope"></i>G-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -645,9 +707,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/nihaoshijie709918" target="_blank" title="Zhihu">
+                  <a href="https://www.facebook.com/zuoli.chen.58" target="_blank" title="FB">
                     
-                      <i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-facebook"></i>FB</a>
                 </span>
               
             
@@ -733,6 +795,60 @@
 </div>
 -->
 
+<!-- 
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var t1 = Date.UTC(2017,12,19,12,00,00); // 设置建立网站的时间
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+
+-->
+
+
+<!-- 网站运行时间的设置 -->
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/19/2017 13:14:21");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+</script>
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -795,6 +911,8 @@
   
 
 
+  
+
 
 
 
@@ -833,6 +951,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1272,8 +1395,10 @@
   
 
   
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
 	
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>

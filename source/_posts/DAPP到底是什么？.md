@@ -27,9 +27,9 @@ DAPP是Decentralized Application的缩写，即去中心化应用，也有人称
 
 # 三、Dapp与app的区别
 ![dapp_app](DAPP到底是什么？/dapp_app.png)
-<font color=red size=6 face=“黑体”>从客户体验角度</font>
+<font color=red size=4 face=“黑体”>从客户体验角度</font>
 APP相对于DAPP有四大问题，一是截留用户数据，二是垄断生态平台，三是保留用户权利，四是限制产品标准扼杀创新。但是由于Dapp得到的是去中心化，所以响应速度固然没有中心化服务器快。
-<font color=red size=6 face=“黑体”>从技术角度</font>
+<font color=red size=4 face=“黑体”>从技术角度</font>
 DAPP与APP区别主要有两个方面，一是APP在安卓或苹果系统上安装并运行；DAPP在区块链公链上开发并结合智能合约；二是APP信息存储在数据服务平台，可以运营方直接修改；DAPP数据加密后存储在区块链，难以篡改。
 
 # 四、Dapp的分类

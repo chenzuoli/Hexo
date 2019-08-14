@@ -8,7 +8,7 @@ notebook: Dapp&Smart Contract Develop
 
 什么是Dapp，相比较于app，有什么不同？
 ![dapp&blockchain](DAPP到底是什么？/blockchain.jpeg)
-
+<!-- more -->
 # 一、什么是Dapp？
 DAPP是Decentralized Application的缩写，即去中心化应用，也有人称为分布式应用。它被认为开启了区块链3.0时代。DAPP就是在底层区块链平台衍生的各种分布式应用，是区块链世界中的服务提供形式。DAPP之于区块链，有些类似APP之于IOS和Android。
 

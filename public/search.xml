@@ -498,17 +498,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -517,6 +506,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>
@@ -774,6 +774,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -783,17 +794,6 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

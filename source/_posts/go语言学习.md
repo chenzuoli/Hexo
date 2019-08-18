@@ -6,7 +6,7 @@ categories: 计算机语言
 notebook: Dapp&Smart Contract Develop
 ---
 
-go语言: 面向对象、强类型的语言。
+go语言: 面向对象、强类型、类似c的语言。
 
 <!-- more -->
 
@@ -18,3 +18,5 @@ go语言: 面向对象、强类型的语言。
 >> 4. go test -v xxx_test.go 指定测试单个文件，但是该文件中如果调用了其它文件中的模块会报错;
 >> 5. go test -v -test.run Testxxx, 该测试会测试包含该函数名的所有函数.
 > 3.函数修饰符view：只能读取数据，不能更改数据；修饰符pure：不访问程序中的数据，他的返回值完全取决于传入的参数
+
+测试代码见<a>[github](https://github.com/chenzuoli/learn-go-with-tests)</a>

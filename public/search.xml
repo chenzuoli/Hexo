@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[并发与并行]]></title>
+    <url>%2F2019%2F08%2F18%2F%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C%2F</url>
+    <content type="text"><![CDATA[下面一张图片可以让你更好地理解程序中的并发与并行之间的区别： 更详细的信息，请参考链接https://golangbot.com/concurrency/]]></content>
+      <categories>
+        <category>计算机语言</category>
+      </categories>
+      <tags>
+        <tag>并发</tag>
+        <tag>并行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[DAPP到底是什么？]]></title>
     <url>%2F2019%2F08%2F14%2FDAPP%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[什么是Dapp，相比较于app，有什么不同？ 一、什么是Dapp？DAPP是Decentralized Application的缩写，即去中心化应用，也有人称为分布式应用。它被认为开启了区块链3.0时代。DAPP就是在底层区块链平台衍生的各种分布式应用，是区块链世界中的服务提供形式。DAPP之于区块链，有些类似APP之于IOS和Android。 二、Dapp的特点 1.Dapp通过网络节点去中心化操作可以运行在用户的个人设备之上，比如：手机、个人电脑。永远属于用户，也可以自由转移给任何人。2.运行在对等网络上不依赖中心服务器，不需要专门的通信服务器传递消息，也不需要中心数据库来记数据。数据保存在用户个人空间，可能是手机，也可能是个人云盘。3.数据加密后存储在区块链上可以依托于区块链进行产权交易、销售，承载没有中介的交易方式。4.参与者信息被安全存储可以保护数字资产，保证产权不会泄露、被破坏。5.Dapp必须开源、自治可以由用户自由打包生成，签名标记所属权。它的发布不受任何机构限制。 各种创意与创新可以自由表达和实现。 三、Dapp与app的区别从客户体验角度APP相对于DAPP有四大问题，一是截留用户数据，二是垄断生态平台，三是保留用户权利，四是限制产品标准扼杀创新。但是由于Dapp得到的是去中心化，所以响应速度固然没有中心化服务器快。从技术角度DAPP与APP区别主要有两个方面，一是APP在安卓或苹果系统上安装并运行；DAPP在区块链公链上开发并结合智能合约；二是APP信息存储在数据服务平台，可以运营方直接修改；DAPP数据加密后存储在区块链，难以篡改。 四、Dapp的分类根据去中心化的对象，DAPP可以进行分类。对于一个中心化服务器而言，包括计算、存储能力，以及所产生的数据三个方面，而由数据之前的关联度又产生了某种特定的“关系”。因此一般而言，去中心化包括以下几类： 1.基于计算能力的去中心化（Pow机制）2.基于存储能力的去中心化（IPFS）3.基于数据的去中心化（Steemit）4.基于关系的去中心化（去中心化ID）]]></content>
@@ -340,6 +352,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -349,17 +372,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -475,17 +487,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -494,6 +495,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

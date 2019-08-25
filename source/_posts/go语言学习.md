@@ -22,6 +22,6 @@ go语言: 面向对象、强类型、类似c的语言。
 测试代码见<a>[github](https://github.com/chenzuoli/learn-go-with-tests)</a>
 
 2019-08-25更新
----
+————————————
 当你累了的时候，停下来做个梦吧。
 愿你坚持到底。

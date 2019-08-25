@@ -7,7 +7,7 @@ notebook: Dapp&Smart Contract Develop
 ---
 
 go语言: 面向对象、强类型、类似c的语言。
-
+![golang](go语言学习/golanguage.png)
 <!-- more -->
 
 > 1.同一个目录下面不能有多个package main，分到不同的文件夹中即可；

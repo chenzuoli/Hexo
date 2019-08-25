@@ -20,3 +20,6 @@ go语言: 面向对象、强类型、类似c的语言。
 > 3.函数修饰符view：只能读取数据，不能更改数据；修饰符pure：不访问程序中的数据，他的返回值完全取决于传入的参数
 
 测试代码见<a>[github](https://github.com/chenzuoli/learn-go-with-tests)</a>
+
+当你累了的时候，停下来做个梦吧。
+愿你坚持到底。

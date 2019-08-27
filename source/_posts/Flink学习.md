@@ -7,7 +7,7 @@ notebook: 笔记
 ---
 
 flink，号称第二代实时大数据计算引擎，被他的名头吸引过来，我也来学习学习，下面是我在学习过程中遇到的一些问题和解决方案。
-![](Flink学习/flink-header-logo.svg)
+![Flink Logo](Flink学习/flink-header-logo.svg)
 <!-- more -->
 
 # 如何保证数据处理的有序性
@@ -17,5 +17,7 @@ flink，号称第二代实时大数据计算引擎，被他的名头吸引过来
 &nbsp;&nbsp;&nbsp;&nbsp;下图是实际水印、事件时间与处理时间之间的关系：
 ![water_mark-event_time-process_time](Flink学习/water_mark-event_time-process_time.png)
 
+
+you can see the original document at this link <a>[Time and Order in Streams](https://cwiki.apache.org/confluence/display/FLINK/Time+and+Order+in+Streams)</a>
 
 学习使我快乐。

@@ -25,3 +25,27 @@ go语言: 面向对象、强类型、类似c的语言。
 ————————————
 当你累了的时候，停下来做个梦吧。
 愿你坚持到底。
+
+2019-09-01
+————————————
+推荐给大家一个非常好的入门学习中文网站，里面很全，从基本数据类型、语法，到协程并发、高阶函数、类、多态等。
+<a>[go语言中文网](https://studygolang.com/subject/2)</a>
+
+# panic和recover
+参考文档：<a>[panic和recover](https://studygolang.com/articles/12785)</a>
+
+# 头等函数
+参考文档：<a>[头等函数](https://studygolang.com/articles/12789)</a>
+
+# 反射
+参考文档：<a>[反射](https://studygolang.com/articles/13178)</a>
+
+# 读取文件
+参考文档：<a>[读取文件](https://studygolang.com/articles/14669)</a>
+
+# 写入文件/并发写入
+参考文档：<a>[写入文件/并发写入](https://studygolang.com/articles/19475)</a>
+
+
+当你累了的时候，停下来做个梦吧。
+愿你坚持到底。

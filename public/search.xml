@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[区块链三大共识机制]]></title>
+    <url>%2F2019%2F09%2F03%2F%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%89%E5%A4%A7%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[区块链中三大共识机制POW、POS、DPOS的区别，进来看看： 三大共识机制POW、POS、DPOS的区别]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>共识机制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[kafka集群搭建]]></title>
     <url>%2F2019%2F08%2F31%2Fkafka%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[kafka，领英开源消息队列框架，在大数据实时、批处理过程中，充当缓冲、中间存储、解耦的组件，深得工程师的喜爱，下面看下如何搭建。 1、软件环境搭建好的zookeeper集群下载kafka安装包 2、安装、修改配置文件12tar -zxvf kafka_*.tgz -C /usr/local/cd /usr/local/kafka/config 2.1修改配置文件12345678910111213vim server.propertiesbroker.id=1/* 这是这台虚拟机上的值，在另外两台虚拟机上应该是2或者3，这个值是唯一的，每台虚拟机或者叫服务器不能相同。 // 设置本机IP和端口。 我这里设置的是listeners，也可以直接设置host.name=192.168.172.10,port=9092,这个IP地址也是与本机相关的，每台服务器上设置为自己的IP地址。 /listeners=PLAINTEXT://192.168.172.10:9092advertised.listeners=PLAINTEXT://x.x.x.x:9092 //外部访问// 该端口默认是9092// 在og.retention.hours=168下面新增下面三项 #默认消息的最大持久化时间，168小时，7天message.max.byte=5242880 #消息保存的最大值5M default.replication.factor=2 #kafka保存消息的副本数，如果一个副本失效了，另一个还可以继续提供服务replica.fetch.max.bytes=5242880 #取消息的最大直接数/ 设置zookeeper的连接端口，新版本的kafka不再使用zookeeper而是通过brokerlist的配置让producer直接连接broker，这个brokerlist可以配置多个，只要有一个能连接上，就可以让producer获取道集群中的其他broker的信息，绕过了zookeeper。因此这个zookeeper.connect可以设置多个值 */zookeeper.connect=192.168.172.12:2181,192.168.172.11:2181,192.168.172.10:2181 3、启动kafka首先要启动kafka集群，并且是三台都要手动去启动。// 进入kafka的bin目录cd /opt/kafka/kafka_2.11-1.0.0/bin/// 启动kafka./kafka-server-start.sh -daemon ../config/server.properties &amp; //-daemon代表着以后台模式运行kafka集群，这样kafka的启动就不会影响我们继续在控制台输入命令。//查看服务是否正常jps 4、创建topic，测试4.1创建topic创建Topic1./kafka-topics.sh --create --zookeeper 10.0.0.60:2181 --replication-factor 2 --partitions 1 --topic shuaige // 解释 123--replication-factor 2 #复制两份--partitions 1 #创建1个分区--topic #主题为shuaige ‘’’在一台服务器上创建一个发布者’’’ 创建一个broker，发布者123./kafka-console-producer.sh --broker-list 10.0.0.60:9092 --topic shuaige&apos;&apos;&apos;在一台服务器上创建一个订阅者&apos;&apos;&apos;./kafka-console-consumer.sh --zookeeper localhost:2181 --topic shuaige --from-beginning 4.2 查看topic1./kafka-topics.sh --list --zookeeper localhost:2181 4.3 查看topic状态1/kafka-topics.sh --describe --zookeeper localhost:12181 --topic shuaige 下面是显示信息Topic:ssports PartitionCount:1 ReplicationFactor:2 Configs: Topic: shuaige Partition: 0 Leader: 1 Replicas: 0,1 Isr: 1//分区为为1 复制因子为2 他的 shuaige的分区为0//Replicas: 0,1 复制的为0，1 4.4 创建kafka topic1bin/kafka-topics.sh --zookeeper node01:2181 --create --topic t_cdr --partitions 30 --replication-factor 2 注： partitions指定topic分区数，replication-factor指定topic每个分区的副本数 partitions分区数: partitions ：分区数，控制topic将分片成多少个log。可以显示指定，如果不指定则会使用broker(server.properties)中的num.partitions配置的数量 虽然增加分区数可以提供kafka集群的吞吐量、但是过多的分区数或者或是单台服务器上的分区数过多，会增加不可用及延迟的风险。因为多的分区数，意味着需要打开更多的文件句柄、增加点到点的延时、增加客户端的内存消耗。 分区数也限制了consumer的并行度，即限制了并行consumer消息的线程数不能大于分区数 分区数也限制了producer发送消息是指定的分区。如创建topic时分区设置为1，producer发送消息时通过自定义的分区方法指定分区为2或以上的数都会出错的；这种情况可以通过alter –partitions 来增加分区数。 replication-factor副本 replication factor 控制消息保存在几个broker(服务器)上，一般情况下等于broker的个数。 如果没有在创建时显示指定或通过API向一个不存在的topic生产消息时会使用broker(server.properties)中的default.replication.factor配置的数量查看所有topic列表1bin/kafka-topics.sh --zookeeper node01:2181 --list 查看指定topic信息 1bin/kafka-topics.sh --zookeeper node01:2181 --describe --topic t_cdr 控制台向topic生产数据 1bin/kafka-console-producer.sh --broker-list node86:9092 --topic t_cdr 控制台消费topic的数据 1bin/kafka-console-consumer.sh --zookeeper node01:2181 --topic t_cdr --from-beginning 查看topic某分区偏移量最大（小）值 1bin/kafka-run-class.sh kafka.tools.GetOffsetShell --topic hive-mdatabase-hostsltable --time -1 --broker-list node86:9092 --partitions 0 注： time为-1时表示最大值，time为-2时表示最小值增加topic分区数, 为topic t_cdr 增加10个分区 1bin/kafka-topics.sh --zookeeper node01:2181 --alter --topic t_cdr --partitions 10 删除topic，慎用，只会删除zookeeper中的元数据，消息文件须手动删除 1bin/kafka-run-class.sh kafka.admin.DeleteTopicCommand --zookeeper node01:2181 --topic t_cdr 查看topic消费进度这个会显示出consumer group的offset情况， 必须参数为–group， 不指定–topic，默认为所有topic 1234567891011121314151617Displays the: Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Groupbin/kafka-run-class.sh kafka.tools.ConsumerOffsetCheckerrequired argument: [group]Option Description------ -------------broker-info Print broker info--group Consumer group.--help Print this message.--topic Comma-separated list of consumertopics (all topics if absent).--zkconnect ZooKeeper connect string. (default: localhost:2181)Example,bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --group pvGroup Topic Pid Offset logSize Lag Ownerpv page_visits 0 21 21 0 nonepv page_visits 1 19 19 0 nonepv page_visits 2 20 20 0 none 以上图中参数含义解释如下： 123456topic：创建时topic名称pid：分区编号offset：表示该parition已经消费了多少条messagelogSize：表示该partition已经写了多少条messageLag：表示有多少条message没有被消费。Owner：表示消费者 细看kafka-run-class.sh脚本，它是调用 了ConsumerOffsetChecker的main方法，所以，我们也可以通过java代码来访问scala的ConsumerOffsetChecker类，代码如下： 12345678910111213import kafka.tools.ConsumerOffsetChecker;/** * kafka自带很多工具类，其中ConsumerOffsetChecker能查看到消费者消费的情况, * ConsumerOffsetChecker只是将信息打印到标准的输出流中 * */public class RunClass &#123; public static void main(String[] args) &#123; //group-1是消费者的group名称,可以在zk中 String[] arr = new String[]&#123;&quot;--zookeeper=192.168.199.129:2181,192.168.199.130:2181,192.168.199.131:2181/kafka&quot;,&quot;--group=group-1&quot;&#125;; ConsumerOffsetChecker.main(arr); &#125;&#125; 5、日志说明默认kafka的日志是保存在/opt/kafka/kafka_2.10-0.9.0.0/logs目录下的，这里说几个需要注意的日志server.log #kafka的运行日志state-change.log #kafka他是用zookeeper来保存状态，所以他可能会进行切换，切换的日志就保存在这里controller.log #kafka选择一个节点作为“controller”,当发现有节点down掉的时候它负责在游泳分区的所有节点中选择新的leader,这使得Kafka可以批量的高效的管理所有分区节点的主从关系。如果controller down掉了，活着的节点中的一个会备切换为新的controller. 6、 Kafka-manager（v2.0.0.2）（Kafka集群可视化管理）6.1 sbt编译123curl https://bintray.com/sbt/rpm/rpm &gt; bintray-sbt-rpm.repomv bintray-sbt-rpm.repo /etc/yum.repos.d/yum install sbt 检查sbt是否安装成功 1sbt version 6.2 安装部署kafka-manager12wget https://github.com/yahoo/kafka-manager/releases/kafka-manager-2.0.0.2.tar.gztar zxvf kafka-manager-2.0.0.2.tar.gz -C /usr/local 编译kafka-manager 12cd /usr/local/kafka-manager-2.0.0.2./sbt clean dist //需要一段时间 编译结果查看 1ls /usr/local/kafka-manager-2.0.0.2/target/universal/ //存在kafka-manager-2.0.0.2.zip 创建目录kafka-manager12mkdir -p /usr/local/kafka-managercp /usr/local/kafka-manager-2.0.0.2/target/universal/kafka-manager-2.0.0.2.zip /usr/local/kafka-manager 解压文件 1unzip kafka-manager-2.0.0.2.zip 修改配置文件 1vim /usr/local/kafka-manager/kafka-manager-2.0.0.2/conf/application.conf 修改信息 1234单机：kafka-manager.zkhosts=&quot;localhost:2181&quot;集群：kafka-manager.zkhosts=&quot;node3.cn:2181,node4.cn:2181,node5.cn:2181&quot; 6.3启动kafka-manager控制台启动 1bin/kafka-manager 后台守护启动 1nohup bin/kafka-manager &amp; 后台启动通过 -Dhttp.port，指定端口; -Dconfig.file=conf/application.conf指定配置文件 1nohup bin/kafka-manager -Dconfig.file=conf/application.conf -Dhttp.port=8080 &amp;]]></content>
@@ -419,6 +430,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -428,17 +450,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -453,17 +464,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -472,6 +472,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -510,17 +521,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -529,6 +529,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>
@@ -860,8 +871,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>spark</tag>
         <tag>hadoop</tag>
+        <tag>spark</tag>
       </tags>
   </entry>
   <entry>

@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[比特币双花攻击]]></title>
+    <url>%2F2019%2F09%2F09%2F%E6%AF%94%E7%89%B9%E5%B8%81%E5%8F%8C%E8%8A%B1%E6%94%BB%E5%87%BB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在学习区块链的过程中，大家一定对会听到“双花”这个词，意思就是双重支付，或者更直白点就是一笔资金被花费了两次。这篇文章我们来简单的分析一下为什么会有双花，比特币是如何避免双花的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在传统的交易中，因为有银行这样的中心化机构，所以是不会存在双花问题的：每一笔支付都将从你的银行账户中扣除相应的资金，所有的明细在银行都有记录。但是在比特币中，因为没有账户的概念，而是引入了UTXO即未花费交易输出。因为没有银行这样的中心化机构的保证，当发生一笔交易时就可能存在着双花的危险：比方说A有一个比特币，然后他同时构造两笔交易T1和T2来花费这1个比特币，其中一个给了B，从B那里买件衣服，一个给了C，从C那里买双鞋。如果不引入某种机制来避免这种情况，那作为数字货币的比特币将没有任何存在的意义。接下来就来分析一下比特币是如何做到防止这种“双花”攻击的。 (1) 正常情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我们来看看正常情况，说白了就是绝大多数时候，区块链的共识机制就能将双花消灭在萌芽状态。我们还是以上面提到的例子来做说明： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设A构造了两笔交易T1和T2，将自己价值1btc的UTXO分别转给了B和C，妄图同时从B和C那里获得好处。然后A几乎在同一时间将构造好的这两笔交易广播至网络。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设网络中的矿工节点先收到了交易T1，发现这笔交易的资金来源确实没有被花费过，于是将T1加入到自己的内存交易池中等待打包进区块。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大部分情况下，这个矿工节点会在不久后又收到交易T2，此时矿工会先检查A的UTXO是否足够，因为T2所指向的交易输入与已经加入交易池的T1相同，于是发现UTXO不足，矿工节点会拒绝处理该交易。网络中其他的矿工节点都类似，因此A试图双花的尝试胎死腹中。 (2) 分叉情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面说的是正常的情况，但是也有非正常的情况要考虑：假设矿工节点M1和M2几乎在同一时间挖出了区块，并且很不幸M1挖到区块时只收到了交易T1，而M2挖到的区块时只收到了交易T2，这样交易T1和T2被分别打包进两个区块。因为这两个区块是差不多同一时间被挖出，于是造成了区块链的分叉： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网络中某些节点（可能是离M1近的）先收到了M1打包的区块BLK1，于是用该区块延长自己的区块链，而另外一些节点（邻近M2的）则先收到M2打包的区块BLK2，用该区块延长自己的区块链，于是整个区块链网络中呈现出了不一致的问题： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像这种不一致问题，一般只需要一个确认就能得到解决：假设随后又收到新区块，而新区块是以BLK1作为父区块，那么之前用BLK1延长自己区块链的节点，只需要将新区块链接到自己的区块链上，而之前以BLK2延长自己区块链的节点，则需要切换到新的最长链上，如下图：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此在出现分叉的情况下，通常也只需要等一个区块的确认时间网络节点中的区块链就可以重新一致，在这个例子中，经过一个区块的确认期以后，B最终确认自己收到A的1btc，而因为包含有转账给C的交易T2的区块BLK2位于备用链上，因此无法通过支付验证。A的双花尝试也以失败告终。 (3) 为什么说比特币需要6个确认才安全&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面提到一般情况下，只要经过1个区块的确认时间基本上就能确保“相对的安全”。而在比特币中，对于很小额的支付，为了提高交易速度，一般也就是等1个区块的确认即可。但是注意这里说的是“相对安全”，对于数额特别大交易，1个区块的确认远远不够。我们考虑上面提到的分叉情况：假设经过1个区块的确认后，B知道了A给他的1btc确实已经位于链上，于是发货给A。此时A及其同伙掌握着很大的一部分算力，A通知其同伙开始使劲挖矿延长备用链（攻击链），当A最终成功的使攻击链的长度（累计工作量）超过当前主链时，会再一次导致网络中的节点切换主链的情况，如下面的示意图： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是包含了A转给C的交易T2的区块BLK2位于了主链之上，此时A通知C钱已到账，C做支付验证也没问题，于是C给A发货，A的双花攻击成功。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此对于额度稍大的交易，必须要等待6个区块的确认才能保证安全，因为攻击者要想构造攻击链追上已经经过6个区块确认的主链需要花费的算力成本是非常大的，很有可能得不偿失。 总结 (1) 大部分情况下比特币的UTXO机制和区块链的共识机制都能有效应对双花攻击； (2) 对于小额支付，等待一个确认通常就可以认为安全了，但是对于大额支付，需要等6个确认才能大概率的认为安全，否则如果攻击者掌握很强算力，有可能构造累计工作量超过当前主链的攻击链导致双花成功。 Never give up on something if you think you can fight for it. It’s difficult to wait but it’s more difficult when you regret.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>BTC</tag>
+        <tag>双花攻击</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[比特币本质其实是UTXO]]></title>
+    <url>%2F2019%2F09%2F09%2F%E6%AF%94%E7%89%B9%E5%B8%81%E6%9C%AC%E8%B4%A8%E5%85%B6%E5%AE%9E%E6%98%AFUTXO%2F</url>
+    <content type="text"><![CDATA[UTXO的全称为Unspent Transaction Output，翻译过来就是未被花费的交易输出。其实并没有什么比特币，我们在交易所里或者钱包里显示的比特币余额其实是UTXO。那到底什么是UTXO呢? 好像觉得还是不太理解。。。。？ 示例&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在比特币区块链账本上记录了一笔一笔的交易，每一笔交易都有若干个交易输入（转账者），也就是资金来源，同时也有若干个交易输出（收款者），也就是资金去向。每一笔交易都要花费一笔输入，产生一笔输出，而产生的这笔输出，就是UTXO。 举个简单的例子：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A地址下有1个btc，A要把1个btc转给B，则账本上交易的输入就是A，输出为B的地址，这时脚本会校验A地址是否有1个btc（余额都不够怎么会给你转），即在某一笔输出（UTXO）中查询到了A确实有1个btc。所以A可以作为输入转给B一个btc，这时就有一笔价值1个btc的输出指向B地址，直到B进行下一次转账前这笔交易都是B未被花费的输出（UTXO）。后续B要转给C时又重复A转B的操作。 总结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比特币并不是基于账户的方案，而是基于UTXO方案。这个和传统银行账户的思维完全不一样。张三拥有10个btc，其实就是当前区块链账本中，有若干笔交易的输出（UTXO）收款人都是张三的地址，而这些UXTO的总额为10。这个地址一共收了多少UTXO，则是要通过比特币钱包代为跟踪计算，所以钱包里显示的余额其实是有多少价值btc的输出指向你的地址。 This is your life, and you’ve got to fight for it. Fight for what’s right. Fight for what’s important to you. Fight for the people you love.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>【BTC,UTXO】</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ElasticSearch集群环境搭建]]></title>
     <url>%2F2019%2F09%2F06%2FElasticSearch%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[ElasticSearch作为一个基于搜索引擎lucene的文档数据库，搜索速度在目前的大数据存储系统中，算是佼佼者了。又有许多人把它当数据库使用，索引做库，类型做表，也是不错的选择。在数据仓库中，也可以做report层的存储，对接数据可视化工具，提供接口查询业务数据、结果数据。下面来看看集群环境怎么搭建。 1、软件需求jdk8elasticsearch包 2、es安装、配置123456789tar -zxvf elasticsearch-*.tar.gz -C /usr/localcd /usr/local/elasticsearchvim /config/elasticsearch.ymlcluster.name: es-cluster-1 配置集群名称 三台服务器保持一致node.name: node-1 配置单一节点名称，每个节点唯一标识network.host: 0.0.0.0 设置绑定的ip地址http.port: 9200 端口discovery.zen.ping.unicast.hosts: [&quot;192.168.21.12&quot;, &quot;192.168.21.13&quot;,&quot;192.168.21.14&quot;] 集群节点ip或者主机discovery.zen.minimum_master_nodes: 3 设置这个参数来保证集群中的节点可以知道其它N个有master资格的节点。默认为1，对于大的集群来说，可以设置大一点的值（2-4） 2.1新建用户（三台都需要）在 Linux 环境中，elasticsearch 不允许以 root 权限来运行！所以需要创建一个非root用户，以非root用户来起eselsearch 新增elsearch用户组 12useradd elsearch -g elsearch -p elasticsearch 创建elsearch用户chown -R elsearch:elsearch ./elasticsearch 用户目录权限 2.2运行操作三台服务12su elsearch./bin/elasticsearch -d //-d表示后台启动 3、问题汇总解决方案3.1问题一12ERROR: bootstrap checks failedmax file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536] 原因：无法创建本地文件问题,用户最大可创建文件数太小解决方案：切换到root用户，编辑limits.conf配置文件， 添加类似如下内容： 1vi /etc/security/limits.conf 添加如下内容: 1234* soft nofile 65536* hard nofile 131072* soft nproc 2048* hard nproc 4096 备注：* 代表Linux所有用户名称（比如 hadoop）保存、退出、重新登录才可生效 3.2问题二1max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 原因：最大虚拟内存太小解决方案：切换到root用户下，修改配置文件sysctl.conf 1vi /etc/sysctl.conf 添加下面配置： 1vm.max_map_count=655360 并执行命令：sysctl -p然后重新启动elasticsearch，即可启动成功。 3.3问题三：1max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 原因：最大虚拟内存太小解决方案：切换到root用户下，修改配置文件sysctl.confvi /etc/sysctl.conf添加下面配置： 1vm.max_map_count=655360 并执行命令：sysctl -p然后重新启动elasticsearch，即可启动成功。 3.4问题四：ElasticSearch启动找不到主机或路由原因：ElasticSearch 单播配置有问题解决方案：检查ElasticSearch中的配置文件vi config/elasticsearch.yml找到如下配置：discovery.zen.ping.unicast.hosts: [“192.168.21.12”, “192.168.21.13”,”192.168.21.14”]一般情况下，是这里配置有问题，注意书写格式 3.5问题五：org.elasticsearch.transport.RemoteTransportException: Failed to deserialize exception response from stream原因:ElasticSearch节点之间的jdk版本不一致解决方案：ElasticSearch集群统一jdk环境 3.6问题六：Unsupported major.minor version 52.0原因：jdk版本问题太低解决方案：更换jdk版本，ElasticSearch5.0.0支持jdk1.8.0]]></content>
@@ -475,17 +498,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -494,6 +506,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>
@@ -576,17 +599,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -595,6 +607,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>
@@ -852,17 +875,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -872,6 +884,17 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

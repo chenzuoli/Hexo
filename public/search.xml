@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据结构]]></title>
+    <url>%2F2019%2F09%2F11%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[数据结构，是指数据在计算机存储空间中（磁盘中）的安排方式，算法，是指软件程序用来操作这些数据结构中的数据的过程。 数组Array查找&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从数据的第一位开始查找，直到找到为止，需要n/2步操作；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组中数据项允许重复，则需要全部遍历一遍，需要n步操作。 插入&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入过程是很快的，一步完成，新的数据项只需插入到数组中的第一个空位上；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组不允许重复项出现，则需要进行n步查询对比操作。 删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除操作有3个过程：查找、删除、移动。删除算法中暗含着一个假设，即数组中不允许有洞，洞指的是一个或几个空的数据单元，他们后面还有非空数据单元（在更高的下标下还有数据项），如果删除算法中允许有洞，那么所有其他算法都将变得复杂，因为在查看某一单元数据项时，都需要判断一下是否为空。同样算法需要找到非空数据项而变得效率低下；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，删除操作后，需要将后面非空数据项前移，来填补这个洞。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除需要（假设不允许重复）查找平均n/2个数据项，并平均移动剩下的n/2个数据项来填洞，总共是n步。查看删除的代码]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[比特币双花攻击]]></title>
     <url>%2F2019%2F09%2F09%2F%E6%AF%94%E7%89%B9%E5%B8%81%E5%8F%8C%E8%8A%B1%E6%94%BB%E5%87%BB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在学习区块链的过程中，大家一定对会听到“双花”这个词，意思就是双重支付，或者更直白点就是一笔资金被花费了两次。这篇文章我们来简单的分析一下为什么会有双花，比特币是如何避免双花的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在传统的交易中，因为有银行这样的中心化机构，所以是不会存在双花问题的：每一笔支付都将从你的银行账户中扣除相应的资金，所有的明细在银行都有记录。但是在比特币中，因为没有账户的概念，而是引入了UTXO即未花费交易输出。因为没有银行这样的中心化机构的保证，当发生一笔交易时就可能存在着双花的危险：比方说A有一个比特币，然后他同时构造两笔交易T1和T2来花费这1个比特币，其中一个给了B，从B那里买件衣服，一个给了C，从C那里买双鞋。如果不引入某种机制来避免这种情况，那作为数字货币的比特币将没有任何存在的意义。接下来就来分析一下比特币是如何做到防止这种“双花”攻击的。 (1) 正常情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我们来看看正常情况，说白了就是绝大多数时候，区块链的共识机制就能将双花消灭在萌芽状态。我们还是以上面提到的例子来做说明： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设A构造了两笔交易T1和T2，将自己价值1btc的UTXO分别转给了B和C，妄图同时从B和C那里获得好处。然后A几乎在同一时间将构造好的这两笔交易广播至网络。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设网络中的矿工节点先收到了交易T1，发现这笔交易的资金来源确实没有被花费过，于是将T1加入到自己的内存交易池中等待打包进区块。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大部分情况下，这个矿工节点会在不久后又收到交易T2，此时矿工会先检查A的UTXO是否足够，因为T2所指向的交易输入与已经加入交易池的T1相同，于是发现UTXO不足，矿工节点会拒绝处理该交易。网络中其他的矿工节点都类似，因此A试图双花的尝试胎死腹中。 (2) 分叉情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面说的是正常的情况，但是也有非正常的情况要考虑：假设矿工节点M1和M2几乎在同一时间挖出了区块，并且很不幸M1挖到区块时只收到了交易T1，而M2挖到的区块时只收到了交易T2，这样交易T1和T2被分别打包进两个区块。因为这两个区块是差不多同一时间被挖出，于是造成了区块链的分叉： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网络中某些节点（可能是离M1近的）先收到了M1打包的区块BLK1，于是用该区块延长自己的区块链，而另外一些节点（邻近M2的）则先收到M2打包的区块BLK2，用该区块延长自己的区块链，于是整个区块链网络中呈现出了不一致的问题： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像这种不一致问题，一般只需要一个确认就能得到解决：假设随后又收到新区块，而新区块是以BLK1作为父区块，那么之前用BLK1延长自己区块链的节点，只需要将新区块链接到自己的区块链上，而之前以BLK2延长自己区块链的节点，则需要切换到新的最长链上，如下图：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此在出现分叉的情况下，通常也只需要等一个区块的确认时间网络节点中的区块链就可以重新一致，在这个例子中，经过一个区块的确认期以后，B最终确认自己收到A的1btc，而因为包含有转账给C的交易T2的区块BLK2位于备用链上，因此无法通过支付验证。A的双花尝试也以失败告终。 (3) 为什么说比特币需要6个确认才安全&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面提到一般情况下，只要经过1个区块的确认时间基本上就能确保“相对的安全”。而在比特币中，对于很小额的支付，为了提高交易速度，一般也就是等1个区块的确认即可。但是注意这里说的是“相对安全”，对于数额特别大交易，1个区块的确认远远不够。我们考虑上面提到的分叉情况：假设经过1个区块的确认后，B知道了A给他的1btc确实已经位于链上，于是发货给A。此时A及其同伙掌握着很大的一部分算力，A通知其同伙开始使劲挖矿延长备用链（攻击链），当A最终成功的使攻击链的长度（累计工作量）超过当前主链时，会再一次导致网络中的节点切换主链的情况，如下面的示意图： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是包含了A转给C的交易T2的区块BLK2位于了主链之上，此时A通知C钱已到账，C做支付验证也没问题，于是C给A发货，A的双花攻击成功。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此对于额度稍大的交易，必须要等待6个区块的确认才能保证安全，因为攻击者要想构造攻击链追上已经经过6个区块确认的主链需要花费的算力成本是非常大的，很有可能得不偿失。 总结 (1) 大部分情况下比特币的UTXO机制和区块链的共识机制都能有效应对双花攻击； (2) 对于小额支付，等待一个确认通常就可以认为安全了，但是对于大额支付，需要等6个确认才能大概率的认为安全，否则如果攻击者掌握很强算力，有可能构造累计工作量超过当前主链的攻击链导致双花成功。 Never give up on something if you think you can fight for it. It’s difficult to wait but it’s more difficult when you regret.]]></content>
@@ -20,7 +31,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>【BTC,UTXO】</tag>
+        <tag>BTC</tag>
+        <tag>UTXO</tag>
       </tags>
   </entry>
   <entry>
@@ -464,6 +476,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -473,17 +496,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>

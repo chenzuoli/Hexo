@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[数据结构]]></title>
+    <title><![CDATA[程序设计]]></title>
+    <url>%2F2019%2F09%2F13%2F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序如何设计，达到用户使用简单，是我们需要不停探索的问题。 1.抽象&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从what（什么）中将how（如何）分离出来的过程，即类中的操作如何进行，相对什么是类用户可见的，被称为抽象。抽象是软件工程中重要的方面，把类的功能抽象出来，会使程序设计变得更简单，因为在设计的初期就考虑操作的细节。 Be an especially simple person,do not expect good luck coming suddenly,manage yourself well and cherish time at the moment.]]></content>
+      <categories>
+        <category>程序设计</category>
+      </categories>
+      <tags>
+        <tag>程序设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构与算法]]></title>
     <url>%2F2019%2F09%2F11%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[数据结构，是指数据在计算机存储空间中（磁盘中）的安排方式，算法，是指软件程序用来操作这些数据结构中的数据的过程。 数组Array查找&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从数据的第一位开始查找，直到找到为止，需要n/2步操作；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组中数据项允许重复，则需要全部遍历一遍，需要n步操作。 插入&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入过程是很快的，一步完成，新的数据项只需插入到数组中的第一个空位上；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组不允许重复项出现，则需要进行n步查询对比操作。 删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除操作有3个过程：查找、删除、移动。删除算法中暗含着一个假设，即数组中不允许有洞，洞指的是一个或几个空的数据单元，他们后面还有非空数据单元（在更高的下标下还有数据项），如果删除算法中允许有洞，那么所有其他算法都将变得复杂，因为在查看某一单元数据项时，都需要判断一下是否为空。同样算法需要找到非空数据项而变得效率低下；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，删除操作后，需要将后面非空数据项前移，来填补这个洞。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除需要（假设不允许重复）查找平均n/2个数据项，并平均移动剩下的n/2个数据项来填洞，总共是n步。查看删除的代码]]></content>
+    <content type="text"><![CDATA[数据结构，是指数据在计算机存储空间中（磁盘中）的安排方式，算法，是指软件程序用来操作这些数据结构中的数据的过程。 1.数组Array1.1查找&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从数据的第一位开始查找，直到找到为止，需要n/2步操作；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组中数据项允许重复，则需要全部遍历一遍，需要n步操作。 1.2插入&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入过程是很快的，一步完成，新的数据项只需插入到数组中的第一个空位上；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果数组不允许重复项出现，则需要进行n步查询对比操作。 1.3删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除操作有3个过程：查找、删除、移动。删除算法中暗含着一个假设，即数组中不允许有洞，洞指的是一个或几个空的数据单元，他们后面还有非空数据单元（在更高的下标下还有数据项），如果删除算法中允许有洞，那么所有其他算法都将变得复杂，因为在查看某一单元数据项时，都需要判断一下是否为空。同样算法需要找到非空数据项而变得效率低下；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，删除操作后，需要将后面非空数据项前移，来填补这个洞。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除需要（假设不允许重复）查找平均n/2个数据项，并平均移动剩下的n/2个数据项来填洞，总共是n步。查看删除的代码 2019-09-13更新———————————————————————— 1.4有序数组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序数组的有点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用有序数组会给我们带来什么好处？最主要的好处就是查找速度比无序数组快多了。不好的地方就是在插入数据时，由于所有靠后的数据都需要向后移动一位以腾开空间，导致速度比无序数组慢一些。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序数组和无序数组的删除操作都比较慢，因为数据项必须向前移动来填补删除数据带来的洞。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序数组在查找频繁的情况下非常有用，但若是插入和删除比较多的情况下，则不太适用，无法高效工作。例如，有序数组适用于公司雇员的数据库；另一方面，零售商店的货物清单不适用有序数组来实现，这是由于频繁的进货出货导致的插入删除操作都会执行地很慢。 Pretty looks are in a rut, while interesting souls are cream of crop,In love, looks and talents,Which do you think is pretty important?]]></content>
       <categories>
         <category>数据结构</category>
       </categories>
@@ -476,17 +487,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -496,6 +496,17 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -510,17 +521,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -529,6 +529,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>

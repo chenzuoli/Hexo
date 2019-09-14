@@ -6,7 +6,7 @@ categories: 区块链
 notebook: 区块链
 ---
 
-solidity 语言，作为以太坊平台智能合约语言，那就必须的学一下啊。
+solidity 语言，作为以太坊平台智能合约语言，那必须得学一下啊。
 
 ![solidity](Solidity学习/solidity.jpg)
 
@@ -135,7 +135,7 @@ Coin.Sent().watch({}, '', function(error, result) {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在投票时间结束时，winningProposal() 将返回获得最多投票的提案。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以下是代码，从代码中学习 solidity 的其它一些语法：
-<font color=#0099ff><b><a>[Ballot Smart Contract](https://github.com/chenzuoli/soliditydemos/blob/master/contracts/Ballot.sol)</a></b></font>
+<b><a>[<font color=#0099ff>Ballot Smart Contract</font>](https://github.com/chenzuoli/soliditydemos/blob/master/contracts/Ballot.sol)</a></b>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源代码在<font color=#0099ff><b><a>[这里](https://solidity.readthedocs.io/en/v0.5.10/solidity-by-example.html#voting)</a></b></font>，我在学习的时候照着模板编写发现有下面这个错误，就将 `address to` 引用到 tempTo 就 ok 了，我觉得是变量 `to` 在循环中被修改了导致的。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源代码在<b><a>[<font color=#0099ff>这里</font>](https://solidity.readthedocs.io/en/v0.5.10/solidity-by-example.html#voting)</a></b>，我在学习的时候照着模板编写发现有下面这个错误，就将 `address to` 引用到 tempTo 就 ok 了，我觉得是变量 `to` 在循环中被修改了导致的。
 ![ballot_error](Solidity学习/solidity_Ballot_error.png)

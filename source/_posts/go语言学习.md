@@ -58,5 +58,6 @@ go语言: 面向对象、强类型、类似c的语言。
 ## 执行过程
 ![go_execute_process](go语言学习/go_execute_process.png)
 
+- - -
 当你累了的时候，停下来做个梦吧。
 愿你坚持到底。

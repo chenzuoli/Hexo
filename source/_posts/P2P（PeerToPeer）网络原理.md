@@ -9,6 +9,8 @@ notebook: 区块链
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在研究P2P技术，奈何相关资料不多，自己琢磨了一下，分享一下学习P2P的一些原理, 以及如何打造一个P2P聊天应用。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里指的P2P是指peer to peer， 点对点的技术， 每个客户端都是服务端，没有中心服务器，不是websocket针对某个connection推送消息。
 
+![peer2peer](P2P（PeerToPeer）网络原理/peer2peer.jpeg)
+
 <!-- more -->
 
 # 一、技术要点
@@ -67,3 +69,8 @@ udp.bind(1090, callback)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么D节点不一定非得链接到创世节点，可以链接到A、B、C中的任意一个节点，然后该节点再广播给其他节点说"Hey, 有个新人叫做D的加入了网络"。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这样所有人都知道，有个叫做D的节点存在，你可以和它通信，同时D节点和会同步已存在的节点。这样D节点也知道了其他节点的存在了。
+
+
+
+- - -
+找到自己感兴趣的事情，然后100%投入。

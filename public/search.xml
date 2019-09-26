@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据仓库维度建模中星型模型与❄雪花❄️模型的选择]]></title>
+    <url>%2F2019%2F09%2F26%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E4%B8%AD%E6%98%9F%E5%9E%8B%E6%A8%A1%E5%9E%8B%E4%B8%8E%E2%9D%84%E9%9B%AA%E8%8A%B1%E2%9D%84%EF%B8%8F%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9%2F</url>
+    <content type="text"><![CDATA[维度建模中包含2种设计方式： 星型模式； 雪花模式；下面从多个角度来比较一下这2中模式的利弊吧。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从查询性能角度来看，在OLTP-DW环节，由于雪花型要做多个表联接，性能会低于星型架构；但从DW-OLAP环节，由于雪花型架构更有利于度量值的聚合，因此性能要高于星型架构。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从模型复杂度来看，星型架构更简单。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从层次概念来看，雪花型架构更加贴近OLTP系统的结构，比较符合业务逻辑，层次比较清晰。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从存储空间角度来看，雪花型架构具有关系数据模型的所有优点，不会产生冗余数据，而相比之下星型架构会产生数据冗余。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据我们的项目经验，一般建议使用星型架构。因为我们在实际项目中，往往最关注的是查询性能问题，至于磁盘空间一般都不是问题。 当然，在维度表数据量极大，需要节省存储空间的情况下，或者是业务逻辑比较复杂、必须要体现清晰的层次概念情况下，可以使用雪花型维度。 一、概念：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先了解下星型模式和雪花模式的概念： 星型模式：一种使用关系数据库实现多维分析空间的模式，称为星型模式。星型模式的基本形式必须实现多维空间（常常被称为方块），以使用关系数据库的基本功能。雪花模式：不管什么原因，当星型模式的维度需要进行规范化时，星型模式就演进为雪花模式。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么我们怎么样来理解 多维分析空间 呢 ？ 几何学中的方块是指一个三维空间，其中每个维度的尺寸都相同。想象一个立方体，每个维度都有三个单元，我们即得到相同结构的33＝27个单元。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多维分析空间（或者数据仓库方块）与几何空间中的方块仅仅存在细节上的差异。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;维度不限于 3 维。不过，处理很多维度的立方体也不是件轻松的事情，这会导致大多数的实现被限制于 6 或者 7 维。不要期盼使用图形可以很好地表示超过 4 的维度。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;维度并不具有相同的规模和单元。规模从几个单元到几百万个单元，差别巨大。单元可以是一天、一位顾客、部门等。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据立方体需要很大的内存以存储所有事实。无论是否包含事实，都必须要预留单元。这就是为什么使用关系数据库和星型模式的原因。使用它们能够优化存储并且保持数据结构的灵活性。 二、星型模式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;星型模式的基本思想就是保持立方体的多维功能，同时也增加了小规模数据存储的灵活性。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在图中，星型模式使用事实 Flight 表示了一个 4 维方块（Passenger、Menu、Flight Schedulet 和 Time）。基本上，事实必须指定一个维度，以将其放入立方体的单元中。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个维度根据一个对象进行描述，对象可以用类表示，这些类就是有关业务主题的名称。这一点对于成功建立数据仓库来说是很重要的，因为仓库的用户（经理、分析员、市场）对于信息技术的术语并不是很熟悉。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;事实本身就是商业智能的另一个对象，仍然通过类进行表示。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;事实指每个维度。事实与维度的关联常常是一对任意，这也就意味着每个事实都与单个维度的一个单元准确对应，而维度的每个单元（每个Passenger、Time等）可以与任意数量的事实发生关联（包括0个事实）。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在星型模式中切片和切块是对维度的限制（选择）。这是一个运行时问题，而不是建模问题，但是模型必须分辨其需要。 三、雪花模式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基本的星型模式并不能满足数据挖掘的所有需要。我们需要更复杂的维度，例如时间。分析员希望根据周、月、季度等识别模式。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;维度必须进行规范化。我们不需要冗余的维度表，这只会使数据切片变得更加复杂。这种过程中我们得到的模式被称为雪花模式。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们来看一个简单的雪花模式例子。我们将时间维度规范化为周、月和季度。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们希望能够使用附加的规范化维度将立方体切片：周、月和季度。在本例中，我们假定季度是月的平行层次，这也就意味着我们不能将季度假定为若干月的聚合。由于这个原因，我们将使用一张范化表（是对 OLAP 查询的一项简单附加）预先选择时间维度。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最终雪花模式添加了规范化维度。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然，所有的维度都可以像时间例子那样进行规范化，这就导致了比较复杂的数据集市模式的出现。 吾之初心，永世不忘。]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>数据仓库</tag>
+        <tag>维度建模</tag>
+        <tag>星型模型</tag>
+        <tag>雪花模型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据仓库工程师一般面试题]]></title>
     <url>%2F2019%2F09%2F25%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%B8%80%E8%88%AC%E9%9D%A2%E8%AF%95%E9%A2%98%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于高级数据仓库工程师的问题更侧重于各种工具的细枝末节。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于数据仓库架构师的问题更侧重于数据仓库的架构和总体认识。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于数据仓库项目经理的问题除了以上的问题外，就是一般项目管理的技能了吧。 一、什么叫数据仓库？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据仓库是一个面向主题的、集成的、相对稳定的、反映历史变化的数据集合，用于支持管理决策。 面向主题：数据仓库是为了提供决策服务的，会建立不同的主题，而主题是进行决策时重点关注的部分； 集成：数据仓库可以整合来自不同数据源的数据，将这个数据入库、清洗、整合成统一的标准化数据，同时上文中提到的一个主题往往与多个系统相关，集成的数据很好地满足了主题构建的数据需求。数据仓库对原有的分散的数据库、文件进行数据抽取、清理的基础上经过系统加工、整理得到，清除原数据中的不一致性（面向事务的数据库往往单独存放单个系统的数据，且不同数据库相互独立，且是异构的）； 相对稳定：数据仓库中的数据是面向决策的，这就表明了仓库中的数据进入之后一般会长期保留，主要面对的是查询，更新和删除操作很少，一般是定期地加载、更新； 反映历史变化：仓库中会保留各个时间节点的数据，以满足不断变化的业务需求。 二、数据仓库与数据库的区别？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据库：按照数据结构来组织、存储、管理数据，建立在计算机存储设备上面的仓库，一般适用于操作系统，因为符合范式的设计模式，所以数据的一致性较好。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据仓库：面向主题的、集成的、稳定的（不是时时刻刻变化）、反映历史变化的数据集合，可以包含多个数据库。 三、什么是OLAP？用途是什么？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OLAP：联机分析处理（online analytical processing），是数据仓库的主要应用，支持复杂的分析操作，侧重决策支持，并提供直观易懂的查询结果。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联机分析处理（OLAP）的概念最早由关系型数据库之父E.F.Codd于1993年提出，当时引起了很大的反响，同联机事务处理（OLTP）明显地区分开来。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当今的数据处理大致可以分为两大类：OLTP和OLAP，OLTP是传统的关系型数据库的主要应用，主要是基本的、日常的事务处理，比如银行交易。OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并提供直观易懂的查询结果。 我的命运，由我做主。]]></content>
@@ -1041,6 +1055,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -1050,17 +1075,6 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

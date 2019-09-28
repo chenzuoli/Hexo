@@ -2,12 +2,14 @@
 title: 分布式一致性协议Paxos
 date: 2019-09-27 17:43:02
 tags: [一致性协议,paxos,共识算法]
-categories: [区块链]
+categories: [区块链,共识算法]
 notebook: 区块链
 ---
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic-Paxos算法(可以先看后面的实际例子再看前面的具体介绍部分）
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多个节点并发操纵数据，如何保证在读写过程中数据的一致性，并且解决方案要能适应分布式环境下的不可靠性，由此，Paxos共识算法应运而生。
+
+![consensus_algorithm_paxos](分布式一致性协议Paxos/consensus_algorithm_paxos.jpeg)
 
 <!-- more -->
 

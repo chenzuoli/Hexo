@@ -65,3 +65,7 @@ notebook: 区块链
 - Leader完整性（Leader Completeness）
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里所说的完整性是指Leader日志的完整性，当Log在Term1被Commit后，那么以后Term2、Term3…等的Leader必须包含该Log；Raft在选举阶段就使用Term的判断用于保证完整性：当请求投票的该Candidate的Term较大或Term相同Index更大则投票，否则拒绝该请求。
+
+
+- - -
+keep exercising, keep learning english, keep learning blockchain.

@@ -10,6 +10,10 @@ notebook: 区块链
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读对象：分布式系统爱好者，正在或者打算在项目中使用Etcd的开发人员。
 
+![etcd](一致性共识算法ETCD解析/etcd-logo.jpeg)
+
+<!-- more -->
+
 # Etcd 按照官方介绍
 ```
 Etcd is a distributed, consistent key-value store for shared configuration and service discovery

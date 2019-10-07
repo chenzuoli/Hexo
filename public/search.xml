@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[国庆假期回家之旅]]></title>
+    <url>%2F2019%2F10%2F07%2F%E5%9B%BD%E5%BA%86%E5%81%87%E6%9C%9F%E5%9B%9E%E5%AE%B6%E4%B9%8B%E6%97%85%2F</url>
+    <content type="text"><![CDATA[今年国庆回家了，以往都是出去浪了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;去年带着爸妈弟弟去重庆了，享受了一家人的旅行时光，很不错，今年他们不去，也恰好我被辞了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带着一个电脑，一本技术类的书籍，一点都没碰。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一天回家，跟堂哥堂姐表弟一起玩去了，中午表弟家团聚吃饭，晚饭我家一起吃饭，第二天中午堂哥家吃饭，时间过得很快，他们下午就回武汉了，为了赚钱。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三天又去另一个表哥家过客了，喜得千金，很多人，很热闹，欢乐过后就在他家睡觉了，等待第二天的朋友相聚。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四天，顺利与朋友寒暄，畅聊了3个小时，他妈弄了一大盘饺子吃，自己家手包的饺子就是非常地美味，so decilious. 但是天一直下雨☔️，变得很冷，无法回我老家，无法去我姥姥家，人算不如天算，计划被打乱，于是又回到表哥家过了一夜，期待明天天晴。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第五天果然天晴，一大早吃完早餐，与舅舅舅妈告别，急急忙忙骑着摩托车回家，天太冷，受罪了，冻得哆嗦。路上带着妈去姥姥家，天下着小雨，雾很大，幸亏有妈的指引，不然会迷路。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姥姥85岁，身体好了点，比去年强多了，Thank God，愿亲人身体健康。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;急急忙忙吃完午饭，就赶忙与姥姥姥爷告别要赶高铁了，一路小雨微风，我上车了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回家的这几天，表哥喜得千金，过得很幸福；堂哥开车回家；堂姐带了男朋友回家；表弟辞职了，准备区深圳闯一闯；我呢还是他们以为的那个样子，很不错。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是也看到了亲人背后的无奈与压力，堂哥公司垮掉了，被迫要学习一些新的技能赚钱了。堂姐离婚后，为了赚钱，与她儿子分开，离开时候的不舍，估计只有她最懂。表弟的工作不赚钱，辞职了，为了能够与女朋友结婚，决定去深圳看看机会。表哥喜得千金，过客后又去工地跟着舅舅赚钱去了，工地很是辛苦，他们最懂。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我好像也好不到哪儿去，过完假要去找工作了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10月7日早上到达北京，开始学习了。 All I know is that I should do my all effort to make my and my family’s life best.]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>工作</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[分布式一致性共识算法Paxos、Raft、ZAB、ETCD之间的关系]]></title>
     <url>%2F2019%2F10%2F01%2F%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95Paxos%E3%80%81Raft%E3%80%81ZAB%E3%80%81ETCD%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分布式系统中，多个节点之间达成共识成为最重要的组成部分，在发展过程中，出现许多类型的算法，他们从最基本的达成共识，到易于理解，更接近于实践应用等等方面，做到了极致，下面来看看Paxos、Raft、ZAB、Etcd之间的不同。 为了解决分布式系统中的一致性问题，科学家们首先提出了Paxos算法，但是Paxos流程太过繁杂，不易于理解，应用主要有Chubby、libpaxos； 斯坦福大学的2个人以易于理解为目标，又能实现Paxos所解决的问题，于是实现了Raft算法，到现在已经有了十多种语言的Raft算法实现框架，较为出名的有etcd，Google的Kubernetes也是用了etcd作为他的服务发现框架； Zab与Paxos不同，但是有些地方是从Paxos那里学习过来的，比如Leader发送心跳、议案、决定等给Follower；Leader在提交（commit）议案之前需要经过一定量的Follower的确认；算法实现最经典的应用为zookeeper； 但Etcd和Zab不适合分布式大数据存储，主要做分布式元数据的存储； when your ability don’t support your ambition, then you should learn down-to-earth.]]></content>
@@ -795,17 +807,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -814,6 +815,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -896,17 +908,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -915,6 +916,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

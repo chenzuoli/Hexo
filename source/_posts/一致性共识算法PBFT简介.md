@@ -2,7 +2,7 @@
 title: 一致性共识算法PBFT简介
 date: 2019-10-07 16:43:13
 tags: [PBFT,共识算法,区块链,联盟链]
-categories: [共识算法,区块链]
+categories: [共识算法,分布式]
 notebook: 区块链
 ---
 
@@ -36,11 +36,11 @@ PBFT算法流程
 
 以下详细说明，每个主体流程内容：
 
-1. REQUEST：
+## 1. REQUEST：
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端c向主节点p发送<REQUEST, o, t, c>请求。o: 请求的具体操作，t: 请求时客户端追加的时间戳，c：客户端标识。REQUEST: 包含消息内容m，以及消息摘要d(m)。客户端对请求进行签名。
 
-2. PRE-PREPARE：
+## 2. PRE-PREPARE：
 
 主节点收到客户端的请求，需要进行以下交验：
 
@@ -48,7 +48,7 @@ a. 客户端请求消息签名是否正确。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，分配一个编号n，编号n主要用于对客户端的请求进行排序。然后广播一条<<PRE-PREPARE, v, n, d>,  m>消息给其他副本节点。v：视图编号，d客户端消息摘要，m消息内容。<PRE-PREPARE, v, n, d>进行主节点签名。n是要在某一个范围区间内的[h, H]，具体原因参见垃圾回收章节。
 
-3. PREPARE：
+## 3. PREPARE：
 
 副本节点i收到主节点的PRE-PREPARE消息，需要进行以下交验：
 
@@ -59,7 +59,7 @@ a. 客户端请求消息签名是否正确。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，副本节点i向其他节点包括主节点发送一条<PREPARE, v, n, d, i>消息, v, n, d, m与上述PRE-PREPARE消息内容相同，i是当前副本节点编号。<PREPARE, v, n, d, i>进行副本节点i的签名。记录PRE-PREPARE和PREPARE消息到log中，用于View Change过程中恢复未完成的请求操作。
 
-4. COMMIT：
+## 4. COMMIT：
 
 主节点和副本节点收到PREPARE消息，需要进行以下交验：
 
@@ -70,7 +70,7 @@ a. 客户端请求消息签名是否正确。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。如果副本节点i收到了2f+1个验证通过的PREPARE消息，则向其他节点包括主节点发送一条<COMMIT, v, n, d, i>消息，v, n, d,  i与上述PREPARE消息内容相同。<COMMIT, v, n, d, i>进行副本节点i的签名。记录COMMIT消息到日志中，用于View Change过程中恢复未完成的请求操作。记录其他副本节点发送的PREPARE消息到log中。
 
-5. REPLY：
+## 5. REPLY：
 
 主节点和副本节点收到COMMIT消息，需要进行以下交验：
 

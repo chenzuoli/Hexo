@@ -2,7 +2,7 @@
 title: 分布式一致性算法Raft
 date: 2019-09-28 08:13:54
 tags: [一致性协议,raft,共识算法]
-categories: [区块链,共识算法]
+categories: [分布式,共识算法]
 notebook: 区块链
 ---
 

@@ -2,7 +2,7 @@
 title: 分布式一致性共识算法Paxos、Raft、ZAB、ETCD之间的关系
 date: 2019-10-01 11:41:21
 tags: [分布式,共识算法,Paxos,Raft,Zab,Etcd]
-categories: [区块链,共识算法]
+categories: [分布式,共识算法]
 notebook: 区块链
 ---
 

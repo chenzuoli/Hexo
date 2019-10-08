@@ -8,11 +8,11 @@ notebook: 区块链
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前一段时间的项目里用到了 Etcd， 所以研究了一下它的源码以及实现。网上关于 Etcd 的使用介绍的文章不少，但分析具体架构实现的文章不多，同时 Etcd v3的文档也非常稀缺。本文通过分析 Etcd 的架构与实现，了解其优缺点以及瓶颈点，一方面可以学习分布式系统的架构，另外一方面也可以保证在业务中正确使用 Etcd，知其然同时知其所以然，避免误用。最后介绍 Etcd 周边的工具和一些使用注意事项。
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读对象：分布式系统爱好者，正在或者打算在项目中使用Etcd的开发人员。
-
 ![etcd](一致性共识算法ETCD解析/etcd-logo.jpeg)
 
 <!-- more -->
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读对象：分布式系统爱好者，正在或者打算在项目中使用Etcd的开发人员。
 
 # Etcd 按照官方介绍
 ```

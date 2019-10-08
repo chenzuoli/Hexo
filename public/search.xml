@@ -3,28 +3,16 @@
   <entry>
     <title><![CDATA[一致性共识算法PBFT简介]]></title>
     <url>%2F2019%2F10%2F07%2F%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95PBFT%E7%AE%80%E4%BB%8B%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是Practical Byzantine Fault Tolerance的缩写，即：实用拜占庭容错算法。主要用于联盟链，下面来看下介绍吧。 摘要&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是Practical Byzantine Fault Tolerance的缩写，即：实用拜占庭容错算法。该算法是Miguel Castro（卡斯特罗）和Barbara Liskov（利斯科夫）在1999年提出来的，解决了原始拜占庭容错算法效率不高的问题，算法的时间复杂度是O(n^2)，使得在实际系统应用中可以解决拜占庭容错问题。该论文发表在1999年的操作系统设计与实现国际会议上（OSDI99）。其中Barbara Liskov就是提出了著名的里氏替换原则（LSP）的人，2008年图灵奖得主。以下拜占庭容错问题简称BFT。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BFT是区块链共识算法中，需要解决的一个核心问题，以比特币和以太访为代表的POW，EOS为代表的DPOS，以及今后以太访逐渐替换的共识算法POS，这些都是公链算法，解决的是共识节点众多情况下的BFT。而PBFT是在联盟链共识节点较少的情况下BFT的一种解决方案。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网上已经有很多关于PBFT算法的描述，但是写的都不是很明白，本文以一种更为清晰易懂的方法，彻底讲明白PBFT算法原理。下一篇文章将会结合fabric-0.6.0-preview 中的代码，讲解超级账本项目是如何实现PBFT算法的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文假设读者已经理解什么是BFT问题。 PBFT算法流程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT算法前提，采用密码学算法保证节点之间的消息传送是不可篡改的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT容忍无效或者恶意节点数：f，为了保障整个系统可以正常运转，需要有2f+1个正常节点，系统的总节点数为：|R| = 3f + 1。也就是说，PBFT算法可以容忍小于1/3个无效或者恶意节点，该部分的原理证明请参考PBFT论文，下文有链接地址。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是一种状态机副本复制算法，所有的副本在一个视图（view）轮换的过程中操作，主节点通过视图编号以及节点数集合来确定，即：主节点 p = v mod |R|。v：视图编号，|R|节点个数，p：主节点编号。 PBFT算法主体实现流程图如下： PBFT算法流程 以下详细说明，每个主体流程内容： REQUEST： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端c向主节点p发送&lt;REQUEST, o, t, c&gt;请求。o: 请求的具体操作，t: 请求时客户端追加的时间戳，c：客户端标识。REQUEST: 包含消息内容m，以及消息摘要d(m)。客户端对请求进行签名。 PRE-PREPARE： 主节点收到客户端的请求，需要进行以下交验： a. 客户端请求消息签名是否正确。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，分配一个编号n，编号n主要用于对客户端的请求进行排序。然后广播一条&lt;&lt;PRE-PREPARE, v, n, d&gt;, m&gt;消息给其他副本节点。v：视图编号，d客户端消息摘要，m消息内容。&lt;PRE-PREPARE, v, n, d&gt;进行主节点签名。n是要在某一个范围区间内的[h, H]，具体原因参见垃圾回收章节。 PREPARE： 副本节点i收到主节点的PRE-PREPARE消息，需要进行以下交验： a. 主节点PRE-PREPARE消息签名是否正确。 b. 当前副本节点是否已经收到了一条在同一v下并且编号也是n，但是签名不同的PRE-PREPARE信息。 c. d与m的摘要是否一致。 d. n是否在区间[h, H]内。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，副本节点i向其他节点包括主节点发送一条&lt;PREPARE, v, n, d, i&gt;消息, v, n, d, m与上述PRE-PREPARE消息内容相同，i是当前副本节点编号。&lt;PREPARE, v, n, d, i&gt;进行副本节点i的签名。记录PRE-PREPARE和PREPARE消息到log中，用于View Change过程中恢复未完成的请求操作。 COMMIT： 主节点和副本节点收到PREPARE消息，需要进行以下交验： a. 副本节点PREPARE消息签名是否正确。 b. 当前副本节点是否已经收到了同一视图v下的n。 c. n是否在区间[h, H]内。 d. d是否和当前已收到PRE-PPREPARE中的d相同 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。如果副本节点i收到了2f+1个验证通过的PREPARE消息，则向其他节点包括主节点发送一条&lt;COMMIT, v, n, d, i&gt;消息，v, n, d, i与上述PREPARE消息内容相同。&lt;COMMIT, v, n, d, i&gt;进行副本节点i的签名。记录COMMIT消息到日志中，用于View Change过程中恢复未完成的请求操作。记录其他副本节点发送的PREPARE消息到log中。 REPLY： 主节点和副本节点收到COMMIT消息，需要进行以下交验： a. 副本节点COMMIT消息签名是否正确。 b. 当前副本节点是否已经收到了同一视图v下的n。 c. d与m的摘要是否一致。 d. n是否在区间[h, H]内。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。如果副本节点i收到了2f+1个验证通过的COMMIT消息，说明当前网络中的大部分节点已经达成共识，运行客户端的请求操作o，并返回&lt;REPLY, v, t, c, i, r&gt;给客户端，r：是请求操作结果，客户端如果收到f+1个相同的REPLY消息，说明客户端发起的请求已经达成全网共识，否则客户端需要判断是否重新发送请求给主节点。记录其他副本节点发送的COMMIT消息到log中。 总结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT算法由于每个副本节点都需要和其他节点进行P2P的共识同步，因此随着节点的增多，性能会下降的很快，但是在较少节点的情况下可以有不错的性能，并且分叉的几率很低。PBFT主要用于联盟链，但是如果能够结合类似DPOS这样的节点代表选举规则的话也可以应用于公链，并且可以在一个不可信的网络里解决拜占庭容错问题，TPS应该是远大于POW的。 参考拜占庭容错(Byzantine Fault Tolerance) WIKI: BFT-Wikipedia PBFT论文地址：PBFT论文 The shortest answer is doing.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是Practical Byzantine Fault Tolerance的缩写，即：实用拜占庭容错算法。主要用于联盟链，下面来看下介绍吧。 摘要&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是Practical Byzantine Fault Tolerance的缩写，即：实用拜占庭容错算法。该算法是Miguel Castro（卡斯特罗）和Barbara Liskov（利斯科夫）在1999年提出来的，解决了原始拜占庭容错算法效率不高的问题，算法的时间复杂度是O(n^2)，使得在实际系统应用中可以解决拜占庭容错问题。该论文发表在1999年的操作系统设计与实现国际会议上（OSDI99）。其中Barbara Liskov就是提出了著名的里氏替换原则（LSP）的人，2008年图灵奖得主。以下拜占庭容错问题简称BFT。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BFT是区块链共识算法中，需要解决的一个核心问题，以比特币和以太访为代表的POW，EOS为代表的DPOS，以及今后以太访逐渐替换的共识算法POS，这些都是公链算法，解决的是共识节点众多情况下的BFT。而PBFT是在联盟链共识节点较少的情况下BFT的一种解决方案。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网上已经有很多关于PBFT算法的描述，但是写的都不是很明白，本文以一种更为清晰易懂的方法，彻底讲明白PBFT算法原理。下一篇文章将会结合fabric-0.6.0-preview 中的代码，讲解超级账本项目是如何实现PBFT算法的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文假设读者已经理解什么是BFT问题。 PBFT算法流程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT算法前提，采用密码学算法保证节点之间的消息传送是不可篡改的。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT容忍无效或者恶意节点数：f，为了保障整个系统可以正常运转，需要有2f+1个正常节点，系统的总节点数为：|R| = 3f + 1。也就是说，PBFT算法可以容忍小于1/3个无效或者恶意节点，该部分的原理证明请参考PBFT论文，下文有链接地址。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是一种状态机副本复制算法，所有的副本在一个视图（view）轮换的过程中操作，主节点通过视图编号以及节点数集合来确定，即：主节点 p = v mod |R|。v：视图编号，|R|节点个数，p：主节点编号。 PBFT算法主体实现流程图如下： PBFT算法流程 以下详细说明，每个主体流程内容： 1. REQUEST：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端c向主节点p发送&lt;REQUEST, o, t, c&gt;请求。o: 请求的具体操作，t: 请求时客户端追加的时间戳，c：客户端标识。REQUEST: 包含消息内容m，以及消息摘要d(m)。客户端对请求进行签名。 2. PRE-PREPARE：主节点收到客户端的请求，需要进行以下交验： a. 客户端请求消息签名是否正确。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，分配一个编号n，编号n主要用于对客户端的请求进行排序。然后广播一条&lt;&lt;PRE-PREPARE, v, n, d&gt;, m&gt;消息给其他副本节点。v：视图编号，d客户端消息摘要，m消息内容。&lt;PRE-PREPARE, v, n, d&gt;进行主节点签名。n是要在某一个范围区间内的[h, H]，具体原因参见垃圾回收章节。 3. PREPARE：副本节点i收到主节点的PRE-PREPARE消息，需要进行以下交验： a. 主节点PRE-PREPARE消息签名是否正确。 b. 当前副本节点是否已经收到了一条在同一v下并且编号也是n，但是签名不同的PRE-PREPARE信息。 c. d与m的摘要是否一致。 d. n是否在区间[h, H]内。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。正确请求，副本节点i向其他节点包括主节点发送一条&lt;PREPARE, v, n, d, i&gt;消息, v, n, d, m与上述PRE-PREPARE消息内容相同，i是当前副本节点编号。&lt;PREPARE, v, n, d, i&gt;进行副本节点i的签名。记录PRE-PREPARE和PREPARE消息到log中，用于View Change过程中恢复未完成的请求操作。 4. COMMIT：主节点和副本节点收到PREPARE消息，需要进行以下交验： a. 副本节点PREPARE消息签名是否正确。 b. 当前副本节点是否已经收到了同一视图v下的n。 c. n是否在区间[h, H]内。 d. d是否和当前已收到PRE-PPREPARE中的d相同 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。如果副本节点i收到了2f+1个验证通过的PREPARE消息，则向其他节点包括主节点发送一条&lt;COMMIT, v, n, d, i&gt;消息，v, n, d, i与上述PREPARE消息内容相同。&lt;COMMIT, v, n, d, i&gt;进行副本节点i的签名。记录COMMIT消息到日志中，用于View Change过程中恢复未完成的请求操作。记录其他副本节点发送的PREPARE消息到log中。 5. REPLY：主节点和副本节点收到COMMIT消息，需要进行以下交验： a. 副本节点COMMIT消息签名是否正确。 b. 当前副本节点是否已经收到了同一视图v下的n。 c. d与m的摘要是否一致。 d. n是否在区间[h, H]内。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非法请求丢弃。如果副本节点i收到了2f+1个验证通过的COMMIT消息，说明当前网络中的大部分节点已经达成共识，运行客户端的请求操作o，并返回&lt;REPLY, v, t, c, i, r&gt;给客户端，r：是请求操作结果，客户端如果收到f+1个相同的REPLY消息，说明客户端发起的请求已经达成全网共识，否则客户端需要判断是否重新发送请求给主节点。记录其他副本节点发送的COMMIT消息到log中。 总结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT算法由于每个副本节点都需要和其他节点进行P2P的共识同步，因此随着节点的增多，性能会下降的很快，但是在较少节点的情况下可以有不错的性能，并且分叉的几率很低。PBFT主要用于联盟链，但是如果能够结合类似DPOS这样的节点代表选举规则的话也可以应用于公链，并且可以在一个不可信的网络里解决拜占庭容错问题，TPS应该是远大于POW的。 参考拜占庭容错(Byzantine Fault Tolerance) WIKI: BFT-Wikipedia PBFT论文地址：PBFT论文 The shortest answer is doing.]]></content>
       <categories>
         <category>共识算法</category>
-        <category>区块链</category>
+        <category>分布式</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>PBFT</tag>
+        <tag>共识算法</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[国庆假期回家之旅]]></title>
-    <url>%2F2019%2F10%2F07%2F%E5%9B%BD%E5%BA%86%E5%81%87%E6%9C%9F%E5%9B%9E%E5%AE%B6%E4%B9%8B%E6%97%85%2F</url>
-    <content type="text"><![CDATA[今年国庆回家了，以往都是出去浪了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;去年带着爸妈弟弟去重庆了，享受了一家人的旅行时光，很不错，今年他们不去，也恰好我被辞了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带着一个电脑，一本技术类的书籍，一点都没碰。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一天回家，跟堂哥堂姐表弟一起玩去了，中午表弟家团聚吃饭，晚饭我家一起吃饭，第二天中午堂哥家吃饭，时间过得很快，他们下午就回武汉了，为了赚钱。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三天又去另一个表哥家过客了，喜得千金，很多人，很热闹，欢乐过后就在他家睡觉了，等待第二天的朋友相聚。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四天，顺利与朋友寒暄，畅聊了3个小时，他妈弄了一大盘饺子吃，自己家手包的饺子就是非常地美味，so decilious. 但是天一直下雨☔️，变得很冷，无法回我老家，无法去我姥姥家，人算不如天算，计划被打乱，于是又回到表哥家过了一夜，期待明天天晴。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第五天果然天晴，一大早吃完早餐，与舅舅舅妈告别，急急忙忙骑着摩托车回家，天太冷，受罪了，冻得哆嗦。路上带着妈去姥姥家，天下着小雨，雾很大，幸亏有妈的指引，不然会迷路。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姥姥85岁，身体好了点，比去年强多了，Thank God，愿亲人身体健康。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;急急忙忙吃完午饭，就赶忙与姥姥姥爷告别要赶高铁了，一路小雨微风，我上车了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回家的这几天，表哥喜得千金，过得很幸福；堂哥开车回家；堂姐带了男朋友回家；表弟辞职了，准备区深圳闯一闯；我呢还是他们以为的那个样子，很不错。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是也看到了亲人背后的无奈与压力，堂哥公司垮掉了，被迫要学习一些新的技能赚钱了。堂姐离婚后，为了赚钱，与她儿子分开，离开时候的不舍，估计只有她最懂。表弟的工作不赚钱，辞职了，为了能够与女朋友结婚，决定去深圳看看机会。表哥喜得千金，过客后又去工地跟着舅舅赚钱去了，工地很是辛苦，他们最懂。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我好像也好不到哪儿去，过完假要去找工作了。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10月7日早上到达北京，开始学习了。 All I know is that I should do my all effort to make my and my family’s life best.]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>工作</tag>
       </tags>
   </entry>
   <entry>
@@ -32,7 +20,7 @@
     <url>%2F2019%2F10%2F01%2F%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95Paxos%E3%80%81Raft%E3%80%81ZAB%E3%80%81ETCD%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分布式系统中，多个节点之间达成共识成为最重要的组成部分，在发展过程中，出现许多类型的算法，他们从最基本的达成共识，到易于理解，更接近于实践应用等等方面，做到了极致，下面来看看Paxos、Raft、ZAB、Etcd之间的不同。 为了解决分布式系统中的一致性问题，科学家们首先提出了Paxos算法，但是Paxos流程太过繁杂，不易于理解，应用主要有Chubby、libpaxos； 斯坦福大学的2个人以易于理解为目标，又能实现Paxos所解决的问题，于是实现了Raft算法，到现在已经有了十多种语言的Raft算法实现框架，较为出名的有etcd，Google的Kubernetes也是用了etcd作为他的服务发现框架； Zab与Paxos不同，但是有些地方是从Paxos那里学习过来的，比如Leader发送心跳、议案、决定等给Follower；Leader在提交（commit）议案之前需要经过一定量的Follower的确认；算法实现最经典的应用为zookeeper； 但Etcd和Zab不适合分布式大数据存储，主要做分布式元数据的存储； when your ability don’t support your ambition, then you should learn down-to-earth.]]></content>
       <categories>
-        <category>区块链</category>
+        <category>分布式</category>
         <category>共识算法</category>
       </categories>
       <tags>
@@ -93,13 +81,13 @@
     <url>%2F2019%2F09%2F29%2F%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95Raft%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熟悉或了解分布式系统的开发者都知道一致性算法的重要性，Paxos一致性算法提出至今已经有二十几年了，而Paxos流程太过于繁杂，实现起来比较复杂，因此Raft应运而生，它是比Paxos更简单而又能实现Paxos所解决的问题的一致性算法。 Raft动图展示详解 Death is like the wind, always by my side.]]></content>
       <categories>
-        <category>区块链</category>
+        <category>分布式</category>
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -121,13 +109,13 @@
     <url>%2F2019%2F09%2F28%2F%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95Raft%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熟悉或了解分布式系统的开发者都知道一致性算法的重要性，Paxos一致性算法提出至今已经有二十几年了，而Paxos流程太过于繁杂，实现起来比较复杂，因此Raft应运而生，它是比Paxos更简单而又能实现Paxos所解决的问题的一致性算法。 Raft动图展示详解 一、背景&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熟悉或了解分布性系统的开发者都字段一致性算法的重要性，Paxos一致性算法从90年提出到现在已经有二十几年了，而Paxos流程太过于繁杂实现起来也比较复杂，可能也是以为过于复杂 现在我听说过比较出名使用到Paxos的也就只是Chubby、libpaxos，搜了下发现Keyspace、BerkeleyDB数据库中也使用了该算法作为数据的一致性同步，虽然现在很广泛使用的Zookeeper也是基于Paxos算法来实现，但是Zookeeper使用的ZAB（Zookeeper Atomic Broadcast）协议对Paxos进行了很多的改进与优化，算法复杂我想会是制约他发展的一个重要原因；说了这么多只是为了要引出本篇文章的主角Raft一致性算法，没错Raft就是在这个背景下诞生的，文章开头也说到了Paxos最大的问题就是复杂，Raft一致性算法就是比Paxos简单又能实现Paxos所解决的问题的一致性算法。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raft是斯坦福的Diego Ongaro、John Ousterhout两个人以易懂（Understandability）为目标设计的一致性算法，在2013年发布了论文：《In Search of an Understandable Consensus Algorithm》从2013年发布到现在不过只有两年，到现在已经有了十多种语言的Raft算法实现框架，较为出名的有etcd，Google的Kubernetes也是用了etcd作为他的服务发现框架；由此可见易懂性是多么的重要。 二、Raft概述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与Paxos不同Raft强调的是易懂（Understandability），Raft和Paxos一样只要保证n/2+1节点正常就能够提供服务；众所周知但问题较为复杂时可以把问题分解为几个小问题来处理，Raft也使用了分而治之的思想把算法流程分为三个子问题：选举（Leader election）、日志复制（Log replication）、安全性（Safety）三个子问题；这里先简单介绍下Raft的流程;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raft开始时在集群中选举出Leader负责日志复制的管理，Leader接受来自客户端的事务请求（日志），并将它们复制给集群的其他节点，然后负责通知集群中其他节点提交日志，Leader负责保证其他节点与他的日志同步，当Leader宕掉后集群其他节点会发起选举选出新的Leader； 三、Raft详解1、角色&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raft把集群中的节点分为三种状态：Leader、 Follower 、Candidate，理所当然每种状态负责的任务也是不一样的，Raft运行时提供服务的时候只存在Leader与Follower两种状态； Leader（领导者）：负责日志的同步管理，处理来自客户端的请求，与Follower保持这heartBeat的联系；Follower（追随者）：刚启动时所有节点为Follower状态，响应Leader的日志同步请求，响应Candidate的请求，把请求到Follower的事务转发给Leader；Candidate（候选者）：负责选举投票，Raft刚启动时由一个节点从Follower转为Candidate发起选举，选举出Leader后从Candidate转为Leader状态； 2、Term&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Raft中使用了一个可以理解为周期（第几届、任期）的概念，用Term作为一个周期，每个Term都是一个连续递增的编号，每一轮选举都是一个Term周期，在一个Term中只能产生一个Leader；先简单描述下Term的变化流程： Raft开始时所有Follower的Term为1，其中一个Follower逻辑时钟到期后转换为Candidate，Term加1这是Term为2（任期），然后开始选举，这时候有几种情况会使Term发生改变： 如果当前Term为2的任期内没有选举出Leader或出现异常，则Term递增，开始新一任期选举 当这轮Term为2的周期选举出Leader后，过后Leader宕掉了，然后其他Follower转为Candidate，Term递增，开始新一任期选举 当Leader或Candidate发现自己的Term比别的Follower小时Leader或Candidate将转为Follower，Term递增 当Follower的Term比别的Term小时Follower也将更新Term保持与其他Follower一致； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以说每次Term的递增都将发生新一轮的选举，Raft保证一个Term只有一个Leader，在Raft正常运转中所有的节点的Term都是一致的，如果节点不发生故障一个Term（任期）会一直保持下去，当某节点收到的请求中Term比当前Term小时则拒绝该请求； 3、选举（Election）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raft的选举由定时器来触发，每个节点的选举定时器时间都是不一样的，开始时状态都为Follower某个节点定时器触发选举后Term递增，状态由Follower转为Candidate，向其他节点发起RequestVote RPC请求，这时候有三种可能的情况发生： 该RequestVote请求接收到n/2+1（过半数）个节点的投票，从Candidate转为Leader，向其他节点发送heartBeat以保持Leader的正常运转 在此期间如果收到其他节点发送过来的AppendEntries RPC请求，如该节点的Term大则当前节点转为Follower，否则保持Candidate拒绝该请求 Election timeout发生则Term递增，重新发起选举 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一个Term期间每个节点只能投票一次，所以当有多个Candidate存在时就会出现每个Candidate发起的选举都存在接收到的投票数都不过半的问题，这时每个Candidate都将Term递增、重启定时器并重新发起选举，由于每个节点中定时器的时间都是随机的，所以就不会多次存在有多个Candidate同时发起投票的问题。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有这么几种情况会发起选举，1：Raft初次启动，不存在Leader，发起选举；2：Leader宕机或Follower没有接收到Leader的heartBeat，发生election timeout从而发起选举; 4、日志复制（Log Replication）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日志复制（Log Replication）主要作用是用于保证节点的一致性，这阶段所做的操作也是为了保证一致性与高可用性；当Leader选举出来后便开始负责客户端的请求，所有事务（更新操作）请求都必须先经过Leader处理，这些事务请求或说成命令也就是这里说的日志，我们都知道要保证节点的一致性就要保证每个节点都按顺序执行相同的操作序列，日志复制（Log Replication）就是为了保证执行相同的操作序列所做的工作；在Raft中当接收到客户端的日志（事务请求）后先把该日志追加到本地的Log中，然后通过heartbeat把该Entry同步给其他Follower，Follower接收到日志后记录日志然后向Leader发送ACK，当Leader收到大多数（n/2+1）Follower的ACK信息后将该日志设置为已提交并追加到本地磁盘中，通知客户端并在下个heartbeat中Leader将通知所有的Follower将该日志存储在自己的本地磁盘中。 5、安全性（Safety）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全性是用于保证每个节点都执行相同序列的安全机制，如当某个Follower在当前Leader commit Log时变得不可用了，稍后可能该Follower又会倍选举为Leader，这时新Leader可能会用新的Log覆盖先前已committed的Log，这就是导致节点执行不同序列；Safety就是用于保证选举出来的Leader一定包含先前 commited Log的机制： 选举安全性（Election Safety） 每个Term只能选举出一个Leader Leader完整性（Leader Completeness） &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里所说的完整性是指Leader日志的完整性，当Log在Term1被Commit后，那么以后Term2、Term3…等的Leader必须包含该Log；Raft在选举阶段就使用Term的判断用于保证完整性：当请求投票的该Candidate的Term较大或Term相同Index更大则投票，否则拒绝该请求。 keep exercising, keep learning english, keep learning blockchain.]]></content>
       <categories>
-        <category>区块链</category>
+        <category>分布式</category>
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -135,12 +123,12 @@
     <url>%2F2019%2F09%2F27%2F%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AEPaxos%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic-Paxos算法(可以先看后面的实际例子再看前面的具体介绍部分）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多个节点并发操纵数据，如何保证在读写过程中数据的一致性，并且解决方案要能适应分布式环境下的不可靠性，由此，Paxos共识算法应运而生。 一、Paxos算法的目的&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paxos算法的目的是为了解决分布式环境下一致性的问题。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多个节点并发操纵数据，如何保证在读写过程中数据的一致性，并且解决方案要能适应分布式环境下的不可靠性（系统如何就一个值达到统一） 二、Paxos的两个组件1.Proposer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提议发起者，处理客户端请求，将客户端的请求发送到集群中，以便决定这个值是否可以被批准。 2.Acceptor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提议批准者，负责处理接收到的提议，他们的回复就是一次投票。会存储一些状态来决定是否接收一个值 三、Paxos有两个原则1).安全原则—保证不能做错的事 a） 针对某个实例的表决只能有一个值被批准，不能出现一个被批准的值被另一个值覆盖的情况；(假设有一个值被多数Acceptor批准了，那么这个值就只能被学习)b） 每个节点只能学习到已经被批准的值，不能学习没有被批准的值。 2).存活原则—只要有多数服务器存活并且彼此间可以通信，最终都要做到的下列事情： a）最终会批准某个被提议的值；b）一个值被批准了，其他服务器最终会学习到这个值。 四、Paxos具体流程图 1.第一阶段（prepare）1).获取一个proposal number, n； 2).提议者向所有节点广播prepare(n)请求； 3).接收者（Acceptors比较善变，如果还没最终认可一个值，它就会不断认同提案号最大的那个方案）比较n和minProposal，如果n&gt;minProposal,表示有更新的提议minProposal=n；如果此时该接受者并没有认可一个最终值，那么认可这个提案，返回OK。如果此时已经有一个accptedValue, 将返回(acceptedProposal,acceptedValue)； 4).提议者接收到过半数请求后，如果发现有acceptedValue返回，表示有认可的提议，保存最高acceptedProposal编号的acceptedValue到本地 2.第二阶段(Accept)5）广播accept(n,value)到所有节点； 6).接收者比较n和minProposal，如果n&gt;=minProposal,则acceptedProposal=minProposal=n，acceptedValue=value，本地持久化后，返回；否则，拒绝并且返回minProposal 7).提议者接收到过半数请求后，如果发现有返回值&gt;n，表示有更新的提议，跳转1（重新发起提议）；否则value达成一致。 三、Paxos议案ID生成算法&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Google的Chubby论文中给出了这样一种方法：假设有n个proposer，每个编号为ir(0&lt;=ir&lt;n)，proposal编号的任何值s都应该大于它已知的最大值，并且满足： 1s %n = ir =&gt; s = m*n + ir &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proposer已知的最大值来自两部分：proposer自己对编号自增后的值和接收到acceptor的拒绝后所得到的值。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例：以3个proposer P1、P2、P3为例，开始m=0,编号分别为0，1，2。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1） P1提交的时候发现了P2已经提交，P2编号为1 &gt;P1的0，因此P1重新计算编号：new P1 = 1*3+1 = 4； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2） P3以编号2提交，发现小于P1的4，因此P3重新编号：new P3 = 1*3+2 = 5。 四、Paxos原理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任意两个法定集合，必定存在一个公共的成员。该性质是Paxos有效的基本保障 五、活锁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当某一proposer提交的proposal被拒绝时，可能是因为acceptor 承诺返回了更大编号的proposal，因此proposer提高编号继续提交。 如果2个proposer都发现自己的编号过低转而提出更高编号的proposal，会导致死循环，这种情况也称为活锁。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如说当此时的 proposer1提案是3, proposer2提案是4, 但acceptor承诺的编号是5，那么此时proposer1,proposer2 都将提高编号假设分别为6,7，并试图与accceptor连接，假设7被接受了，那么提案5和提案6就要重新编号提交，从而不断死循环。 六、异常情况——持久存储&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在算法执行的过程中会产生很多的异常情况：proposer宕机，acceptor在接收proposal后宕机，proposer接收消息后宕机，acceptor在accept后宕机，learn宕机，存储失败，等等。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为保证paxos算法的正确性，proposer、aceptor、learn都实现持久存储，以做到server恢复后仍能正确参与paxos处理。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;propose存储已提交的最大proposal编号、决议编号（instance id）。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acceptor存储已承诺（promise）的最大编号、已接受（accept）的最大编号和value、决议编号。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;learn存储已学习过的决议和编号。 七、具体实例：1.假设的3军问题1） 1支红军在山谷里扎营，在周围的山坡上驻扎着3支蓝军； 2） 红军比任意1支蓝军都要强大；如果1支蓝军单独作战，红军胜；如果2支或以上蓝军同时进攻，蓝军胜； 3） 三支蓝军需要同步他们的进攻时间；但他们惟一的通信媒介是派通信兵步行进入山谷，在那里他们可能被俘虏，从而将信息丢失；或者为了避免被俘虏，可能在山谷停留很长时间； 4） 每支军队有1个参谋负责提议进攻时间；每支军队也有1个将军批准参谋提出的进攻时间；很明显，1个参谋提出的进攻时间需要获得至少2个将军的批准才有意义； 5） 问题：是否存在一个协议，能够使得蓝军同步他们的进攻时间？ 2.接下来以两个假设的场景来演绎BasicPaxos；参谋和将军需要遵循一些基本的规则1） 参谋以两阶段提交（prepare/commit）的方式来发起提议，在prepare阶段需要给出一个编号； 2） 在prepare阶段产生冲突，将军以编号大小来裁决，编号大的参谋胜出； 3） 参谋在prepare阶段如果收到了将军返回的已接受进攻时间，在commit阶段必须使用这个返回的进攻时间； 2.1 两个参谋先后提议的场景 1） 参谋1发起提议，派通信兵带信给3个将军，内容为（编号1）； 2） 3个将军收到参谋1的提议，由于之前还没有保存任何编号，因此把（编号1）保存下来，避免遗忘；同时让通信兵带信回去，内容为（ok）； 3） 参谋1收到至少2个将军的回复，再次派通信兵带信给3个将军，内容为（编号1，进攻时间1）； 4） 3个将军收到参谋1的时间，把（编号1，进攻时间1）保存下来，避免遗忘；同时让通信兵带信回去，内容为（Accepted）； 5） 参谋1收到至少2个将军的（Accepted）内容，确认进攻时间已经被大家接收； 6） 参谋2发起提议，派通信兵带信给3个将军，内容为（编号2）； 7） 3个将军收到参谋2的提议，由于（编号2）比（编号1）大，因此把（编号2）保存下来，避免遗忘；又由于之前已经接受参谋1的提议，因此让通信兵带信回去，内容为（编号1，进攻时间1）； 8） 参谋2收到至少2个将军的回复，由于回复中带来了已接受的参谋1的提议内容，参谋2因此不再提出新的进攻时间，接受参谋1提出的时间； 2.2 两个参谋交叉提议的场景 1） 参谋1发起提议，派通信兵带信给3个将军，内容为（编号1）； 2） 3个将军的情况如下 a) 将军1和将军2收到参谋1的提议，将军1和将军2把（编号1）记录下来，如果有其他参谋提出更小的编号，将被拒绝；同时让通信兵带信回去，内容为（ok）；b) 负责通知将军3的通信兵被抓，因此将军3没收到参谋1的提议； 3） 参谋2在同一时间也发起了提议，派通信兵带信给3个将军，内容为（编号2）； 4） 3个将军的情况如下 a) 将军2和将军3收到参谋2的提议，将军2和将军3把（编号2）记录下来，如果有其他参谋提出更小的编号，将被拒绝；同时让通信兵带信回去，内容为（ok）；b) 负责通知将军1的通信兵被抓，因此将军1没收到参谋2的提议； 5） 参谋1收到至少2个将军的回复，再次派通信兵带信给有答复的2个将军，内容为（编号1，进攻时间1）； 6） 2个将军的情况如下 a) 将军1收到了（编号1，进攻时间1），和自己保存的编号相同，因此把（编号1，进攻时间1）保存下来；同时让通信兵带信回去，内容为（Accepted）；b) 将军2收到了（编号1，进攻时间1），由于（编号1）小于已经保存的（编号2），因此让通信兵带信回去，内容为（Rejected，编号2）； 7） 参谋2收到至少2个将军的回复，再次派通信兵带信给有答复的2个将军，内容为（编号2，进攻时间2）； 8） 将军2和将军3收到了（编号2，进攻时间2），和自己保存的编号相同，因此把（编号2，进攻时间2）保存下来，同时让通信兵带信回去，内容为（Accepted）； 9） 参谋2收到至少2个将军的（Accepted）内容，确认进攻时间已经被多数派接受； 10） 参谋1只收到了1个将军的（Accepted）内容，同时收到一个（Rejected，编号2）；参谋1重新发起提议，派通信兵带信给3个将军，内容为（编号3）； 11） 3个将军的情况如下 a) 将军1收到参谋1的提议，由于（编号3）大于之前保存的（编号1），因此把（编号3）保存下来；由于将军1已经接受参谋1前一次的提议，因此让通信兵带信回去，内容为（编号1，进攻时间1）；b) 将军2收到参谋1的提议，由于（编号3）大于之前保存的（编号2），因此把（编号3）保存下来；由于将军2已经接受参谋2的提议，因此让通信兵带信回去，内容为（编号2，进攻时间2）；c) 负责通知将军3的通信兵被抓，因此将军3没收到参谋1的提议； 12） 参谋1收到了至少2个将军的回复，比较两个回复的编号大小，选择大编号对应的进攻时间作为最新的提议；参谋1再次派通信兵带信给有答复的2个将军，内容为（编号3，进攻时间2）； 13） 将军1和将军2收到了（编号3，进攻时间2），和自己保存的编号相同，因此保存（编号3，进攻时间2），同时让通信兵带信回去，内容为（Accepted）； 14） 参谋1收到了至少2个将军的（accepted）内容，确认进攻时间已经被多数派接受； Interest is the best guider.]]></content>
       <categories>
-        <category>区块链</category>
+        <category>分布式</category>
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>一致性协议</tag>
         <tag>共识算法</tag>
+        <tag>一致性协议</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -788,6 +776,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -797,17 +796,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -822,17 +810,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -841,6 +818,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>

@@ -3,7 +3,7 @@ title: go语言学习
 date: 2019-08-10 09:06:33
 tags: go
 categories: 计算机语言
-notebook: Dapp&Smart Contract Develop
+notebook: 区块链
 ---
 
 go语言: 面向对象、强类型、类似c的语言。

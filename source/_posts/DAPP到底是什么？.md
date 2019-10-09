@@ -3,7 +3,7 @@ title: DAPP到底是什么？
 date: 2019-08-14 23:41:24
 tags: Dapp
 categories: [区块链,Dapp]
-notebook: Dapp&Smart Contract Develop
+notebook: 区块链
 ---
 
 什么是Dapp，相比较于app，有什么不同？

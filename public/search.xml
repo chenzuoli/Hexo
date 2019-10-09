@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[开源OLAP系统对比]]></title>
+    <url>%2F2019%2F10%2F09%2F%E5%BC%80%E6%BA%90OLAP%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OLAP系统，基于数据仓库，为数据价值而生，提供复杂的数据分析操作，及直观易懂的查询结果，目前市场上有许多开源的OLAP框架，如Impala、Presto、Druid、Kylin、Spark SQL等，他们的关系又是怎样的呢，我们应该怎样选择框架？ 1.Presto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;facebook开源的一个java写的分布式数据查询框架，原生集成了hive、hbase和关系型数据库，Presto背后所使用的执行模式与hive有本质的不同，它没有使用MapReduce，比hive快一个数据量级，其中的关键是所有的计算都在内存中完成。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是容易造成oom。 2.Druid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Druid是一个实时处理时序数据的OLAP系统，采用预计算的方式，因为它的索引首先是按照时间的方式分片，查询的时候也是按照时间片去路由索引的。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是sql支持不太好，需要使用它自己的方言来实现。 3.Spark SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于spark平台的一个OLAP框架，本质上也是基于DAG的MPP方案，基本思路是增加机器来提高并行计算能力，从而提高查询响应速度。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是只能使用sql去即时查询，一次查询结果不能复用。 4.Kylin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ebay开源框架，支持大数据生态圈的数据分析业务，核心是Cube，cube是一种预计算技术，主要是通过预计算的方式将用户预定义的多维立方体cube缓存起来，达到提高查询速度的目的，应用场景是针对复杂的sql join操作情况。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用空间来换时间，存储空间一般是数据仓库的10倍+。 5.Impala&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cloudera公司开源，能查询HDFS和Hbase中的数据，同Hive一样，也是一种SQL on Hadoop解决方案，它抛弃了MapReduce，而是使用传统的MPP数据库方式来提高查询速度。 You never know what’s coming for you, so do it and don’t care about the result.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>OLAP</tag>
+        <tag>数据仓库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据仓库设计]]></title>
     <url>%2F2019%2F10%2F09%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E8%AE%BE%E8%AE%A1%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据仓库是一个面向主题的、集成的、稳定的、反映历史变化的数据集合，这篇文章讨论数据仓库设计的一个思路，不谈设计模式、分层设计思想等。 创新性的技术：建立所谓的创新性索引或创造性概要文件如下图：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创造性索引是当数据由操作型环境转移到数据仓库环境时建立起来的。由于在任何情况下都要对每个数据单元进行处理，所以就这一点来说，计算或建立索引只需要很少的开销。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创造性索引为最终用户感兴趣的项目建立一个概要文件描述，比如最大的购买额，最不活跃的账户，最近发出的货物，等等。如果在将数据传到数据仓库的时候，对于管理活动有价值的需求能够预见得到（不得不承认，这在很多情况下是不能的），那么建造创造性索引就很有意义了。 要明确的设计技术：参照完整性的管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在数据仓库环境中，参照完整性以“人工关系”的方式出现。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在操作型环境中，参照完整性表现为数据表之间的动态连接。由于在数据仓库环境中的数据量很大、数据仓库是不更新的、仓库按照时间描述数据、关系不是静态的，因此，应采取不同的方式表示参照完整性。换句话说，数据的关系在数据仓库环境中采用人工关系表示。这意味着有些数据要复制，有些数据要删除，而其他数据要仍然保留在数据仓库中。总之，试图在数据仓库环境中复制参照完整性显然是一种不正确的做法。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看下图： We’re meant to lose the people we love, how else would we know how important they are to us?]]></content>
@@ -21,8 +33,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -81,8 +93,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>数据仓库</tag>
         <tag>OLAP</tag>
+        <tag>数据仓库</tag>
         <tag>ODS</tag>
         <tag>Data Market</tag>
         <tag>Data Source</tag>
@@ -97,9 +109,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -125,9 +137,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -139,8 +151,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -822,17 +834,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -841,6 +842,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>
@@ -879,17 +891,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2018世界医药顶尖大学]]></title>
-    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
-    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>医药大学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2019世界上城市生活成本排行]]></title>
     <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
     <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
@@ -898,6 +899,17 @@
       </categories>
       <tags>
         <tag>城市生活成本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018世界医药顶尖大学]]></title>
+    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
+    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>医药大学</tag>
       </tags>
   </entry>
   <entry>
@@ -923,17 +935,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -942,6 +943,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

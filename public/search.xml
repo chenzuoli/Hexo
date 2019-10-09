@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据仓库的现状及优化改进意见]]></title>
+    <url>%2F2019%2F10%2F09%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%9A%84%E7%8E%B0%E7%8A%B6%E5%8F%8A%E4%BC%98%E5%8C%96%E6%94%B9%E8%BF%9B%E6%84%8F%E8%A7%81%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刚离职的这家公司，数据仓库可以提供基本的功能：基于时间的历史数据查询，多维展示报表，决策支持、数据质量监控等，但是也有许多问题，下面来看看这些问题及解决方案，不知道同行们有没有遇到过。 介绍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先介绍下具体业务场景，产品是金融类app，有贷款、理财2条业务线，有贷款、理财后台、前端、风控等主体业务，数据仓库进行了分层设计：db、ods、dwd、dws、report、es，其中： db、ods主要作为数据仓库详细数据层次，主要是一些ETL的工作，用sqoop增量拉取数据后做一些加解密、字段转换、度量单位转换等清洗工作； dwd是数据中间层，有一些数据大宽表在这个层次； dws和report作为数据集市层，对外提供数据结果； es对等report，直接将hive的数据导入到es的，没有做任何操作，主要是es查询快，提供给可视化工具和API使用； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有OLAP系统，因为数据量没达到量级，跟企业级的数据仓库还是有一些差距的。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airflow作为调度系统，目前没什么大问题，遇到一个实际使用slot数超过pool设置的size限制bug，临时clear掉是可以解决问题的，但不知道怎么彻底解决。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;报表工具使用开源的cboard，当数据量级上到10万，查询es就有些慢了，大家有什么好的工具推荐吗？ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是目前的数据仓库结构及运行模式，下面来看下一些问题及解决方案。 问题及解决方案1.拉链表运行缓慢问题：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果对该仓库结构不清楚的人，真没法下手维护。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于业务的原因，有些业务表有更新操作，于是我们仓库选择拉链表来对付更新表。拉链表的逻辑就是使用生效日期作为hive表的分区字段，然后每次更新数据的时候，与新增数据进行join，得到最新的数据，然后使用动态分区方式insert overwrite到目标拉链表中。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始设计的时候，所有表（有更新的和无更新的）都做拉链表，没有想到，数据量达到千万级后，做拉链表非常地慢，千万级的表做完拉链表需要3小时，严重影响后面维度表、报表的运行。 解决方案：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.对业务表进行分组，有更新的表才做拉链表，无更新的表做完清洗工作即放入目标表即可;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.使用失效日期作为拉链表分区字段，那么就不需要每次操作所有的分区，而只是操作最后一个分区和当天分区就可以了，速度可以提高十几倍。 2.数据结构混乱问题：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;做拉链表需要用到2个中间表tmp1、tmp2，目前跟目标拉链表在同一个库下，导致有三分之二的表是中间临时表，而业务人员去使用的时候，就会问我应该使用那张表的问题。 解决方案：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将中间临时表放入另外一个库下，不对外开放权限。 3.数据查找混乱问题：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无元数据管理，当需要用到某部分结果数据时，它对应哪个库哪个表，表字段属性注释等等信息，当数据表非常多时，单凭记忆是无法满足条件的，这个时候元数据的管理就至关重要了。 解决方案：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建立元数据管理系统，目前使用的较多的开源框架为grafana，集元数据管理、血缘关系、数据质量监控于一体，开源解决这个问题。 4.调度系统卡住问题：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们使用airflow的pool功能进行把控任务的调度，实现数据仓库层次的建设工作，每天按时跑。但是pool大小是有限制的，系统总的资源也是有限的（相信大部分公司资源都不是很足），分层设计之后，每层的任务会依赖上一层次的任务，上层任务运行成功后才会运行下层任务，在上层任务未运行或者运行失败的情况下，下层任务一直处于wait for状态，这些wait for任务都占用着资源，会导致那些上层任务运行成功的下层任务因为没有系统资源而无法运行。 解决方案：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以重组airflow dags，合并仓库层次airflow dag脚本，保持仓库层次依然清晰，减少wait for任务的数量。 优化1.增加元数据管理功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开源的工具可以选择Grafana，另外Kettle还具有ETL的功能，商业软件可以IBM的Datastage，另一个就是Informatica，具体如下： 2.增加OLAP分析系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如何选择OLAP工具，可以参考这篇文章：开源OLAP系统对比 3.仓库层次结构分组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表、中间表、db、ods、dwd、dws、report、es应层次分明，在不同的库存储。]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>OLAP</tag>
+        <tag>数据仓库</tag>
+        <tag>数据质量</tag>
+        <tag>元数据管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[开源OLAP系统对比]]></title>
     <url>%2F2019%2F10%2F09%2F%E5%BC%80%E6%BA%90OLAP%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OLAP系统，基于数据仓库，为数据价值而生，提供复杂的数据分析操作，及直观易懂的查询结果，目前市场上有许多开源的OLAP框架，如Impala、Presto、Druid、Kylin、Spark SQL等，他们的关系又是怎样的呢，我们应该怎样选择框架？ 1.Presto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;facebook开源的一个java写的分布式数据查询框架，原生集成了hive、hbase和关系型数据库，Presto背后所使用的执行模式与hive有本质的不同，它没有使用MapReduce，比hive快一个数据量级，其中的关键是所有的计算都在内存中完成。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是容易造成oom。 2.Druid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Druid是一个实时处理时序数据的OLAP系统，采用预计算的方式，因为它的索引首先是按照时间的方式分片，查询的时候也是按照时间片去路由索引的。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是sql支持不太好，需要使用它自己的方言来实现。 3.Spark SQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于spark平台的一个OLAP框架，本质上也是基于DAG的MPP方案，基本思路是增加机器来提高并行计算能力，从而提高查询响应速度。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是只能使用sql去即时查询，一次查询结果不能复用。 4.Kylin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ebay开源框架，支持大数据生态圈的数据分析业务，核心是Cube，cube是一种预计算技术，主要是通过预计算的方式将用户预定义的多维立方体cube缓存起来，达到提高查询速度的目的，应用场景是针对复杂的sql join操作情况。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用空间来换时间，存储空间一般是数据仓库的10倍+。 5.Impala&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cloudera公司开源，能查询HDFS和Hbase中的数据，同Hive一样，也是一种SQL on Hadoop解决方案，它抛弃了MapReduce，而是使用传统的MPP数据库方式来提高查询速度。 You never know what’s coming for you, so do it and don’t care about the result.]]></content>
@@ -33,8 +47,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>PBFT</tag>
+        <tag>共识算法</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -109,9 +123,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -137,9 +151,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -151,8 +165,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>一致性协议</tag>
         <tag>共识算法</tag>
+        <tag>一致性协议</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -834,17 +848,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -853,6 +856,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -891,17 +905,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -910,6 +913,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>

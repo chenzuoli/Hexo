@@ -2,7 +2,7 @@
 title: hive相关
 date: 2019-07-21 23:01:10
 tags: hive
-categories: [IT,hive]
+categories: Hive
 ---
 
 下面的内容包含hive的简单操作，增删改查，权限，一些异常的解决方案。

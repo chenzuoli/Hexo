@@ -2,7 +2,7 @@
 title: DAPP到底是什么？
 date: 2019-08-14 23:41:24
 tags: Dapp
-categories: [区块链,Dapp]
+categories: 区块链
 notebook: 区块链
 ---
 

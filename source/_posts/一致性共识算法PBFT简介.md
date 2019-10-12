@@ -2,7 +2,7 @@
 title: 一致性共识算法PBFT简介
 date: 2019-10-07 16:43:13
 tags: [PBFT,共识算法,区块链,联盟链]
-categories: [共识算法,分布式,区块链]
+categories: 共识算法
 notebook: 区块链
 ---
 

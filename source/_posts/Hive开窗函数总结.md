@@ -2,7 +2,7 @@
 title: Hive开窗函数总结
 date: 2019-10-12 10:00:11
 tags: [Hive,开窗函数]
-categories: [Hive,数据仓库]
+categories: Hive
 notebook: 数据仓库
 ---
 

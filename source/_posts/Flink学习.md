@@ -2,7 +2,7 @@
 title: Flink学习
 date: 2019-08-26 23:27:52
 tags: flink
-categories: [大数据,实时计算]
+categories: 大数据
 notebook: 笔记
 ---
 

@@ -2,7 +2,7 @@
 title: Zookeeper一致性共识算法ZAB详解
 date: 2019-10-01 10:28:42
 tags: [zookeeper,共识算法,ZAB,分布式]
-categories: [分布式,共识算法]
+categories: 共识算法
 notebook: 区块链
 ---
 

@@ -2,7 +2,7 @@
 title: 分布式一致性协议Paxos
 date: 2019-09-27 17:43:02
 tags: [一致性协议,paxos,共识算法]
-categories: [分布式,共识算法]
+categories: 共识算法
 notebook: 区块链
 ---
 

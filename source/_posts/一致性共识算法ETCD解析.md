@@ -10,8 +10,6 @@ notebook: 区块链
 
 <img src="一致性共识算法ETCD解析/etcd-logo.jpeg" width="500" height="300"/>
 
-![etcd]()
-
 <!-- more -->
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读对象：分布式系统爱好者，正在或者打算在项目中使用Etcd的开发人员。

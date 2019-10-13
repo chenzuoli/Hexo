@@ -8,7 +8,7 @@ notebook: 数据仓库
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive表数据实际存储在HDFS文件系统中，而不同的文件格式，会有不同的特性，我们在数据仓库建设中，如何根据仓库不同层次特点设计不同的文件格式呢？下面来看下。
 
-![files](Hive中的文件格式对比/files.jpeg)
+<img src="Hive中的文件格式对比/files.jpeg" width="500" height="300"/>
 
 <!-- more -->
 

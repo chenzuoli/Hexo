@@ -8,7 +8,7 @@ notebook: 区块链
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分布式系统中，多个节点之间达成共识成为最重要的组成部分，在发展过程中，出现许多类型的算法，他们从最基本的达成共识，到易于理解，更接近于实践应用等等方面，做到了极致，下面来看看Paxos、Raft、ZAB、Etcd之间的不同。
 
-![consensus_algorithm_difference](分布式一致性共识算法Paxos、Raft、ZAB、ETCD之间的关系/consensus_algorithm_difference.jpeg)
+<img src="分布式一致性共识算法Paxos、Raft、ZAB、ETCD之间的关系/consensus_algorithm_difference.jpeg" width="500" height="300"/>
 
 <!-- more -->
 

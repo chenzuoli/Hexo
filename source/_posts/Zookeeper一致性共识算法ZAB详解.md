@@ -8,7 +8,7 @@ notebook: 区块链
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zookeeper中一致性共识算法ZAB（Zookeeper Atomic Broadcast protocol）改进了Raft算法，提供一致性的元数据存储，多用在分布式系统中共享元数据信息。下面来看看具体细节。
 
-![zookeeper](Zookeeper一致性共识算法ZAB详解/zookeeper.jpeg)
+<img src="Zookeeper一致性共识算法ZAB详解/zookeeper.jpeg" width="500" height="300"/>
 
 <!-- more -->
 

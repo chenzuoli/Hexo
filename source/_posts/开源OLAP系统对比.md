@@ -8,7 +8,7 @@ notebook: 数据仓库
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OLAP系统，基于数据仓库，为数据价值而生，提供复杂的数据分析操作，及直观易懂的查询结果，目前市场上有许多开源的OLAP框架，如Impala、Presto、Druid、Kylin、Spark SQL等，他们的关系又是怎样的呢，我们应该怎样选择框架？
 
-![olap_analysis](开源OLAP系统对比/olap_analysis.jpeg)
+<img src="开源OLAP系统对比/olap_analysis.jpeg" width="500" height="300"/>
 
 <!-- more -->
 

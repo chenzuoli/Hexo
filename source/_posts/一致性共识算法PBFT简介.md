@@ -8,7 +8,7 @@ notebook: 区块链
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBFT是Practical Byzantine Fault Tolerance的缩写，即：实用拜占庭容错算法。主要用于联盟链，下面来看下介绍吧。
 
-![pbft_logo](一致性共识算法PBFT简介/pbft_logo.jpeg)
+<img src="一致性共识算法PBFT简介/pbft_logo.jpeg" width="500" height="300"/>
 
 <!-- more -->
 

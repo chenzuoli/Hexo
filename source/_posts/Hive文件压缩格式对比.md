@@ -8,7 +8,7 @@ notebook: Hive
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive的文件压缩格式应该在不同的应用场景下使用不同的方式，例如cpu资源足够，但是硬盘容量不足时，可以使用bzip2方式。也跟文件格式有关，对列式存储的文件进行压缩，会得到一个可观的压缩比例，我们在上一篇文章中讲解了 <a>[<font color=#0099ff>Hive文件格式的对比</font>](http://wetech.top/2019/10/12/Hive%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%AF%B9%E6%AF%94/)。
 
-![zipper](Hive文件压缩格式对比/zip.jpeg)
+<img src="Hive文件压缩格式对比/zip.jpeg" width="500" height="300"/>
 
 <!-- more -->
 # 一、对比

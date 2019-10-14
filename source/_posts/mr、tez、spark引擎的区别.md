@@ -1,5 +1,5 @@
 ---
-title: mr、tez、spark引擎的区别
+title: Mr、Tez、Spark引擎的区别
 date: 2019-10-14 10:44:26
 tags: [mr,tez,spark,hive]
 categories: Hive
@@ -8,7 +8,7 @@ notebook: 笔记
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spark号称比mr快100倍，tez也号称比mr快100倍，那么他们之间为什么有这么大的差距呢？下面来看看。
 
-<img src="mr、tez、spark引擎的区别/spark.jpeg" width="400" height="150"/>
+<img src="Mr、Tez、Spark引擎的区别/spark.jpeg" width="400" height="150"/>
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ notebook: 笔记
 - tez源于mr，核心思想是将map和reduce两个操作进一步拆分，即map被拆分Input、Processor、Sort、Merge和Output，reduce被拆分为Input、Shuffle、Sort、Merge和Output，这样分解后的元数据操作就可以随意组合，产生新的操作，这些操作经过一些程序组装后，形成一个大的DAG作业，可以将多个map依赖合并为1个，这样只需写一次hdfs；mr的话，有多少个依赖map就有多少个任务；
 - spark直接可以将job输出的中间结果写入内存中；
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mr和tez对比图如下：
-![mr_tez_diff](mr、tez、spark引擎的区别/tez_mr_diff.jpg)
+![mr_tez_diff](Mr、Tez、Spark引擎的区别/tez_mr_diff.jpg)
 
 # 使用场景的区别
 - spark是一个通用计算引擎，提供实时、离线、机器学习等多种计算方式，适合迭代计算；

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据仓库设计终极目标]]></title>
+    <url>%2F2019%2F10%2F14%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E8%AE%BE%E8%AE%A1%E7%BB%88%E6%9E%81%E7%9B%AE%E6%A0%87%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们设计的数据仓库，最基本的功能是服务对象需要什么数据，我们就能很简单地提供什么数据，什么是数据仓库的终极目标呢，即什么样的数据仓库是完美的数据仓库？ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完美的数据仓库：一个企业中的所有业务，根据数据仓库提供的分析模型，我们可以知道产品的好坏、产品的发展情况，根据这些分析的数据，指导管理者做出正确的决策，引导他们做出一个更好的产品。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，我们在设计数据仓库的时候，应该设计出好的模型，从操作型数据库设计开始，应该提供什么样的数据，应该提供什么样的功能，才是我们应该重点着手去做的事情。 Where there’s a will, there’s a way.]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[mr、tez、spark引擎的区别]]></title>
     <url>%2F2019%2F10%2F14%2Fmr%E3%80%81tez%E3%80%81spark%E5%BC%95%E6%93%8E%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spark号称比mr快100倍，tez也号称比mr快100倍，那么他们之间为什么有这么大的差距呢？下面来看看。 为什么性能远超mr？ spark和tez都是基于dag方式处理数据 tez源于mr，核心思想是将map和reduce两个操作进一步拆分，即map被拆分Input、Processor、Sort、Merge和Output，reduce被拆分为Input、Shuffle、Sort、Merge和Output，这样分解后的元数据操作就可以随意组合，产生新的操作，这些操作经过一些程序组装后，形成一个大的DAG作业，可以将多个map依赖合并为1个，这样只需写一次hdfs；mr的话，有多少个依赖map就有多少个任务； spark直接可以将job输出的中间结果写入内存中；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mr和tez对比图如下： 使用场景的区别 spark是一个通用计算引擎，提供实时、离线、机器学习等多种计算方式，适合迭代计算； tez作为一个框架工具，特定为hive和pig提供计算； 优势 spark属于内存计算，map阶段计算结果可以缓存在内存中。支持多种运行模式，可以跑在standalone、yarn、memos等资源调度框架上，而tez只能跑在yarn上； tez能够及时地释放资源，重启container，节省调度时间，对内存的资源要求率不高，资源利用率高，属于细粒度资源调度；而spark如果存在迭代计算时，container会一直占用着资源，资源利用率不高，属于粗粒度资源调度； 总结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tez与spark两者并不矛盾，不存在冲突，在实际生产中，如果数据需要快速处理而且资源充足，则可以选择spark；如果资源是瓶颈，则可以使用tez；可以根据不同场景不同数据层次做出选择；这个总结同样也适合spark与mr的比较； Asking cost nothing.]]></content>
@@ -74,8 +79,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>数据仓库</tag>
         <tag>OLAP</tag>
+        <tag>数据仓库</tag>
         <tag>数据质量</tag>
         <tag>元数据管理</tag>
       </tags>
@@ -88,8 +93,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>数据仓库</tag>
         <tag>OLAP</tag>
+        <tag>数据仓库</tag>
       </tags>
   </entry>
   <entry>
@@ -111,8 +116,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>PBFT</tag>
+        <tag>共识算法</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -168,8 +173,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>数据仓库</tag>
         <tag>OLAP</tag>
+        <tag>数据仓库</tag>
         <tag>ODS</tag>
         <tag>Data Market</tag>
         <tag>Data Source</tag>
@@ -183,9 +188,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -210,9 +215,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -223,8 +228,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>一致性协议</tag>
         <tag>共识算法</tag>
+        <tag>一致性协议</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -960,17 +965,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -979,6 +973,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>
@@ -1004,17 +1009,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -1023,6 +1017,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>

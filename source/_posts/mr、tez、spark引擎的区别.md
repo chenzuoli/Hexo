@@ -8,7 +8,7 @@ notebook: 笔记
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spark号称比mr快100倍，tez也号称比mr快100倍，那么他们之间为什么有这么大的差距呢？下面来看看。
 
-<img src="mr、tez、spark引擎的区别/spark.jpeg" width="400" height="250"/>
+<img src="mr、tez、spark引擎的区别/spark.jpeg" width="400" height="150"/>
 
 <!-- more -->
 

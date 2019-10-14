@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mr、tez、spark引擎的区别]]></title>
+    <url>%2F2019%2F10%2F14%2Fmr%E3%80%81tez%E3%80%81spark%E5%BC%95%E6%93%8E%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spark号称比mr快100倍，tez也号称比mr快100倍，那么他们之间为什么有这么大的差距呢？下面来看看。 为什么性能远超mr？ spark和tez都是基于dag方式处理数据 tez源于mr，核心思想是将map和reduce两个操作进一步拆分，即map被拆分Input、Processor、Sort、Merge和Output，reduce被拆分为Input、Shuffle、Sort、Merge和Output，这样分解后的元数据操作就可以随意组合，产生新的操作，这些操作经过一些程序组装后，形成一个大的DAG作业，可以将多个map依赖合并为1个，这样只需写一次hdfs；mr的话，有多少个依赖map就有多少个任务； spark直接可以将job输出的中间结果写入内存中；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mr和tez对比图如下： 使用场景的区别 spark是一个通用计算引擎，提供实时、离线、机器学习等多种计算方式，适合迭代计算； tez作为一个框架工具，特定为hive和pig提供计算； 优势 spark属于内存计算，map阶段计算结果可以缓存在内存中。支持多种运行模式，可以跑在standalone、yarn、memos等资源调度框架上，而tez只能跑在yarn上； tez能够及时地释放资源，重启container，节省调度时间，对内存的资源要求率不高，资源利用率高，属于细粒度资源调度；而spark如果存在迭代计算时，container会一直占用着资源，资源利用率不高，属于粗粒度资源调度； 总结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tez与spark两者并不矛盾，不存在冲突，在实际生产中，如果数据需要快速处理而且资源充足，则可以选择spark；如果资源是瓶颈，则可以使用tez；可以根据不同场景不同数据层次做出选择；这个总结同样也适合spark与mr的比较； Asking cost nothing.]]></content>
+      <categories>
+        <category>Hive</category>
+      </categories>
+      <tags>
+        <tag>hive</tag>
+        <tag>mr</tag>
+        <tag>tez</tag>
+        <tag>spark</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hive优化之小文件合并]]></title>
     <url>%2F2019%2F10%2F13%2FHive%E4%BC%98%E5%8C%96%E4%B9%8B%E5%B0%8F%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当Hive输入由很多个小文件组成，由于每个小文件都会启动一个map任务，如果文件过小，以至于map任务启动和初始化的时间大于逻辑处理的时间，会造成资源浪费，甚至OOM。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为此，当我们启动一个任务，发现输入数据量小但任务数量多时，需要注意在Map前端进行输入合并。当然，在我们向一个表写数据时，也需要注意输出文件大小。 问题1.通常情况下，作业会通过input的目录产生一个或者多个map任务。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要的决定因素有： input的文件总个数，input的文件大小，集群设置的文件块大小(目前为128M, 可在hive中通过set dfs.block.size;命令查看到，该参数不能自定义修改)； 2.举例：a) 假设input目录下有1个文件a,大小为780M,那么hadoop会将该文件a分隔成7个块（6个128m的块和1个12m的块），从而产生7个map数b) 假设input目录下有3个文件a,b,c,大小分别为10m，20m，130m，那么hadoop会分隔成4个块（10m,20m,128m,2m）,从而产生4个map数,即如果文件大于块大小(128m),那么会拆分，如果小于块大小，则把该文件当成一个块。 3.是不是map数越多越好？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案是否定的。如果一个任务有很多小文件（远远小于块大小128m）,则每个小文件也会被当做一个块，用一个map任务来完成，而一个map任务启动和初始化的时间远远大于逻辑处理的时间，就会造成很大的资源浪费。而且，同时可执行的map数是受限的。 4.是不是保证每个map处理接近128m的文件块，就高枕无忧了？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案也是不一定。比如有一个127m的文件，正常会用一个map去完成，但这个文件只有一个或者两个小字段，却有几千万的记录，如果map处理的逻辑比较复杂，用一个map任务去做，肯定也比较耗时。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;针对上面的问题3和4，我们需要采取两种方式来解决：即减少map数和增加map数； 5.如何合并小文件，减少map数？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设一个SQL任务： 1Select count(1) from popt_tbaccountcopy_mes where pt = ‘2012-07-04’; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该任务的inputdir /group/p_sdo_data/p_sdo_data_etl/pt/popt_tbaccountcopy_mes/pt=2012-07-04 共有194个文件，其中很多是远远小于128m的小文件，总大小9G，正常执行会用194个map任务。Map总共消耗的计算资源： SLOTS_MILLIS_MAPS= 623,020 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我通过以下方法来在map执行前合并小文件，减少map数： 1234set mapred.max.split.size=100000000;set mapred.min.split.size.per.node=100000000;set mapred.min.split.size.per.rack=100000000;set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再执行上面的语句，用了74个map任务，map消耗的计算资源：SLOTS_MILLIS_MAPS= 333,500, 对于这个简单SQL任务，执行时间上可能差不多，但节省了一半的计算资源。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大概解释一下，100000000表示100M, set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;这个参数表示执行前进行小文件合并，前面三个参数确定合并文件块的大小，大于文件块大小128m的，按照128m来分隔，小于128m,大于100m的，按照100m来分隔，把那些小于100m的（包括小文件和分隔大文件剩下的），进行合并,最终生成了74个块。 6.如何适当的增加map数？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当input的文件都很大，任务逻辑复杂，map执行非常慢的时候，可以考虑增加Map数，来使得每个map处理的数据量减少，从而提高任务的执行效率。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有这样一个任务： 12345678Select data_desc, count(1), count(distinct id), sum(case when …), sum(case when ...), sum(…)from a group by data_desc; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果表a只有一个文件，大小为120M，但包含几千万的记录，如果用1个map去完成这个任务，肯定是比较耗时的，这种情况下，我们要考虑将这一个文件合理的拆分成多个，这样就可以用多个map任务去完成: 123456set mapred.reduce.tasks=10;create table a_1 as select * from a distribute by rand(123); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这样会将a表的记录，随机的分散到包含10个文件的a_1表中，再用a_1代替上面sql中的a表，则会用10个map任务去完成。每个map任务处理大于12M（几百万记录）的数据，效率肯定会好很多。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看上去，貌似这两种有些矛盾，一个是要合并小文件，一个是要把大文件拆成小文件，这点正是重点需要关注的地方，根据实际情况，控制map数量需要遵循两个原则：使大数据量利用合适的map数；使单个map任务处理合适的数据量； 1. Map输入合并小文件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应参数： 1234set mapred.max.split.size=256000000; #每个Map最大输入大小set mapred.min.split.size.per.node=100000000; #一个节点上split的至少的大小 set mapred.min.split.size.per.rack=100000000; #一个交换机下split的至少的大小set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; #执行Map前进行小文件合并 在开启了org.apache.hadoop.hive.ql.io.CombineHiveInputFormat后，一个data node节点上多个小文件会进行合并，合并文件数由 123mapred.max.split.size #限制的大小决定mapred.min.split.size.per.node #决定了多个data node上的文件是否需要合并~mapred.min.split.size.per.rack #决定了多个交换机上的文件是否需要合并~ 2. 输出合并1234set hive.merge.mapfiles=true; #在Map-only的任务结束时合并小文件set hive.merge.mapredfiles=true; #在Map-Reduce的任务结束时合并小文件set hive.merge.size.per.task=256*1000*1000; #合并文件的大小set hive.merge.smallfiles.avgsize=16000000; #当输出文件的平均大小小于该值时，启动一个独立的map-reduce任务进行文件merge]]></content>
@@ -43,7 +57,7 @@
   <entry>
     <title><![CDATA[Hive开窗函数总结]]></title>
     <url>%2F2019%2F10%2F12%2FHive%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[背景：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平常我们使用 hive 或者 mysql 时，一般聚合函数用的比较多。但对于某些偏分析的需求，group by可能很费力，子查询很多，这个时候就需要使用窗口分析函数了~ 注：hive、oracle提供开窗函数，mysql8之前版本不提供，但Oracle发布的 MySQL 8.0版本支持窗口函数（over）和公用表表达式（with）这两个重要的功能！ 一、介绍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析函数用于计算基于组的某种聚合值，它和聚合函数的不同之处是：对于每个组返回多行，而聚合函数对于每个组只返回一行。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开窗函数指定了分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化！到底什么是数据窗口？后面举例会详细讲到！ 1.基础结构：1分析函数（如:sum(),max(),row_number()...） + 窗口子句（over函数） 2.over函数写法： over (partition by cookieid order by createtime) 先根据cookieid字段分区，相同的cookieid分为一区，每个分区内根据createtime字段排序（默认升序） 注：不加 partition by 的话则把整个数据集当作一个分区，不加 order by 的话会对某些函数统计结果产生影响，如sum() 3.测试数据：测试表test1只有三个字段 cookieid、createtime、pv 4.窗口含义：1234567SELECT cookieid,createtime,pv,SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1 SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv3, --当前行+往前3行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv4, --当前行+往前3行+往后1行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv5 ---当前行+往后所有行 FROM test1; 结果： 1234567891011121314cookieid createtime pv pv1 pv2 pv3 pv4 pv5a 2017-12-01 3 3 3 3 3 3b 2017-12-00 3 3 3 3 3 3cookie1 2017-12-10 1 1 1 1 6 26cookie1 2017-12-11 5 6 6 6 13 25cookie1 2017-12-12 7 13 13 13 16 20cookie1 2017-12-13 3 16 16 16 18 13cookie1 2017-12-14 2 18 18 17 21 10cookie1 2017-12-15 4 22 22 16 20 8cookie1 2017-12-16 4 26 26 13 13 4cookie2 2017-12-12 7 7 7 7 13 14cookie2 2017-12-16 6 13 13 13 14 7cookie2 2017-12-24 1 14 14 14 14 1cookie3 2017-12-22 5 5 5 5 5 5 注：这些窗口的划分都是在分区内部！超过分区大小就无效了 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家看了后就会明白，如果不指定ROWS BETWEEN,默认统计窗口为从起点到当前行;如果不指定ORDER BY，则将分组内所有值累加; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关键是理解 ROWS BETWEEN 含义,也叫做window子句：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRECEDING：往前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOLLOWING：往后&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CURRENT ROW：当前行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNBOUNDED：无边界，UNBOUNDED PRECEDING 表示从最前面的起点开始， UNBOUNDED FOLLOWING：表示到最后面的终点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他AVG，MIN，MAX，和SUM用法一样 二、SUM 函数123select cookieid,createtime,pv,sum(pv) over(PARTITION BY cookieid ORDER BY createtime) as pv1 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先 PARTITION BY cookieid，根据cookieid分区，各分区之间默认根据字典顺序排序，ORDER BY createtime，指定的是分区内部的排序，默认为升序 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以清晰地看到，窗口函数和聚合函数的不同，sum()函数可以根据每一行的窗口返回各自行对应的值，有多少行记录就有多少个sum值，而group by只能计算每一组的sum，每组只有一个值！ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中sum()计算的是分区内排序后一个个叠加的值，和order by有关！ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不加 order by会咋样： 123select cookieid,createtime,pv,sum(pv) over(PARTITION BY cookieid) as pv1 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到，如果没有order by，不仅分区内没有排序，sum()计算的pv也是整个分区的pv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：max()函数无论有没有order by 都是计算整个分区的最大值 三、NTILE 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTILE(n)，用于将分组数据按照顺序切分成n片，返回当前切片值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注1：如果切片不均匀，默认增加第一个切片的分布&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注2：NTILE不支持ROWS BETWEEN 12345SELECT cookieid,createtime,pv,NTILE(2) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile1, --分组内将数据分成2片NTILE(3) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile2, --分组内将数据分成3片NTILE(4) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile3 --将所有数据分成4片FROM test1; 用法举例：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计一个cookie，pv数最多的前1/3的天： 123SELECT cookieid,createtime,pv,NTILE(3) OVER(PARTITION BY cookieid ORDER BY pv DESC) AS ntile FROM test1; 取 ntile = 1 的记录，就是我们想要的结果！ 四、ROW_NUMBER 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() 从1开始，按照顺序，生成分组内记录的序列 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() 的应用场景非常多，比如获取分组内排序第一的记录、获取一个session中的第一条refer等。 123SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rn FROM test1; 五、RANK 和 DENSE_RANK 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RANK() 生成数据项在分组中的排名，排名相等会在名次中留下空位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DENSE_RANK() 生成数据项在分组中的排名，排名相等会在名次中不会留下空位 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们把 rank、dense_rank、row_number三者对比，这样比较清晰： 12345SELECT cookieid,createtime,pv,RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rank1,DENSE_RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS d_rank2,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv DESC) AS rn3 FROM test1; 六、CUME_DIST 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cume_dist 返回小于等于当前值的行数/分组内总行数 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如，我们可以统计小于等于当前薪水的人数，所占总人数的比例 1234SELECT cookieid,createtime,pv,round(CUME_DIST() OVER(ORDER BY pv),2) AS cd1,round(CUME_DIST() OVER(PARTITION BY cookieid ORDER BY pv),2) AS cd2 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：cd1没有partition,所有数据均为1组！ 七、PERCENT_RANK 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;percent_rank 分组内当前行的RANK值-1/分组内总行数-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：一般不会用到该函数，可能在一些特殊算法的实现中可以用到吧 123SELECT cookieid,createtime,pv,PERCENT_RANK() OVER(ORDER BY pv) AS rn1 from test1; 八、LAG 和 LEAD 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAG(col,n,DEFAULT) 用于统计窗口内往上第n行值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个参数为列名，第二个参数为往上第n行（可选，默认为1），第三个参数为默认值（当往上第n行为NULL时候，取默认值，如不指定，则为NULL） 12345SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,LAG(createtime,1,&apos;1970-01-01&apos;) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag1,LAG(createtime,2) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag2 FROM test1; LEAD 函数则与 LAG 相反： LEAD(col,n,DEFAULT) 用于统计窗口内往下第n行值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个参数为列名，第二个参数为往下第n行（可选，默认为1），第三个参数为默认值（当往下第n行为NULL时候，取默认值，如不指定，则为NULL） 九、FIRST_VALUE 和 LAST_VALUE 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIRST_VALUE 取分组内排序后，截止到当前行，第一个值 1234SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,FIRST_VALUE(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS first FROM test1; LAST_VALUE 函数则相反： LAST_VALUE 取分组内排序后，截止到当前行，最后一个值 这两个函数还是经常用到的（往往和排序配合使用），比较实用！ It’s never too late to learn.]]></content>
+    <content type="text"><![CDATA[背景： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平常我们使用 hive 或者 mysql 时，一般聚合函数用的比较多。但对于某些偏分析的需求，group by可能很费力，子查询很多，这个时候就需要使用窗口分析函数了~ 注：hive、oracle提供开窗函数，mysql8之前版本不提供，但Oracle发布的 MySQL 8.0版本支持窗口函数（over）和公用表表达式（with）这两个重要的功能！ 一、介绍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析函数用于计算基于组的某种聚合值，它和聚合函数的不同之处是：对于每个组返回多行，而聚合函数对于每个组只返回一行。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开窗函数指定了分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化！到底什么是数据窗口？后面举例会详细讲到！ 1.基础结构：1分析函数（如:sum(),max(),row_number()...） + 窗口子句（over函数） 2.over函数写法： over (partition by cookieid order by createtime) 先根据cookieid字段分区，相同的cookieid分为一区，每个分区内根据createtime字段排序（默认升序） 注：不加 partition by 的话则把整个数据集当作一个分区，不加 order by 的话会对某些函数统计结果产生影响，如sum() 3.测试数据：测试表test1只有三个字段 cookieid、createtime、pv 4.窗口含义：1234567SELECT cookieid,createtime,pv,SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1 SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv3, --当前行+往前3行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv4, --当前行+往前3行+往后1行SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv5 ---当前行+往后所有行 FROM test1; 结果： 1234567891011121314cookieid createtime pv pv1 pv2 pv3 pv4 pv5a 2017-12-01 3 3 3 3 3 3b 2017-12-00 3 3 3 3 3 3cookie1 2017-12-10 1 1 1 1 6 26cookie1 2017-12-11 5 6 6 6 13 25cookie1 2017-12-12 7 13 13 13 16 20cookie1 2017-12-13 3 16 16 16 18 13cookie1 2017-12-14 2 18 18 17 21 10cookie1 2017-12-15 4 22 22 16 20 8cookie1 2017-12-16 4 26 26 13 13 4cookie2 2017-12-12 7 7 7 7 13 14cookie2 2017-12-16 6 13 13 13 14 7cookie2 2017-12-24 1 14 14 14 14 1cookie3 2017-12-22 5 5 5 5 5 5 注：这些窗口的划分都是在分区内部！超过分区大小就无效了 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家看了后就会明白，如果不指定ROWS BETWEEN,默认统计窗口为从起点到当前行;如果不指定ORDER BY，则将分组内所有值累加; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关键是理解 ROWS BETWEEN 含义,也叫做window子句：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRECEDING：往前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOLLOWING：往后&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CURRENT ROW：当前行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNBOUNDED：无边界，UNBOUNDED PRECEDING 表示从最前面的起点开始， UNBOUNDED FOLLOWING：表示到最后面的终点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他AVG，MIN，MAX，和SUM用法一样 二、SUM 函数123select cookieid,createtime,pv,sum(pv) over(PARTITION BY cookieid ORDER BY createtime) as pv1 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先 PARTITION BY cookieid，根据cookieid分区，各分区之间默认根据字典顺序排序，ORDER BY createtime，指定的是分区内部的排序，默认为升序 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以清晰地看到，窗口函数和聚合函数的不同，sum()函数可以根据每一行的窗口返回各自行对应的值，有多少行记录就有多少个sum值，而group by只能计算每一组的sum，每组只有一个值！ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中sum()计算的是分区内排序后一个个叠加的值，和order by有关！ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不加 order by会咋样： 123select cookieid,createtime,pv,sum(pv) over(PARTITION BY cookieid) as pv1 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到，如果没有order by，不仅分区内没有排序，sum()计算的pv也是整个分区的pv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：max()函数无论有没有order by 都是计算整个分区的最大值 三、NTILE 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTILE(n)，用于将分组数据按照顺序切分成n片，返回当前切片值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注1：如果切片不均匀，默认增加第一个切片的分布&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注2：NTILE不支持ROWS BETWEEN 12345SELECT cookieid,createtime,pv,NTILE(2) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile1, --分组内将数据分成2片NTILE(3) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile2, --分组内将数据分成3片NTILE(4) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile3 --将所有数据分成4片FROM test1; 用法举例：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计一个cookie，pv数最多的前1/3的天： 123SELECT cookieid,createtime,pv,NTILE(3) OVER(PARTITION BY cookieid ORDER BY pv DESC) AS ntile FROM test1; 取 ntile = 1 的记录，就是我们想要的结果！ 四、ROW_NUMBER 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() 从1开始，按照顺序，生成分组内记录的序列 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() 的应用场景非常多，比如获取分组内排序第一的记录、获取一个session中的第一条refer等。 123SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rn FROM test1; 五、RANK 和 DENSE_RANK 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RANK() 生成数据项在分组中的排名，排名相等会在名次中留下空位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DENSE_RANK() 生成数据项在分组中的排名，排名相等会在名次中不会留下空位 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们把 rank、dense_rank、row_number三者对比，这样比较清晰： 12345SELECT cookieid,createtime,pv,RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rank1,DENSE_RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS d_rank2,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv DESC) AS rn3 FROM test1; 六、CUME_DIST 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cume_dist 返回小于等于当前值的行数/分组内总行数 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如，我们可以统计小于等于当前薪水的人数，所占总人数的比例 1234SELECT cookieid,createtime,pv,round(CUME_DIST() OVER(ORDER BY pv),2) AS cd1,round(CUME_DIST() OVER(PARTITION BY cookieid ORDER BY pv),2) AS cd2 FROM test1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：cd1没有partition,所有数据均为1组！ 七、PERCENT_RANK 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;percent_rank 分组内当前行的RANK值-1/分组内总行数-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：一般不会用到该函数，可能在一些特殊算法的实现中可以用到吧 123SELECT cookieid,createtime,pv,PERCENT_RANK() OVER(ORDER BY pv) AS rn1 from test1; 八、LAG 和 LEAD 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAG(col,n,DEFAULT) 用于统计窗口内往上第n行值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个参数为列名，第二个参数为往上第n行（可选，默认为1），第三个参数为默认值（当往上第n行为NULL时候，取默认值，如不指定，则为NULL） 12345SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,LAG(createtime,1,&apos;1970-01-01&apos;) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag1,LAG(createtime,2) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag2 FROM test1; LEAD 函数则与 LAG 相反： LEAD(col,n,DEFAULT) 用于统计窗口内往下第n行值 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个参数为列名，第二个参数为往下第n行（可选，默认为1），第三个参数为默认值（当往下第n行为NULL时候，取默认值，如不指定，则为NULL） 九、FIRST_VALUE 和 LAST_VALUE 函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIRST_VALUE 取分组内排序后，截止到当前行，第一个值 1234SELECT cookieid,createtime,pv,ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,FIRST_VALUE(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS first FROM test1; LAST_VALUE 函数则相反： LAST_VALUE 取分组内排序后，截止到当前行，最后一个值 这两个函数还是经常用到的（往往和排序配合使用），比较实用！ It’s never too late to learn.]]></content>
       <categories>
         <category>Hive</category>
       </categories>
@@ -60,8 +74,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>OLAP</tag>
         <tag>数据仓库</tag>
+        <tag>OLAP</tag>
         <tag>数据质量</tag>
         <tag>元数据管理</tag>
       </tags>
@@ -74,8 +88,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>OLAP</tag>
         <tag>数据仓库</tag>
+        <tag>OLAP</tag>
       </tags>
   </entry>
   <entry>
@@ -97,8 +111,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -154,8 +168,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>OLAP</tag>
         <tag>数据仓库</tag>
+        <tag>OLAP</tag>
         <tag>ODS</tag>
         <tag>Data Market</tag>
         <tag>Data Source</tag>
@@ -169,9 +183,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -196,9 +210,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -209,8 +223,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -889,17 +903,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -908,6 +911,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>
@@ -990,17 +1004,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1009,6 +1012,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,17 +1280,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -1286,6 +1289,17 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

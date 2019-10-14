@@ -6,7 +6,7 @@ categories: Hive
 notebook: 数据仓库
 ---
 
-<b>背景</b>：</br>
+<b>背景</b>：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平常我们使用 `hive` 或者 `mysql` 时，一般聚合函数用的比较多。但对于某些偏分析的需求，group by可能很费力，子查询很多，这个时候就需要使用窗口分析函数了~
 注：`hive`、`oracle`提供开窗函数，mysql8之前版本不提供，但Oracle发布的 MySQL 8.0版本支持窗口函数（over）和公用表表达式（with）这两个重要的功能！
 

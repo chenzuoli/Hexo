@@ -361,7 +361,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:07:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:12:51+08:00">
                 2019-10-14
               </time>
             
@@ -430,10 +430,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">    get_json_object(xx[&apos;custom&apos;],&apos;$.position&apos;)</span><br><span class="line">from table</span><br></pre></td></tr></table></figure>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外Presto还有一个函数json_extract是直接返回一个json串，根据需要自己需要选择函数</p>
-<h1 id="4-列转行"><a href="#4-列转行" class="headerlink" title="4.列转行"></a>4.列转行</h1><p>Hive</p>
+<h1 id="4-列转行"><a href="#4-列转行" class="headerlink" title="4.列转行"></a>4.列转行</h1><p>Hive:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student, score from tests lateral view explode(split(scores, &apos;,&apos;)) t as score;</span><br></pre></td></tr></table></figure>
 
-<p>Presto</p>
+<p>Presto:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student, score from tests cross json unnest(split(scores, &apos;,&apos;) as t (score)</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -535,7 +535,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:09:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:13:22+08:00">
                 2019-10-14
               </time>
             
@@ -673,7 +673,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:06:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:13:25+08:00">
                 2019-10-14
               </time>
             

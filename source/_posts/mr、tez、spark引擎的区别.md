@@ -31,4 +31,4 @@ notebook: 笔记
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tez与spark两者并不矛盾，不存在冲突，在实际生产中，如果数据需要快速处理而且资源充足，则可以选择spark；如果资源是瓶颈，则可以使用tez；可以根据不同场景不同数据层次做出选择；这个总结同样也适合spark与mr的比较；
 
 - - -
-Asking cost nothing.
+<b>Asking cost nothing.</b>

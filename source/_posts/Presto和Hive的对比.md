@@ -33,12 +33,12 @@ from table
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外Presto还有一个函数json_extract是直接返回一个json串，根据需要自己需要选择函数
 
 # 4.列转行
-Hive
+Hive:
 ```
 select student, score from tests lateral view explode(split(scores, ',')) t as score;
 ```
 
-Presto
+Presto:
 ```
 select student, score from tests cross json unnest(split(scores, ',') as t (score)
 ```

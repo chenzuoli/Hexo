@@ -35,30 +35,29 @@ notebook: 数据仓库
 ## 4.窗口含义：
 ```
 SELECT cookieid,createtime,pv,
-SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行
-SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1 
-SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv3,   --当前行+往前3行
-SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv4,    --当前行+往前3行+往后1行
-SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv5   ---当前行+往后所有行  
+    SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行
+    SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1 
+    SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv3,   --当前行+往前3行
+    SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv4,    --当前行+往前3行+往后1行
+    SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv5   ---当前行+往后所有行  
 FROM test1;
 ```
 结果：
-```
-cookieid	createtime	pv	pv1  pv2    pv3  pv4  pv5
-a			2017-12-01	3	 3	  3	     3	  3    3
-b			2017-12-00	3	 3	  3	     3	  3    3
-cookie1		2017-12-10	1	 1	  1	     1	  6    26
-cookie1		2017-12-11	5	 6	  6	     6	  13   25
-cookie1		2017-12-12	7	 13  13	     13   16   20
-cookie1		2017-12-13	3	 16  16	     16   18   13
-cookie1		2017-12-14	2	 18  18	     17   21   10
-cookie1		2017-12-15	4	 22  22	     16   20   8
-cookie1		2017-12-16	4	 26  26	     13   13   4
-cookie2		2017-12-12	7	 7	  7	     7	  13   14
-cookie2		2017-12-16	6	 13  13	     13   14   7
-cookie2		2017-12-24	1	 14  14	     14   14   1
-cookie3		2017-12-22	5	 5	  5	     5	   5   5
-```
+cookieid | createtime | pv | pv1 | pv2 | pv3 | pv4 | pv5
+-|-|-|-|-|-|-|-|
+a | 2017-12-01 | 3 | 3 | 3 | 3 | 3 | 3
+b | 2017-12-00 | 3 | 3 | 3 | 3 | 3 | 3
+cookie1 | 2017-12-10 | 1 | 1 | 1 | 1 | 6 | 26
+cookie1 | 2017-12-11 | 5 | 6 | 6 | 6 | 13 | 25
+cookie1 | 2017-12-12 | 7 | 13 | 13 | 13 | 16 | 20
+cookie1 | 2017-12-13 | 3 | 16 | 16 | 16 | 18 | 13
+cookie1 | 2017-12-14 | 2 | 18 | 18 | 17 | 21 | 10
+cookie1 | 2017-12-15 | 4 | 22 | 22 | 16 | 20 | 8
+cookie1 | 2017-12-16 | 4 | 26 | 26 | 13 | 13 | 4
+cookie2 | 2017-12-12 | 7 | 7 | 7 | 7 | 13 | 14
+cookie2 | 2017-12-16 | 6 | 13 | 13 | 13 | 14 | 7
+cookie2 | 2017-12-24 | 1 | 14 | 14 | 14 | 14 | 1
+cookie3 | 2017-12-22 | 5 | 5 | 5 | 5 | 5 | 5
 
 注：这些窗口的划分都是在分区内部！超过分区大小就无效了
 

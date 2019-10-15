@@ -28,6 +28,12 @@
     <title><![CDATA[数据仓库设计终极目标]]></title>
     <url>%2F2019%2F10%2F14%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E8%AE%BE%E8%AE%A1%E7%BB%88%E6%9E%81%E7%9B%AE%E6%A0%87%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们设计的数据仓库，最基本的功能是服务对象需要什么数据，我们就能很简单地提供什么数据，什么是数据仓库的终极目标呢，即什么样的数据仓库是完美的数据仓库？ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完美的数据仓库：一个企业中的所有业务，根据数据仓库提供的分析模型，我们可以知道产品的好坏、产品的发展情况，根据这些分析的数据，指导管理者做出正确的决策，引导他们做出一个更好的产品。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，我们在设计数据仓库的时候，应该设计出好的模型，从操作型数据库设计开始，应该提供什么样的数据，应该提供什么样的功能，才是我们应该重点着手去做的事情。 Where there’s a will, there’s a way.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>数据仓库</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Mr&Tez&Spark引擎的区别]]></title>
@@ -989,17 +995,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -1008,6 +1003,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>

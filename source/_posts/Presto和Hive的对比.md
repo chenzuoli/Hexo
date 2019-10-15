@@ -10,6 +10,8 @@ notebook: 数据仓库
 
 <img src="Presto和Hive的对比/view.jpeg" width="500" height="300"/>
 
+<!-- more -->
+
 # 1.本质区别
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive是把一个查询转化成多个MapReduce任务，然后一个接一个执行。执行的中间结果通过对磁盘的读写来同步。然而，Presto没有使用MapReduce，它是通过一个定制的查询和执行引擎来完成的。它的所有的查询处理是在内存中，这也是它的性能很高的一个主要原因。
 

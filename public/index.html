@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:12:51+08:00">
-                2019-10-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T09:55:18+08:00">
+                2019-10-15
               </time>
             
           </span>
@@ -417,29 +417,15 @@
 
       
         
-          
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto和Hive作为大数据分析领域OLAP工具，他们之间有什么区别和联系呢？下面来看看。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto和Hive作为大数据分析领域OLAP工具，他们之间有什么区别和联系呢？下面来看看。</p>
 <img src="/2019/10/14/Presto和Hive的对比/view.jpeg" width="500" height="300">
-
-<h1 id="1-本质区别"><a href="#1-本质区别" class="headerlink" title="1.本质区别"></a>1.本质区别</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive是把一个查询转化成多个MapReduce任务，然后一个接一个执行。执行的中间结果通过对磁盘的读写来同步。然而，Presto没有使用MapReduce，它是通过一个定制的查询和执行引擎来完成的。它的所有的查询处理是在内存中，这也是它的性能很高的一个主要原因。</p>
-<h1 id="2-执行速度"><a href="#2-执行速度" class="headerlink" title="2.执行速度"></a>2.执行速度</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;presto由于是基于内存的，而hive是在磁盘上读写的，因此presto比hive快很多，但是由于是基于内存的当多张大表关联操作时易引起内存溢出错误</p>
-<h1 id="3-处理json类型的数据"><a href="#3-处理json类型的数据" class="headerlink" title="3.处理json类型的数据"></a>3.处理json类型的数据</h1><p>presto处理如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">    json_extract_scalar(xx[&apos;custom&apos;],&apos;$.position&apos;)</span><br><span class="line">from table</span><br></pre></td></tr></table></figure>
-
-<p>hive处理如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">    get_json_object(xx[&apos;custom&apos;],&apos;$.position&apos;)</span><br><span class="line">from table</span><br></pre></td></tr></table></figure>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外Presto还有一个函数json_extract是直接返回一个json串，根据需要自己需要选择函数</p>
-<h1 id="4-列转行"><a href="#4-列转行" class="headerlink" title="4.列转行"></a>4.列转行</h1><p>Hive:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student, score from tests lateral view explode(split(scores, &apos;,&apos;)) t as score;</span><br></pre></td></tr></table></figure>
-
-<p>Presto:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student, score from tests cross json unnest(split(scores, &apos;,&apos;) as t (score)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><b>Where there is a will, there is a way.</b></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/14/Presto和Hive的对比/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -626,7 +612,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wetech.top/2019/10/14/Mr、Tez、Spark引擎的区别/">
+    <link itemprop="mainEntityOfPage" href="http://wetech.top/2019/10/14/Mr&Tez&Spark引擎的区别/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wetech">
@@ -645,7 +631,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/14/Mr、Tez、Spark引擎的区别/" itemprop="url">Mr、Tez、Spark引擎的区别</a></h1>
+                <a class="post-title-link" href="/2019/10/14/Mr&Tez&Spark引擎的区别/" itemprop="url">Mr&Tez&Spark引擎的区别</a></h1>
         
 
         <div class="post-meta">
@@ -673,8 +659,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T22:13:25+08:00">
-                2019-10-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T09:54:47+08:00">
+                2019-10-15
               </time>
             
           </span>
@@ -730,10 +716,10 @@
       
         
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spark号称比mr快100倍，tez也号称比mr快100倍，那么他们之间为什么有这么大的差距呢？下面来看看。</p>
-<img src="/2019/10/14/Mr、Tez、Spark引擎的区别/spark.jpeg" width="400" height="150">
+<img src="/2019/10/14/Mr&Tez&Spark引擎的区别/spark.jpeg" width="400" height="150">
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/10/14/Mr、Tez、Spark引擎的区别/#more" rel="contents">
+            <a class="btn" href="/2019/10/14/Mr&Tez&Spark引擎的区别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

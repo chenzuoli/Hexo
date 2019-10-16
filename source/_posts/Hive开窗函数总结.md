@@ -43,6 +43,7 @@ SELECT cookieid,createtime,pv,
 FROM test1;
 ```
 结果：
+
 cookieid | createtime | pv | pv1 | pv2 | pv3 | pv4 | pv5
 -|-|-|-|-|-|-|-|
 a | 2017-12-01 | 3 | 3 | 3 | 3 | 3 | 3
@@ -75,7 +76,7 @@ cookie3 | 2017-12-22 | 5 | 5 | 5 | 5 | 5 | 5
 # 二、SUM 函数
 ```
 select cookieid,createtime,pv,
-sum(pv) over(PARTITION BY cookieid ORDER BY createtime) as pv1 
+    sum(pv) over(PARTITION BY cookieid ORDER BY createtime) as pv1 
 FROM test1;
 ```
 ![2](Hive开窗函数总结/2.png)
@@ -89,7 +90,7 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不加 order by会咋样：
 ```
 select cookieid,createtime,pv,
-sum(pv) over(PARTITION BY cookieid) as pv1 
+    sum(pv) over(PARTITION BY cookieid) as pv1 
 FROM test1;
 ```
 ![3](Hive开窗函数总结/3.png)
@@ -108,9 +109,9 @@ FROM test1;
 
 ```
 SELECT cookieid,createtime,pv,
-NTILE(2) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile1,	--分组内将数据分成2片
-NTILE(3) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile2,  --分组内将数据分成3片
-NTILE(4) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile3   --将所有数据分成4片
+    NTILE(2) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile1,	--分组内将数据分成2片
+    NTILE(3) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile2,  --分组内将数据分成3片
+    NTILE(4) OVER(PARTITION BY cookieid ORDER BY createtime) AS ntile3   --将所有数据分成4片
 FROM test1;
 ```
 ![4](Hive开窗函数总结/4.png)
@@ -119,7 +120,7 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计一个cookie，pv数最多的前1/3的天：
 ```
 SELECT cookieid,createtime,pv,
-NTILE(3) OVER(PARTITION BY cookieid ORDER BY pv DESC) AS ntile 
+    NTILE(3) OVER(PARTITION BY cookieid ORDER BY pv DESC) AS ntile 
 FROM test1;
 ```
 取 `ntile = 1` 的记录，就是我们想要的结果！
@@ -132,7 +133,7 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`ROW_NUMBER()` 的应用场景非常多，比如获取分组内排序第一的记录、获取一个session中的第一条refer等。
 ```
 SELECT cookieid,createtime,pv,
-ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rn  
+    ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rn  
 FROM test1;
 ```
 
@@ -147,9 +148,9 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们把 `rank、dense_rank、row_number`三者对比，这样比较清晰：
 ```
 SELECT cookieid,createtime,pv,
-RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rank1,
-DENSE_RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS d_rank2,
-ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv DESC) AS rn3 
+    RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS rank1,
+    DENSE_RANK() OVER(PARTITION BY cookieid ORDER BY pv desc) AS d_rank2,
+    ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY pv DESC) AS rn3 
 FROM test1;
 ```
 ![6](Hive开窗函数总结/6.png)
@@ -162,8 +163,8 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如，我们可以统计小于等于当前薪水的人数，所占总人数的比例
 ```
 SELECT cookieid,createtime,pv,
-round(CUME_DIST() OVER(ORDER BY pv),2) AS cd1,
-round(CUME_DIST() OVER(PARTITION BY cookieid ORDER BY pv),2) AS cd2  
+    round(CUME_DIST() OVER(ORDER BY pv),2) AS cd1,
+    round(CUME_DIST() OVER(PARTITION BY cookieid ORDER BY pv),2) AS cd2  
 FROM test1;
 ```
 
@@ -178,7 +179,7 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：一般不会用到该函数，可能在一些特殊算法的实现中可以用到吧
 ```
 SELECT  cookieid,createtime,pv,
-PERCENT_RANK() OVER(ORDER BY pv) AS rn1 
+    PERCENT_RANK() OVER(ORDER BY pv) AS rn1 
 from test1;
 ```
 
@@ -192,9 +193,9 @@ from test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个参数为列名，第二个参数为往上第n行（可选，默认为1），第三个参数为默认值（当往上第n行为NULL时候，取默认值，如不指定，则为NULL）
 ```
 SELECT cookieid,createtime,pv,
-ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,
-LAG(createtime,1,'1970-01-01') OVER(PARTITION BY cookieid ORDER BY createtime) AS lag1,
-LAG(createtime,2) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag2 
+    ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,
+    LAG(createtime,1,'1970-01-01') OVER(PARTITION BY cookieid ORDER BY createtime) AS lag1,
+    LAG(createtime,2) OVER(PARTITION BY cookieid ORDER BY createtime) AS lag2 
 FROM test1;
 ```
 ![9](Hive开窗函数总结/9.png)
@@ -210,8 +211,8 @@ FROM test1;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`FIRST_VALUE` 取分组内排序后，截止到当前行，第一个值
 ```
 SELECT cookieid,createtime,pv,
-ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,
-FIRST_VALUE(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS first  
+    ROW_NUMBER() OVER(PARTITION BY cookieid ORDER BY createtime) AS rn,
+    FIRST_VALUE(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS first  
 FROM test1;
 ```
 ![10](Hive开窗函数总结/10.png)

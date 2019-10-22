@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[国人买车欲望为什么急剧下降？]]></title>
+    <url>%2F2019%2F10%2F22%2F%E5%9B%BD%E4%BA%BA%E4%B9%B0%E8%BD%A6%E6%AC%B2%E6%9C%9B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%80%A5%E5%89%A7%E4%B8%8B%E9%99%8D%EF%BC%9F%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国车市未老先衰，中低收入者没钱买车。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国的人口结构财富是一个三角形，大面积的人口都是中低收入人口，只有少量人口才算是富裕人口。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着房价不断上涨以及生活必需品价格的不断上涨，事实上对于整个中低收入影响是非常大的，他们购车欲望降低。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蔚来、长安等类似车企，销量急剧下滑，蔚来18年亏损甚至达200亿，股价一度跌近90%。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看下世界各国汽车人均占比图：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看似中国汽车市场有很大增长空间，但是实际收入相比美国还是甚远，2018年中国9770美元，美国6.26万美元，相差7倍。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看到这个状况，你有什么想法吗？]]></content>
+      <categories>
+        <category>汽车</category>
+      </categories>
+      <tags>
+        <tag>汽车</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java集合对比]]></title>
     <url>%2F2019%2F10%2F17%2FJava%E9%9B%86%E5%90%88%E5%AF%B9%E6%AF%94%2F</url>
     <content type="text"><![CDATA[java中集合分List、Set、Map，下面来看看他们的实现类、底层结构及什么情境下使用。 1.List1.1 ArrayList底层结构是数组： 线程不安全，相对于Vector效率高； 查找快，增删慢； 1.2 Vector底层结构是数组： 线程安全，相对于ArrayList效率低； 查找快，增删慢； 1.3 LinkedList底层结构是链表： 线程不安全，效率高； 增删快，查找慢； 2.Set2.1 HashSet底层结构是哈希表： 无序、唯一； 查找快，增删快； 2.2 LinkedHashSet底层结构是链表+哈希表： 有序、唯一； 查找快，增删快； 2.3 TreeSet底层结构是红黑树： 有序、唯一； 查找快，增删快； 3.Map3.1 HashMap底层结构是哈希表： 线程不安全，相比Hashtable，效率高； 无序； 查找快，增删快； 父类AbstractMap； k、v允许为null值 3.2 Hashtable底层结构是哈希表： 线程安全，相比HashMap，效率低； 无序； 查找快，增删快； 父类Dictionary； k、v不允许为null值； 3.3 CurrentHashMap底层结构是哈希表： 线程安全，相比Hashtable做了优化，增删不会锁定整张表，原理是将整个map分成了n个segment； 无序； 查找快，增删快； 3.3 TreeMap底层结构是红黑树： 有序； 查找快，增删快； One is never too old to learn.]]></content>
@@ -974,17 +985,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -993,6 +993,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -1031,17 +1042,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2018世界医药顶尖大学]]></title>
-    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
-    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>医药大学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2019世界上城市生活成本排行]]></title>
     <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
     <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
@@ -1050,6 +1050,17 @@
       </categories>
       <tags>
         <tag>城市生活成本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018世界医药顶尖大学]]></title>
+    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
+    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>医药大学</tag>
       </tags>
   </entry>
   <entry>

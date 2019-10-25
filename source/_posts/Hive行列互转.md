@@ -98,4 +98,4 @@ Time taken: 0.096 seconds, Fetched: 10 row(s)
 ```
 
 - - -
-You have to believe yourself, that's the secret of the success.
+<b>You have to believe yourself, that's the secret of the success.</b>

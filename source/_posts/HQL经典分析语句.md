@@ -18,3 +18,9 @@ notebook: 数据仓库
 
 - - -
 Only those who have the patience to do simple things perfectly ever acquire the skill to do diffcult things easily.
+
+# 2.行列互转
+<a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/25/Hive%E8%A1%8C%E5%88%97%E4%BA%92%E8%BD%AC/)</a>
+
+- - -
+<b>You should bear the motto in mind.</b>

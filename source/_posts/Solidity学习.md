@@ -58,9 +58,9 @@ contract SimpleStorage {
 pragma solidity >=0.5.0 <0.7.0;
 
 contract Coin {
-// 关键字“public”让这些变量可以从外部读取
-address public minter;
-mapping (address => uint) public balances;
+    // 关键字“public”让这些变量可以从外部读取
+    address public minter;
+    mapping (address => uint) public balances;
 
     // 轻客户端可以通过事件针对变化作出高效的反应
     event Sent(address from, address to, uint amount);
@@ -88,9 +88,13 @@ mapping (address => uint) public balances;
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个合约引入了一些新的概念，让我们逐一解读。
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address public minter; 这一行声明了一个可以被公开访问的 address 类型的状态变量。 address 类型是一个 160 位的值，且不允许任何算数操作。这种类型适合存储合约地址或外部人员的密钥对。关键字 public 自动生成一个函数，允许你在这个合约之外访问这个状态变量的当前值。如果没有这个关键字，其他的合约没有办法访问这个变量。由编译器生成的函数的代码大致如下所示（暂时忽略 external 和 view）：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function minter() external view returns (address) { return minter; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address public minter; 这一行声明了一个可以被公开访问的 address 类型的状态变量。 address 类型是一个 160 位的值，且不允许任何算数操作。这种类型适合存储合约地址或外部人员的密钥对。关键字 public 自动生成一个函数，允许你在这个合约之外访问这个状态变量的当前值。如果没有这个关键字，其他的合约没有办法访问这个变量。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由编译器生成的函数的代码大致如下所示（暂时忽略 external 和 view）：
+```
+function minter() external view returns (address) {
+    return minter;
+}
+```
 当然，加一个和上面完全一样的函数是行不通的，因为我们会有同名的一个函数和一个变量，这里，主要是希望你能明白——编译器已经帮你实现了。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下一行， mapping (address => uint) public balances; 也创建一个公共状态变量，但它是一个更复杂的数据类型。 该类型将 address 映射为无符号整数。 Mappings 可以看作是一个 哈希表 它会执行虚拟初始化，以使所有可能存在的键都映射到一个字节表示为全零的值。 但是，这种类比并不太恰当，因为它既不能获得映射的所有键的列表，也不能获得所有值的列表。 因此，要么记住你添加到 mapping 中的数据（使用列表或更高级的数据类型会更好），要么在不需要键列表或值列表的上下文中使用它，就如本例。 而由 public 关键字创建的 getter 函数 getter function 则是更复杂一些的情况， 它大致如下所示：
@@ -103,7 +107,7 @@ function balances(address _account) external view returns (uint) {
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如你所看到的，你可以通过该函数轻松地查询到账户的余额。
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event Sent(address from, address to, uint amount); 这行声明了一个所谓的“事件（event）”，它会在 send 函数的最后一行被发出。用户界面（当然也包括服务器应用程序）可以监听区块链上正在发送的事件，而不会花费太多成本。一旦它被发出，监听该事件的 listener 都将收到通知。而所有的事件都包含了 from ， to 和 amount 三个参数，可方便追踪交易。 为了监听这个事件，你可以使用如下 JavaScript 代码（假设 Coin 是已经通过 web3.js 创建好的合约对象 ）：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event Sent(address from, address to, uint amount); 这行声明了一个所谓的 “ 事件（event）”，它会在 send 函数的最后一行被发出。用户界面（当然也包括服务器应用程序）可以监听区块链上正在发送的事件，而不会花费太多成本。一旦它被发出，监听该事件的 listener 都将收到通知。而所有的事件都包含了 from ， to 和 amount 三个参数，可方便追踪交易。 为了监听这个事件，你可以使用如下 JavaScript 代码（假设 Coin 是已经通过 web3.js 创建好的合约对象 ）：
 
 ```
 Coin.Sent().watch({}, '', function(error, result) {

@@ -33,7 +33,7 @@ col_row.user_id     col_row.order_id
 ```
 select 
     user_id,
-    concat_ws(',',collect_list(order_id)) as order_value 
+    concat_ws(',', collect_list(order_id)) as order_value 
 from col_row
 group by user_id
 limit 10;
@@ -45,7 +45,7 @@ user_id     order_value
 ```
 
 <b>总结</b>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用函数：concat_ws(',',collect_set(column))  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用函数：concat_ws(',', collect_set(column))  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说明：collect_list 不去重，collect_set 去重。 column的数据类型要求是string
 
 # 2.行转列
@@ -74,7 +74,7 @@ select
     order_value,
     order_id
 from row_col
-lateral view explode(split(order_value,',')) num as order_id
+lateral view explode(split(order_value, ',')) num as order_id
 limit 10;
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析：

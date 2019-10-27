@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[智能合约语言solidity中msg.sender,msg.owner和tx.origin区别]]></title>
+    <url>%2F2019%2F10%2F27%2F%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E8%A8%80solidity%E4%B8%ADmsg-sender-msg-owner%E5%92%8Ctx-origin%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;智能合约solidity语言中自带的变量msg.sender, msg.owner, tx.origin是什么意思呢？来看看。 1.Difference between msg.owner and msg.sender?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当部署合约时，msg.sender是合约的所有者，如果合约中定义了一个名为“owner”的变量，则可以为其分配值（地址）msg.sender： 1address owner = msg.sender; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此时，变量“owner”将始终具有最初部署合约的人的地址，意味着是合约的所有者。分析这样一行合约代码：owner.transfer(msg.value)，这里如果调用了回退函数（fallback函数），那么msg.value将在owner的地址传输。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个合约的msg.sender是当前与合约交互的地址，可以是用户也可以是另一个合约。所以，如果是一个用户和合约交互，msg.sender是该用户的地址；相反，如果是另一个合约B与该合约交互，msg.sender则是合约B的地址。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总的来说，msg.sender将会是当前与某合约交互的用户或另一个合约的地址。 2.Difference between msg.owner and tx.origin?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如： 123function setOwner() &#123; owner = msg.sender;&#125; VS 123function setOwner() &#123; owner = tx.origin;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以这样说，msg.sender的owner可以是一个合约；而tx.origin的owner不可能是一个合约。在一个简单的调用链中，A-&gt;B-&gt;C-&gt;D，D里面的msg.sender将会是C，而tx.origin将一直是A。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是仔细考虑一下是否真的需要使用tx.origin。因为你可能不是合约的唯一用户。其他人可能想要使用你的合约，并希望通过其他的合约与之交互。因为在Solidity中，tx.origin它遍历整个调用栈并返回最初发送调用（或事务）的帐户的地址。在智能合约中使用此变量进行身份验证会使合约容易受到类似网络钓鱼的攻击。 3.参考Difference between msg.owner and msg.sender and tx.origin I adopt a dog today, it’s great.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>msg</tag>
+        <tag>sender</tag>
+        <tag>owner</tag>
+        <tag>origin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HQL经典sql之课程总数与总价格]]></title>
     <url>%2F2019%2F10%2F26%2FHQL%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E8%AF%BE%E7%A8%8B%E6%80%BB%E6%95%B0%E4%B8%8E%E6%80%BB%E4%BB%B7%E6%A0%BC%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有这样一个问题，关于培训班学生的统计分析数据，一起来看看吧。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有三张表： t1为学生课程表：sid（学生ID）、courseid（课程ID）、date（报课时间） t2为学生基本信息表：sid、name、age…… t3为课程基本信息表：courseid、price、date现在想要查看一个培训学校目前每个学生的所报的所有课程数和花费的总金额，如何求呢？12345678910select sid, count(courseid) over(partition by sid) as count, sum(price) over(partition by sid) as sumpricefrom ( select sid, t1.courseid as courseid, price from t1, t3 where t1.courseid = t3.courseid) a; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析： 首先关联出学生所报课程的价格； 1234select sid, t1.courseid as courseid, pricefrom t1, t3where t1.courseid = t3.courseid 使用开窗函数对sid分组得到学生报的每门课程和没门课程对应的价格，然后使用count和sum求得想要的指标； I wish i had two dogs, one would be given to my parents, one would be with me.]]></content>
@@ -548,8 +563,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>solidity</tag>
         <tag>智能合约</tag>
+        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>
@@ -1070,17 +1085,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -1089,6 +1093,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -1171,17 +1186,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1190,6 +1194,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

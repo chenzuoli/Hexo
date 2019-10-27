@@ -22,5 +22,8 @@ Only those who have the patience to do simple things perfectly ever acquire the 
 # 2.行列互转
 <a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/25/Hive%E8%A1%8C%E5%88%97%E4%BA%92%E8%BD%AC/)</a>
 
+# 3.学生总课程数与总金额
+<a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/26/HQL%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E8%AF%BE%E7%A8%8B%E6%80%BB%E6%95%B0%E4%B8%8E%E6%80%BB%E4%BB%B7%E6%A0%BC/)</a>
+
 - - -
 <b>You should bear the motto in mind.</b>

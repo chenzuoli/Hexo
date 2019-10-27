@@ -6,14 +6,16 @@ categories: 数据仓库
 notebook: 数据仓库
 ---
 
-有这样一个问题，关于培训班学生的统计分析数据，一起来看看吧。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有这样一个问题，关于培训班学生的统计分析数据，一起来看看吧。
+
+<img src="HQL经典sql之课程总数与总价格/course_scheduler.jpeg" width="500" height="300"/>
 
 <!-- more -->
 
-有三张表：
-- t1为学生课程表：sid（学生ID）、courseid（课程ID）、date（报课时间）
-- t2为学生基本信息表：sid、name、age......
-- t3为课程基本信息表：courseid、price、date
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有三张表：
+- <b>t1</b>为学生课程表：sid（学生ID）、courseid（课程ID）、date（报课时间）
+- <b>t2</b>为学生基本信息表：sid、name、age......
+- <b>t3</b>为课程基本信息表：courseid、price、date
 现在想要查看一个培训学校目前每个学生的所报的所有课程数和花费的总金额，如何求呢？
 ```
 select
@@ -27,7 +29,7 @@ from (
     where t1.courseid = t3.courseid
 ) a;
 ```
-分析：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>分析：</b>
 1. 首先关联出学生所报课程的价格；
 ```
 select

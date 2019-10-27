@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[电影推荐]]></title>
+    <url>%2F2019%2F10%2F27%2F%E7%94%B5%E5%BD%B1%E6%8E%A8%E8%8D%90%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面介绍下我看过的好看的电影，推荐给你们，我会不定期更新列表。 驭风少年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲了一个面对饥荒，饿殍遍野，面对生存危机，对知识渴望的少年，爱思考的少年，凭借着学校学到的知识，加上自己不断努力，给家人，给国家的人民带来水，带来电，带来粮食，挽救生命的故事。 绿皮书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20世纪60年代的美国，种族歧视严重，面对这种情况，顶级黑人高级钢琴师不顾侮辱，忍受不一样的对待，巡演美国，想借此机会改变美国人对待黑人的态度，聘请了半个美国人的司机，一路遇到麻烦解决麻烦，人们的态度从嘲讽转变到崇拜，从反感转变到友善，世界变得和平友好。 绿里奇迹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲了一个美国的故事。善有善报，恶有恶报。 恶人传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;警察与黑帮团结一起寻找杀人狂：恶人其实是好人。 罗小黑战纪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人与妖的战争：和平共处方能维持生态平衡，暴力解决不了问题。 传奇的诞生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;球王是怎样练成的：不要在乎他人的看法，不要学习他人的做法，邯郸学步很经典，做自己才是最重要的。 触不可及（法国）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;黑人与很富有的残疾人的故事。 飓风营救（1/2/3）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老爸救女儿的故事：主演连姆·尼森一生只做一件事，那就是保护家人。 海蒂与爷爷&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爷爷与孙女的故事。 人生就像一场电影，而你就是主角，请开始你的表演。]]></content>
+      <categories>
+        <category>娱乐</category>
+      </categories>
+      <tags>
+        <tag>电影</tag>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Solidity常用关键字详解]]></title>
+    <url>%2F2019%2F10%2F27%2FSolidity%E5%B8%B8%E7%94%A8%E5%85%B3%E9%94%AE%E5%AD%97%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习公链中的智能合约语言Solidity，下面来看看自带关键字的一些解释吧。 1.require&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若require函数的第一个参数执行结果为false，则终止执行，撤销所有对状态和以太坊余额的改动，在旧版的EVM中会消耗所有gas，但现在不会了，你也可以在函数的第二个参数中对错误进行解释。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用require来检查函数是否被正确调用，是一个好习惯。 1234require( msg.sender == chairman, &quot;Only chairman can give the right to vote.&quot;); 2.payable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数修饰符：payable关键字，如果一个函数需要进行货币操作，必须要带上payable关键字，这样才能正常接收msg.value。 3.msg.sender/msg.owner/tx.origin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参考下这篇文章：Difference between msg.owner and msg.sender and tx.origin 4.msg.value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认为给合约转账的金额。 5.this.balance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前合约中的余额。 The best way to escape from your problem is to solve it.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>solidity</tag>
+        <tag>关键字</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[智能合约语言solidity中msg.sender,msg.owner和tx.origin区别]]></title>
     <url>%2F2019%2F10%2F27%2F%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E8%A8%80solidity%E4%B8%ADmsg-sender-msg-owner%E5%92%8Ctx-origin%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;智能合约solidity语言中自带的变量msg.sender, msg.owner, tx.origin是什么意思呢？来看看。 1.Difference between msg.owner and msg.sender?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当部署合约时，msg.sender是合约的所有者，如果合约中定义了一个名为“owner”的变量，则可以为其分配值（地址）msg.sender： 1address owner = msg.sender; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此时，变量“owner”将始终具有最初部署合约的人的地址，意味着是合约的所有者。分析这样一行合约代码：owner.transfer(msg.value)，这里如果调用了回退函数（fallback函数），那么msg.value将在owner的地址传输。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个合约的msg.sender是当前与合约交互的地址，可以是用户也可以是另一个合约。所以，如果是一个用户和合约交互，msg.sender是该用户的地址；相反，如果是另一个合约B与该合约交互，msg.sender则是合约B的地址。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总的来说，msg.sender将会是当前与某合约交互的用户或另一个合约的地址。 2.Difference between msg.owner and tx.origin?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如： 123function setOwner() &#123; owner = msg.sender;&#125; VS 123function setOwner() &#123; owner = tx.origin;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以这样说，msg.sender的owner可以是一个合约；而tx.origin的owner不可能是一个合约。在一个简单的调用链中，A-&gt;B-&gt;C-&gt;D，D里面的msg.sender将会是C，而tx.origin将一直是A。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是仔细考虑一下是否真的需要使用tx.origin。因为你可能不是合约的唯一用户。其他人可能想要使用你的合约，并希望通过其他的合约与之交互。因为在Solidity中，tx.origin它遍历整个调用栈并返回最初发送调用（或事务）的帐户的地址。在智能合约中使用此变量进行身份验证会使合约容易受到类似网络钓鱼的攻击。 3.参考Difference between msg.owner and msg.sender and tx.origin I adopt a dog today, it’s great.]]></content>
@@ -1051,6 +1076,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1060,17 +1096,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,17 +1110,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -1104,6 +1118,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>

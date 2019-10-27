@@ -45,4 +45,4 @@ function setOwner() {
 <b><a>[<font color=#0099ff>Difference between msg.owner and msg.sender and tx.origin</font>](https://ethereum.stackexchange.com/questions/21029/difference-between-msg-owner-and-msg-sender)</b>
 
 - - -
-I adopt a dog today, it's great.
+<b>I adopt a dog today, it's great.</b>

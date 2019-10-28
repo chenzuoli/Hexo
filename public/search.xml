@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hive经典sql之销售数据统计]]></title>
+    <url>%2F2019%2F10%2F28%2FHive%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E9%94%80%E5%94%AE%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在有这样一个需求：一张表sales中记录了公司每个业务销售的每月销售数据，来分析下2个案例。 1.sales表结构12345678910| month | user_id | amount |+--------+---------+--------+| 201601 | 1 | 500 || 201601 | 2 | 300 || 201601 | 3 | 100 || 201602 | 1 | 1000 || 201602 | 2 | 800 || 201603 | 2 | 1000 || 201603 | 3 | 500 || 201604 | 1 | 1000 | 2.需求一：求每个月的销售额及累计销售额开窗函数实现： 123456SELECT month, SUM(amount) AS cur_month_amount, SUM(SUM(amount)) OVER (ORDER BY month) FROM sales GROUP BY month ORDER BY month; 或者 12345SELECT month, SUM(amount) OVER(PARTITION BY month) AS cur_month_amount, SUM(amount) OVER(ORDER BY month) AS sum_amountFROM sales; 3.需求二：每个月的销售冠军和销售额开窗函数实现： 12345SELECT month, user_id, MAX(SUM(amount)) OVER(PARTITION BY month, user_id) AS cur_month_top_amountFROM sales; 或者 12345678910111213SELECT month, user_id, amountFROM ( SELECT month, user_id, amount, ROW_NUMBER() OVER(PARTITION BY month ORDER BY amount DESC) AS rank FROM sales) awhere rank = 1; How time flies.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>Hive</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hive经典sql之花费当月费用与总费用]]></title>
+    <url>%2F2019%2F10%2F28%2FHive%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E8%8A%B1%E8%B4%B9%E5%BD%93%E6%9C%88%E8%B4%B9%E7%94%A8%E4%B8%8E%E6%80%BB%E8%B4%B9%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在有这样一个需求：一张表orders中记录了每个用户消费的明细（时间、金额），现在需要求出每个用户当月的消费总金额和总的消费总金额。如何求呢？ 1.orders表结构123name stringdt dateamount double 2.分析&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计的当月总金额这个汇总值，那么对name和month进行分组sum(amount)即可得到。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计总金额，那么只需对name进行分组即可。 方法一分别求出上面2个汇总值，然后进行join就行： 123456789101112131415161718192021select name, month_amount, sum_amountfrom ( select name, month(dt) as cur_month, sum(amount) as month_amount from orders group by name, month(dt);) t1join( select name, sum(amount) as sum_amount from orders group by name) t2on t1.name = t2.name; 方法二使用开窗函数，不在需要表join了： 12345select name, sum(amount) over(partition by name, month(dt)) as month_amount, sum(amount) over(partition by name) as sum_amountfrom orders &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开窗函数是不是简单多了？ If somethings in life brings you joy, then you simple have to do it, regardless of what people say.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;—《海蒂与爷爷》]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>Hive</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[电影推荐]]></title>
     <url>%2F2019%2F10%2F27%2F%E7%94%B5%E5%BD%B1%E6%8E%A8%E8%8D%90%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面简单介绍下我看过的好看的电影，推荐给你们，我会不定期更新列表。 驭风少年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;讲了一个面对饥荒，饿殍遍野，面对生存危机，对知识渴望的少年，爱思考的少年，凭借着学校学到的知识，加上自己不断努力，给家人，给国家的人民带来水，带来电，带来粮食，挽救生命的故事。 绿皮书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20世纪60年代的美国，种族歧视严重，面对这种情况，顶级黑人高级钢琴师不顾侮辱，忍受不一样的对待，巡演美国，想借此机会改变美国人对待黑人的态度，聘请了半个美国人的司机，一路遇到麻烦，解决麻烦，他的态度从嘲讽转变到崇拜，从反感转变到友善。 绿里奇迹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;善有善报，恶有恶报。原来美国也有这样的文化。 恶人传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;警察与黑帮团结一起寻找杀人狂：恶人其实是好人。 罗小黑战纪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人与妖的战争：和平共处方能维持生态平衡，暴力解决不了问题。 传奇的诞生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;球王是怎样练成的：不要在乎他人的看法，用成语邯郸学步很贴切，做自己才是最重要的。 触不可及（法国）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;黑人与很富有的残疾人的故事。 飓风营救（1/2/3）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老爸救女儿的故事：主演连姆·尼森一生只做一件事，那就是保护家人。 海蒂与爷爷&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爷爷与孙女的故事：小女孩的微笑超甜美，你要活得像她一样开心哟。 人生就像一场电影，而你就是主角，请开始你的表演。]]></content>
@@ -1110,17 +1134,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -1129,6 +1142,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -1211,17 +1235,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -1230,6 +1243,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>

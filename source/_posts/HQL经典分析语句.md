@@ -25,5 +25,12 @@ Only those who have the patience to do simple things perfectly ever acquire the 
 # 3.学生总课程数与总金额
 <a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/26/HQL%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E8%AF%BE%E7%A8%8B%E6%80%BB%E6%95%B0%E4%B8%8E%E6%80%BB%E4%BB%B7%E6%A0%BC/)</a>
 
+# 4.学生课程数据统计
+<a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/28/Hive%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E8%8A%B1%E8%B4%B9%E5%BD%93%E6%9C%88%E8%B4%B9%E7%94%A8%E4%B8%8E%E6%80%BB%E8%B4%B9%E7%94%A8/)</a>
+
+# 5.销售数据统计
+<a>[<font color=#0099ff>hql详解</font>](http://wetech.top/2019/10/28/Hive%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E9%94%80%E5%94%AE%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/)</a>
+
+
 - - -
 <b>You should bear the motto in mind.</b>

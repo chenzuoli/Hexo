@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Solidity中now和block.timestamp的区别]]></title>
+    <url>%2F2019%2F10%2F28%2FSolidity%E4%B8%ADnow%E5%92%8Cblock-timestamp%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在智能合约中，我们如何获取当前时间呢？下面来看看。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now 是 block.timestamp 的别称，哈哈，他们是一个意思。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案可以参考这里：Ethereum StackexchangeSolidity Readthedocs Failure is the mother of the success.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>now</tag>
+        <tag>block</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Solidity中transfer和send的区别]]></title>
+    <url>%2F2019%2F10%2F28%2FSolidity%E4%B8%ADtransfer%E5%92%8Csend%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;智能合约中我们可以根据不同的场景来使用这2中方式。下面来看看解释。 1. address.transfer() throws on failure // 转账失败会抛出异常 forwards 2,300 gas stipend (not adjustable), safe against reentrancy should be used in most cases as it’s the safest way to send ether 2. address.send() returns false on failure // 转账失败会返回false forwards 2,300 gas stipend (not adjustable), safe against reentrancy should be used in rare cases when you want to handle failure in the contract 3. address.call.value().gas()() returns false on failure forwards all available gas (adjustable), not safe against reentrancy should be used when you need to control how much gas to forward when sending ether or to call a function of another contract &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数返回值就是transfer和send的最主要区别，生产中用transfer比较多。 Where there is a life, there is a hope.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>transfer</tag>
+        <tag>send</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hive经典sql之销售数据统计]]></title>
     <url>%2F2019%2F10%2F28%2FHive%E7%BB%8F%E5%85%B8sql%E4%B9%8B%E9%94%80%E5%94%AE%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在有这样一个需求：一张表sales中记录了公司每个业务销售的每月销售数据，来分析下2个案例。 1.sales表结构12345678910| month | user_id | amount |+--------+---------+--------+| 201601 | 1 | 500 || 201601 | 2 | 300 || 201601 | 3 | 100 || 201602 | 1 | 1000 || 201602 | 2 | 800 || 201603 | 2 | 1000 || 201603 | 3 | 500 || 201604 | 1 | 1000 | 2.需求一：求每个月的销售额及累计销售额开窗函数实现： 123456SELECT month, SUM(amount) AS cur_month_amount, SUM(SUM(amount)) OVER (ORDER BY month) FROM sales GROUP BY month ORDER BY month; 或者 12345SELECT month, SUM(amount) OVER(PARTITION BY month) AS cur_month_amount, SUM(amount) OVER(ORDER BY month) AS sum_amountFROM sales; 3.需求二：每个月的销售冠军和销售额开窗函数实现： 12345SELECT month, user_id, MAX(SUM(amount)) OVER(PARTITION BY month, user_id) AS cur_month_top_amountFROM sales; 或者 12345678910111213SELECT month, user_id, amountFROM ( SELECT month, user_id, amount, ROW_NUMBER() OVER(PARTITION BY month ORDER BY amount DESC) AS rank FROM sales) awhere rank = 1; How time flies.]]></content>
@@ -342,8 +368,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -414,9 +440,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -441,9 +467,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -454,8 +480,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -1100,17 +1126,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1120,6 +1135,17 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1134,17 +1160,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -1153,6 +1168,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>
@@ -1191,17 +1217,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2018世界医药顶尖大学]]></title>
-    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
-    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>医药大学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2019世界上城市生活成本排行]]></title>
     <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
     <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
@@ -1210,6 +1225,17 @@
       </categories>
       <tags>
         <tag>城市生活成本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018世界医药顶尖大学]]></title>
+    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
+    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>医药大学</tag>
       </tags>
   </entry>
   <entry>

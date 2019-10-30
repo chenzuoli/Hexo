@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Solidity中函数修改器modifier详解]]></title>
+    <url>%2F2019%2F10%2F30%2FSolidity%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BF%AE%E6%94%B9%E5%99%A8modifier%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier即函数的修改器，可以用来改变一个函数的行为，控制函数的逻辑。修改器是一种合约属性，可以被继承和重写。 1.函数修改器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面以代码为例进行介绍（代码来源于CryptoKitties项目KittyAccessControl.sol合约，详细代码可以查看https://github.com/dapperlabs/cryptokitties-bounty) 12345678modifier onlyCLevel() &#123; require( msg.sender == cooAddress || msg.sender == ceoAddress || msg.sender == cfoAddress ); _;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面一段代码是一个修改器，声明了一个约束onlyClevel：仅当当前的地址为ceoAddress或者cfoAddress或者cooAddress时，可以执行后续代码。下划线_是一个占位符，代表了执行函数接下来的代码。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时你还会看到上面那段代码写成如下形式： 12345678modifier onlyCLevel() &#123; if( msg.sender != cooAddress &amp;&amp; msg.sender != ceoAddress &amp;&amp; msg.sender != cfoAddress ) throw; _;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实两段代码是等价的，if() throw的写法是较为老式的写法，现在使用require()的写法较多。 123function pause() external onlyClevel whenNotPaused &#123; paused = true; &#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接下来一段代码声明了一个函数pause()，用于暂停合约，这里使用了onlyClevel约束，表明该函数的执行必须要满足onlyClevel条件。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外函数修改器也支持传入参数，和函数的参数类似，例如： 1234567891011121314pragma solidity ^0.4.0;contract parameter&#123; uint balance = 10; modifier lowerLimit(uint _balance, uint __withdraw)&#123; if( _withdraw &lt; 0 || _withdraw &gt; _balance) throw; _; &#125; function f(uint withdraw) lowerLimit(balance, withdraw) returns (uint)&#123; return balance; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上面这段代码中，修改器lowerLimit传入两个参数，执行修改器的逻辑。函数的执行与否取决于两个参数：_withdraw和_balance。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数的修改器参数支持表达式，例如： 12345678910111213141516pragma solidity ^0.4.0;contract parameterExpression&#123; modifier m(uint a)&#123; if(a &gt; 0) _; &#125; function add(uint a, uint b) private returns(uint)&#123; return a + b; &#125; function f() m(add(1, 1)) returns(uint)&#123; return 1; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于上面的这段代码，修改器m的参数传入了一个表达式：add(a+b)，add()表达式在合约中定义了。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return用在函数中表示返回值，如果函数有返回值标志return，但是由于修改器限制，判断不成功，无法执行函数体内的代码，那么将会返回返回值类型的默认值，例如： 1234567891011121314151617pragma solidity ^0.4.0;contract Return&#123; modifier a()&#123; if(false) _; &#125; function uintReturn() A returns(uint)&#123; uint a = 0; return uint(1); &#125; function stringReturn() A returns(string)&#123; return &quot;Hello World&quot;; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于上面的代码，由于修改器A永远判断不成功，所以uintReturn和stringReturn两个函数的函数体永远无法执行，那么返回值分别是uint和string的默认值：0和空串。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数修改器允许使用return;来中断当前流程，但是不允许明确的return值，也就是说在修改器中只能存在return； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于函数修改器，下划线代表函数体，当执行到下划线;这一行的时候，就跳到函数体，执行函数体内的语句，执行完函数体内语句其实还要回到函数修改器，执行下划线_;后面的语句，例如： 123456789101112131415161718pragma solidity ^0.4.0;contract processFlow&#123; mapping(bool =&gt; uint) public mapp; modifier A(mapping(bool =&gt; uint) mapp)&#123; if(mapp[true] == 0)&#123; mapp[true] = 1; _; mapp[true] = 3; &#125; &#125; function f() A(mapp) returns(uint)&#123; mapp[true] = 2; return mapp[true]; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于上面的函数f()，先运行修改器，判断权限，通过权限，则执行修改器判断语句后面的代码：map[true] = 1;，当运行到下划线;这一行的时候，跳到函数体内执行map[true] = 2;，然后retrun map[true]的值。执行完函数体的代码会回到函数修改器下划线；这一行后面的代码，这里还有代码，接着执行map[true] = 3。所以最终map[true]的值为3。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一个函数可以有多个修改器限制，在函数定义的时候依次写上，并用加空格分隔，执行的时候也是依次执行。多个修改器是同时限制，也就是说必须满足所有修改器的权限，才可以执行函数体的代码，例如： 12345678910111213141516171819pragma solidity ^0.4.0;contract multiModifier&#123; address owner = msg.sender; modifier onlyOwner&#123; if(msg.sender != owner) throw; _; &#125; modifier inState(bool state)&#123; if(!state) throw; _; &#125; function f(bool state) onlyOwner inState(state) returns(uint)&#123; return 1; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面这段代码中两个修改器onlyOwner和inState同时作用于函数f()，只有当两个修改器的权限同时满足的时候，才会执行函数体内的代码，retrun 1。 2.重写修改器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们知道合约是可以继承的，在子合约中我们还可以对父合约中的修改器进行重写覆盖，例如： 12345678910111213141516171819pragma solidity ^0.4.0;contract bank&#123; modifier transferLimit(uint _withdraw)&#123; if(_withdraw &gt; 100) throw; _; &#125;&#125;contract ModifierOverride is bank&#123; modifier transferLimit(uint _withdraw)&#123; if(_withdraw &gt; 10) throw; _; &#125; function f(uint withdraw) transferLimit(withdraw) returns(uint)&#123; return withdraw; &#125;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面这段代码中，子合约ModifierOverride继承了父合约bank，那么同样有父合约中的transferLimit修改器，之后在子合约中再次定义transferLimit修改器，就重写了该修改器并覆盖了原修改器，在子合约中transferLimit的限制条件由子合约中重写的条件决定。 Never regret a day in your life, good days give you happiness, bad days give you experiences.]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>solidity</tag>
+        <tag>modifier</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Solidity中now和block.timestamp的区别]]></title>
     <url>%2F2019%2F10%2F28%2FSolidity%E4%B8%ADnow%E5%92%8Cblock-timestamp%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在智能合约中，我们如何获取当前时间呢？下面来看看。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now 是 block.timestamp 的别称，哈哈，他们是一个意思。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案可以参考这里：Ethereum StackexchangeSolidity Readthedocs Failure is the mother of the success.]]></content>
@@ -368,8 +381,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>PBFT</tag>
+        <tag>共识算法</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -440,9 +453,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -467,9 +480,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -480,8 +493,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>一致性协议</tag>
         <tag>共识算法</tag>
+        <tag>一致性协议</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -1217,17 +1230,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -1236,6 +1238,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>
@@ -1261,17 +1274,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -1280,6 +1282,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>

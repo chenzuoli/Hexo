@@ -25,10 +25,8 @@ require(
 # 2.payable
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数修饰符：payable关键字，如果一个函数需要进行货币操作，必须要带上payable关键字，这样才能正常接收msg.value。
 
-
 # 3.msg.sender/msg.owner/tx.origin
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参考下这篇文章：<b><a>[<font color=#0099ff>Difference between msg.owner and msg.sender and tx.origin</font>](http://wetech.top/2019/10/27/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E8%A8%80solidity%E4%B8%ADmsg-sender-msg-owner%E5%92%8Ctx-origin%E5%8C%BA%E5%88%AB/)</b>
-
 
 # 4.msg.value
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认为给合约转账的金额。
@@ -36,6 +34,11 @@ require(
 # 5.this.balance
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前合约中的余额。
 
+# 6.modifier
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参考下这篇文章：<b><a>[<font color=#0099ff>Solidity中函数修改器modifier详解</font>](http://wetech.top/2019/10/30/Solidity%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BF%AE%E6%94%B9%E5%99%A8modifier%E8%AF%A6%E8%A7%A3/)</b>
+
+# 7.now/block.timestamp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参考下这篇文章：<b><a>[<font color=#0099ff>Solidity中now和block-timestamp的区别</font>](http://wetech.top/2019/10/28/Solidity%E4%B8%ADnow%E5%92%8Cblock-timestamp%E7%9A%84%E5%8C%BA%E5%88%AB/)</b>
 
 
 - - -

@@ -10,6 +10,8 @@ notebook: 笔记
 
 <img src="一般情况下为什么Python多线程比单线程还慢？/python.jpeg" width="500" height="300"/>
 
+<!-- more -->
+
 # 1.GIL是什么
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先需要明确的一点是GIL并不是Python的特性，它是在实现Python解析器(CPython)时所引入的一个概念。就好比C++是一套语言（语法）标准，但是可以用不同的编译器来编译成可执行代码。有名的编译器例如GCC，INTEL C++，Visual C++等。Python也一样，同样一段代码可以通过CPython，PyPy，Psyco等不同的Python执行环境来执行。像其中的JPython就没有GIL。然而因为CPython是大部分环境下默认的Python执行环境。所以在很多人的概念里CPython就是Python，也就想当然的把GIL归结为Python语言的缺陷。所以这里要先明确一点：GIL并不是Python的特性，Python完全可以不依赖于GIL。
 

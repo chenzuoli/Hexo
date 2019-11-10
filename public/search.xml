@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[推荐一个sql学习网站]]></title>
+    <url>%2F2019%2F11%2F10%2F%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AAsql%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐一个sql学习网站，从入门到精通，有很好的例子提供给你练习，图片动画很容易理解。前提条件是有一定的英文基础，下面来看看吧。 增删改查：select/insert/update/delete; DDL：create/drop/alter table; 条件判断：like/between and/if/case when/limit/group by/order by; 聚合函数：sum/count/avg/max/min; 表关联：join/left join/right join/inner join/union/union all/cross join; 复杂查询； https://www.codecademy.com/learn/learn-sql The weakest goes to the wall.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ANSI-sql和SQL的区别]]></title>
     <url>%2F2019%2F11%2F10%2FANSI-sql%E5%92%8CSQL%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家都使用过SQL SERVER。今天给大家简单介绍一下Oracle SQL与ANSI SQL区别。其实，SQL SERVER与与ANSI SQL也有区别。 什么是ANSI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANSI：美国国家标准学会（American National Standards Institute）。当时，美国的许多企业和专业技术团体，已开始了标准化工作，但因彼此间没有协调，存在不少矛盾和问题。为了进一步提高效率，数百个科技学会、协会组织和团体，均认为有必要成立一个专门的标准化机构，并制订统一的通用标准。 ANSI SQL到底是什么（1）作为程序员开发者们应该知道，在使用那些非标准的SQL命令（比如Oracle、微软和MySQL等数据库系统）从跨平台和遵守标准的角度出发，你应该尽量采用ANSI SQL，它是一种和平台无关的数据库语言。其实为什么这么说了，很简单就是可能在Oracle能够运行的SQL语句不一定在SQL SERVER当中能够运行，那么在跨平台当中数据操作就会带来困难。（2）程序在开发的时候，如果使用SQL语句对数据进行操作。一般的建议不管你在使用哪种数据库系统，如果该数据库系统中的SQL完全支持ANSI SQL标准，那么请你尽量使用ANSI SQL。 一些写法区别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然标准不一样，那么写法肯定有一些区别，具体可以参考这2篇文章(Presto查询系统使用的是ANSI-SQL语法)： Presto-SQL与Hive-SQL的区别与联系Presto基础用法介绍 No one can take away who you are.]]></content>
@@ -1410,17 +1421,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2018世界医药顶尖大学]]></title>
-    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
-    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>医药大学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2019世界上城市生活成本排行]]></title>
     <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
     <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
@@ -1429,6 +1429,17 @@
       </categories>
       <tags>
         <tag>城市生活成本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018世界医药顶尖大学]]></title>
+    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
+    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>医药大学</tag>
       </tags>
   </entry>
   <entry>

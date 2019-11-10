@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ANSI-sql和SQL的区别]]></title>
+    <url>%2F2019%2F11%2F10%2FANSI-sql%E5%92%8CSQL%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家都使用过SQL SERVER。今天给大家简单介绍一下Oracle SQL与ANSI SQL区别。其实，SQL SERVER与与ANSI SQL也有区别。 什么是ANSI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANSI：美国国家标准学会（American National Standards Institute）。当时，美国的许多企业和专业技术团体，已开始了标准化工作，但因彼此间没有协调，存在不少矛盾和问题。为了进一步提高效率，数百个科技学会、协会组织和团体，均认为有必要成立一个专门的标准化机构，并制订统一的通用标准。 ANSI SQL到底是什么（1）作为程序员开发者们应该知道，在使用那些非标准的SQL命令（比如Oracle、微软和MySQL等数据库系统）从跨平台和遵守标准的角度出发，你应该尽量采用ANSI SQL，它是一种和平台无关的数据库语言。其实为什么这么说了，很简单就是可能在Oracle能够运行的SQL语句不一定在SQL SERVER当中能够运行，那么在跨平台当中数据操作就会带来困难。（2）程序在开发的时候，如果使用SQL语句对数据进行操作。一般的建议不管你在使用哪种数据库系统，如果该数据库系统中的SQL完全支持ANSI SQL标准，那么请你尽量使用ANSI SQL。 一些写法区别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然标准不一样，那么写法肯定有一些区别，具体可以参考这2篇文章(Presto查询系统使用的是ANSI-SQL语法)： Presto-SQL与Hive-SQL的区别与联系Presto基础用法介绍 No one can take away who you are.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>ANSI-SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Presto-SQL与Hive-SQL的区别与联系]]></title>
     <url>%2F2019%2F11%2F09%2FPresto-SQL%E4%B8%8EHive-SQL%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto作为一个数据仓库后端的OLAP分析查询系统，提供了比Hive更快的查询速度，能及时提供用户的分析结果数据，深受OLAP用户喜爱，那么我们从hive迁移到presto时他们的查询方式有哪些区别与联系呢，下面来看看。 一、前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto使用ANSI SQL语法和语义，而Hive使用类似SQL的语言，称为HiveQL，它在MySQL（它本身与ANSI SQL有很多不同）之后进行了松散的建模。 二、使用下标来访问数组的动态索引而不是udf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL中的下标运算符支持完整表达式，与Hive（仅支持常量）不同。因此，您可以编写如下查询： 12SELECT my_array[CARDINALITY(my_array)] as last_elementFROM ... 三、避免超出阵列的边界访问&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;访问数组的超出边界元素将导致异常。您可以通过以下方式避免这种if情况： 12SELECT IF(CARDINALITY(my_array) &gt;= 3, my_array[3], NULL)FROM ... 四、对数组使用ANSI SQL语法&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数组从1开始索引，而不是从0开始： 12SELECT my_array[1] AS first_elementFROM ... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用ANSI语法构造数组： 1SELECT ARRAY[1, 2, 3] AS my_array 五、对标识符和字符串使用ANSI SQL语法&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字符串用单引号分隔，标识符引用双引号，而不是反引号： 123SELECT name AS &quot;User Name&quot;FROM &quot;7day_active&quot;WHERE name = &apos;foo&apos; 六、引用以数字开头的标识符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以数字开头的标识符在ANSI SQL中不合法，必须使用双引号引用： 12SELECT *FROM &quot;7day_active&quot; 七、使用标准字符串连接运算符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用ANSI SQL字符串连接运算符： 12SELECT a || b || cFROM ... 八、使用CAST目标的标准类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST目标支持以下标准类型： 123456SELECT CAST(x AS varchar), CAST(x AS bigint), CAST(x AS double), CAST(x AS boolean)FROM ... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;特别是，使用VARCHAR而不是STRING。 九、除以整数时使用CAST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto遵循分割两个整数时执行整数除法的标准行为。例如，除以7由2将导致3，而不是3.5。要对两个整数执行浮点除法，请将其中一个转换为double： 1SELECT CAST(5 AS DOUBLE) / 2 十、使用WITH表示复杂的表达式或查询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果要将复杂输出表达式重用为过滤器，请使用内联子查询或使用WITH子句将其分解： 1234567WITH a AS ( SELECT substr(name, 1, 3) x FROM ...)SELECT *FROM aWHERE x = &apos;foo&apos; 十一、使用UNNEST扩展数组和映射&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto支持UNNEST扩展阵列和地图。用UNNEST而不是。LATERAL VIEW explode()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive查询： 123SELECT student, scoreFROM testsLATERAL VIEW explode(scores) t AS score; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presto查询： 123SELECT student, scoreFROM testsCROSS JOIN UNNEST(scores) AS t (score); If I were you, I would do what I want.]]></content>
@@ -8,8 +20,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
         <tag>Presto</tag>
         <tag>OLAP</tag>
       </tags>
@@ -215,8 +227,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -227,8 +239,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -279,8 +291,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
         <tag>数据分析</tag>
       </tags>
   </entry>
@@ -292,8 +304,8 @@
         <category>Hive</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -304,8 +316,8 @@
         <category>Hive</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -352,8 +364,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -1398,17 +1410,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -1417,6 +1418,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>
@@ -1718,17 +1730,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -1738,6 +1739,17 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

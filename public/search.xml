@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[发现了数据仓库的一个秘密]]></title>
+    <url>%2F2019%2F11%2F12%2F%E5%8F%91%E7%8E%B0%E4%BA%86%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%9A%84%E4%B8%80%E4%B8%AA%E7%A7%98%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那就是他的预测功能。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于历史数据发现一些规律，来预测接下来一段时间的数据可能发生的事，包括仓库本身（数据增长趋势，定时任务完成时间趋势等等来提醒你该做出相应的行动了）、数据集市（提供一些指标，来预测你的行动范围、风险承受能力在一个适当的范围之内，而不至于做出不正确的决策，给公司带来损失）。 You will be the king.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>数据仓库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[推荐一个sql学习网站]]></title>
     <url>%2F2019%2F11%2F10%2F%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AAsql%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐一个sql学习网站，从入门到精通，有很好的例子提供给你练习，图片动画很容易理解。前提条件是有一定的英文基础，下面来看看吧。 增删改查：select/insert/update/delete; DDL：create/drop/alter table; 条件判断：like/between and/if/case when/limit/group by/order by; 聚合函数：sum/count/avg/max/min; 表关联：join/left join/right join/inner join/union/union all/cross join; 复杂查询； https://www.codecademy.com/learn/learn-sql The weakest goes to the wall.]]></content>
@@ -572,8 +583,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -644,9 +655,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -671,9 +682,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -684,8 +695,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>

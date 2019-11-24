@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[记录一次hive堆内存溢出问题]]></title>
+    <url>%2F2019%2F11%2F24%2F%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1hive%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前运行环境是这样的： 123hive version: 3.1.0centos version: 7.4hadoop version: 3.1.4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认tez引擎 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此表数据量： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原来设置的参数如下： 1234567set hive.merge.mapfiles=true;set hive.merge.mapredfiles=true;set hive.merge.smallfiles.avgsize=60000000;set hive.auto.convert.join.noconditionaltask.size=10000000;set hive.exec.compress.intermediate=true;set hive.intermediate.compression.codec=org.apache.hadoop.io.compress.snappycodec;set hive.intermediate.compression.type=block; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行时 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行结果出现如下错误： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析： 此表数据量很大； 运行时500个reducer中每个reducer所承载的数据量很大； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天此任务运行成功，去hdfs看下结果数据文件情况：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发现结果文件只有5个，而且每个文件34M，可想而知1个reducer当时拉取了大量的数据做聚合，这是导致reducer内存溢出的原因，于是设置reducer个数： 1set mapred.reduce.tasks=1000; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加参数后运行时： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加参数后运行结果文件如下： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决。 A man is not old until his regrets take place of his dreams.]]></content>
+      <categories>
+        <category>Hive</category>
+      </categories>
+      <tags>
+        <tag>Hive</tag>
+        <tag>内存溢出</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[A dog's Journal]]></title>
+    <url>%2F2019%2F11%2F23%2FA-Dog-s-Journal%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The story of dog Hatchi is really tearjerking.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This movie realised at 2017, and critics in douban is good.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But today, I will recommend you another movie. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There is two version of this movie tells us one touching,funny,moving story, it’s about the leading character’s whole life and several dog’s life.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When Eson was a child, he saved a puppy named Belly, and then brought it to home, played with him. Eson really like the dog, train the dog a stunt action: when eson bend over, and throw the boll to the air, the dog can catch the boll from the back of eson.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And the dog help eson to find his girl friend.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And then the dog is dead, they are very sad.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After the journal, the dog become another police dog, he was shotted by the crime and died.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And then he is become a college’s student’s dog, a young couple’s dog, it’s a boring life, they drop him finally, and then he find eson from the smell of him. the dog find the boll from the house, give it to eson, do the stunt action, eson realized that the dog is Belly. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The next version is about Eson’s grandaughter CJ, When the dog is dead he told the dog to protect his grandaughter if he has another life.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CJ has a bad situation, she hate her mother because of drinking a lot of wine and came home lately, so when she grew up, finally go away from her mother, do her musical dream.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CJ has a dog too, the dog help her to forgive her mother, and help her to realze the musical dream, and when CJ bring her dog to her grandfather’s house with her boyfriend.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The dog find the boll in the old house, and give it to Eson, make hime do the stunt action, finally, Eson realize that the dog is the Belly, he is come back. Where there is a will, there is a way.]]></content>
+      <categories>
+        <category>电影</category>
+      </categories>
+      <tags>
+        <tag>Movie</tag>
+        <tag>Dog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[强大的调度系统是怎样炼成的？]]></title>
     <url>%2F2019%2F11%2F23%2F%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F%E6%98%AF%E6%80%8E%E6%A0%B7%E7%82%BC%E6%88%90%E7%9A%84%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着业务发展，我们的任务会越来越多，任务之间依赖关系会越来越复杂，任务之间需要跨周期依赖，不同部门、不同用户之间任务需要做权限控制，任务失败、超时、开始结束之间不符合自定义的报警需要完善，重要任务的优先执行等等，需要一个强大的调度系统支持，才能保证数据部门的正常运转，下面来看看一个强大的调度系统需要支持的功能。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调度系统功能： 定时任务、单个任务、依赖任务、跨周期依赖任务； 任务可以查看依赖关系（上下游），重跑任务可选择是否触发所有下游任务； 单个任务报警机制：任务失败、开始时间延迟报警、结束时间延迟报警、执行时间超时（今日任务执行时长对比该任务的历史执行时长方差）报警 SLA报警机制：根据仓库层次，或者数据的特点，设置报警任务组，组内任务未完成，及时报警； 报警支持方式选择：电话、短信、企业微信/钉钉、邮件； 报警联系人：负责人、报警组（一批人）； 对于不同部门同事之间的任务，他们应没有权限修改对应任务的，同一部门中仓库不同层次的任务应需申请才能使用； 等等； Nobody will care about you, that’s the thing you should know.]]></content>
@@ -1563,17 +1587,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -1582,6 +1595,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>
@@ -1839,6 +1863,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -1848,17 +1883,6 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

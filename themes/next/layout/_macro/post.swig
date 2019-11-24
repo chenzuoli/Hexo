@@ -199,7 +199,7 @@
           {% endif %}
 
           {# LeanCould PageView #}
-          {# if theme.leancloud_visitors.enable #}
+          {# if theme.leancloud_visitors.enable 为了不显示【阅读次数】因为最开始已使用busuanzi统计#}
           {% if theme.leancloud_visitors.enabl %}
              <span id="{{ url_for(post.path) }}" class="leancloud_visitors" data-flag-title="{{ post.title }}">
                <span class="post-meta-divider">|</span>

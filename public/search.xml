@@ -27,7 +27,7 @@
   <entry>
     <title><![CDATA[强大的调度系统是怎样炼成的？]]></title>
     <url>%2F2019%2F11%2F23%2F%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F%E6%98%AF%E6%80%8E%E6%A0%B7%E7%82%BC%E6%88%90%E7%9A%84%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着业务发展，我们的任务会越来越多，任务之间依赖关系会越来越复杂，任务之间需要跨周期依赖，不同部门、不同用户之间任务需要做权限控制，任务失败、超时、开始结束之间不符合自定义的报警需要完善，重要任务的优先执行等等，需要一个强大的调度系统支持，才能保证数据部门的正常运转，下面来看看一个强大的调度系统需要支持的功能。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调度系统功能： 定时任务、单个任务、依赖任务、跨周期依赖任务； 任务可以查看依赖关系（上下游），重跑任务可选择是否触发所有下游任务； 单个任务报警机制：任务失败、开始时间延迟报警、结束时间延迟报警、执行时间超时（今日任务执行时长对比该任务的历史执行时长方差）报警 SLA报警机制：根据仓库层次，或者数据的特点，设置报警任务组，组内任务未完成，及时报警； 报警支持方式选择：电话、短信、企业微信/钉钉、邮件； 报警联系人：负责人、报警组（一批人）； 对于不同部门同事之间的任务，他们应没有权限修改对应任务的，同一部门中仓库不同层次的任务应需申请才能使用； 等等； Nobody will care about you, that’s the thing you should know.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着业务发展，我们的任务会越来越多，任务之间依赖关系会越来越复杂，任务之间需要跨周期依赖，不同部门、不同用户之间任务需要做权限控制，任务失败、超时、开始结束之间不符合自定义的报警需要完善，重要任务的优先执行等等，需要一个强大的调度系统支持，才能保证数据部门的正常运转，下面来看看一个强大的调度系统需要支持的功能。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调度系统功能： 定时任务、单个任务、依赖任务、跨周期依赖任务； 任务可以查看依赖关系（上下游），重跑任务可选择是否触发所有下游任务； 单个任务报警机制：任务失败、开始时间延迟报警、结束时间延迟报警、执行时间超时（今日任务执行时长对比该任务的历史执行时长方差）报警 SLA报警机制：根据仓库层次，或者数据的特点，设置报警任务组，组内任务未完成，及时报警； 报警支持方式选择：电话、短信、企业微信/钉钉、邮件； 报警联系人：负责人、报警组（一批人）； 对于不同部门同事之间的任务，他们应没有权限修改对应任务的，同一部门中仓库不同层次的任务应需申请才能使用； 脚本管理：如果使用git或者svn，那么线上那么多任务的脚本，想要获取某个历史脚本，难道需要回滚所有的吗？不，使用hbase管理，自带版本管理，不是全局的； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;问题： 如果调度系统崩溃，恢复了5小时，这5小时内的小时任务如何自动恢复？ Nobody will care about you, that’s the thing you should know.]]></content>
       <categories>
         <category>调度系统</category>
       </categories>
@@ -1486,17 +1486,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -1505,6 +1494,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>

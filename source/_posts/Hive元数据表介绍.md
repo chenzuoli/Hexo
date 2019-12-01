@@ -199,35 +199,78 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 <b>PARAM_VALUE</b>	|分区属性值|	15、502195
 
 # 七、其他不常用的元数据表
-DB_PRIVS
+<b>DB_PRIVS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据库权限信息表。通过GRANT语句对数据库授权后，将会在这里存储。
 
-IDXS
+<b>IDXS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引表，存储Hive索引相关的元数据
 
-INDEX_PARAMS
+<b>INDEX_PARAMS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引相关的属性信息。
 
-TAB_COL_STATS
+<b>TAB_COL_STATS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的统计信息。使用ANALYZE语句对表字段分析后记录在这里。
 
-TBL_COL_PRIVS
+<b>TBL_COL_PRIVS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的授权信息
 
-PART_PRIVS
+<b>PART_PRIVS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区的授权信息
 
-PART_COL_STATS
+<b>PART_COL_STATS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的统计信息。
 
-PART_COL_PRIVS
+<b>PART_COL_PRIVS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的权限信息。
 
-FUNCS
+<b>FUNCS</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册的函数信息
 
-FUNC_RU
+<b>FUNC_RU</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册函数的资源信息
+
+# 八、从元数据表中获取表结构
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看看主要信息概览：
+```
+dbs
+    db_id
+    name
+tbls
+    tbl_id
+    db_id
+    sd_id
+    tbl_name
+sds
+    sd_id
+    cd_id
+    location
+columns_v2
+    cd_id
+    column_name
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表字段：
+```
+select
+    COLUMNS_V2.column_name
+from dbs, tbls, sds, columns_v2
+where dbs.name = ?
+    and tbls.tbl_name = ?
+    and dbs.db_id = tbls.db_id
+    and tbls.sd_id = sds.sd_id
+    and sds.cd_id = columns_v2.cd_id
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表location：
+```
+select
+    dbs.name,
+    tbls.tbl_name,
+    sds.location
+from sds, tbls, dbs
+where dbs.name = ?
+    and tbls.tbl_name = ?
+    and dbs.db_id = tbls.db_id
+    and tbls.sd_id = sds.sd_id
+```
 
 - - -
 <b>Where there is a will, there is a way.</b>

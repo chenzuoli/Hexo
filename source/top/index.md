@@ -5,7 +5,7 @@ date: 2019-11-24 14:34:05
 
 <div id="top"></div>
 <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script>AV.initialize("KgyvQ4R9TmAv57FJfg6qg4I9-gzGzoHsz", "YMUrXMrnWJ8Bm2ntqIHxUHrB");</script>
+<script>AV.initialize("YJgpFR6aBjuB1wPKjFFRp443-MdYXbMMI", "r8fnn6zRKLkDw1iaEe8g3qwb");</script>
 <script type="text/javascript">
   var time=0
   var title=""

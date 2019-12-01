@@ -1,10 +1,11 @@
 ---
 title: Mac下Idea快捷键大全
 date: 2019-12-01 15:07:51
-tags:
+tags: [mac]
+categories: 电脑
 ---
 
-这篇文章中大部分是IDEA统一的快捷键，部分是Pycharm特有的快捷键，先来看看Mac的一些快捷键及图表解释吧。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这篇文章中大部分是IDEA统一的快捷键，先来看看Mac的一些快捷键及图表解释吧。
 
 <img src="Mac下Idea快捷键大全/mac_short_key.jpeg" width="500" height="300"/>
 

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mac下Idea快捷键大全]]></title>
+    <url>%2F2019%2F12%2F01%2FMac%E4%B8%8BIdea%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8%2F</url>
+    <content type="text"><![CDATA[这篇文章中大部分是IDEA统一的快捷键，部分是Pycharm特有的快捷键，先来看看Mac的一些快捷键及图表解释吧。 1、Mac键盘符号和修饰键说明 ⌘ Command ⇧ Shift ⌥ Option ⌃ Control ↩︎ Return/Enter ⌫ Delete ⌦ 向前删除键（Fn+Delete） ↑ 上箭头 ↓ 下箭头 ← 左箭头 → 右箭头 ⇞ Page Up（Fn+↑） ⇟ Page Down（Fn+↓） Home Fn + ← End Fn + → ⇥ 右制表符（Tab键） ⇤ 左制表符（Shift+Tab） ⎋ Escape (Esc) 2、Editing（编辑） ⌃Space 基本的代码补全（补全任何类、方法、变量） ⌃⇧Space 智能代码补全（过滤器方法列表和变量的预期类型） ⌘⇧↩ 自动结束代码，行末自动添加分号 ⌘P 显示方法的参数信息 ⌃J, Mid. button click 快速查看文档 ⇧F1 查看外部文档（在某些代码上会触发打开浏览器显示相关文档） ⌘+鼠标放在代码上 显示代码简要信息 ⌘F1 在错误或警告处显示具体描述信息 ⌘N, ⌃↩, ⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString） ⌃O 覆盖方法（重写父类方法） ⌃I 实现方法（实现接口中的方法） ⌘⌥T 包围代码（使用if..else, try..catch, for, synchronized等包围选中的代码） ⌘/ 注释/取消注释与行注释 ⌘⌥/ 注释/取消注释与块注释 ⌥↑ 连续选中代码块 ⌥↓ 减少当前选中的代码块 ⌃⇧Q 显示上下文信息 ⌥↩ 显示意向动作和快速修复代码 ⌘⌥L 格式化代码 ⌃⌥O 优化import ⌃⌥I 自动缩进线 ⇥ / ⇧⇥ 缩进代码 / 反缩进代码 ⌘X 剪切当前行或选定的块到剪贴板 ⌘C 复制当前行或选定的块到剪贴板 ⌘V 从剪贴板粘贴 ⌘⇧V 从最近的缓冲区粘贴 ⌘D 复制当前行或选定的块 ⌘⌫ 删除当前行或选定的块的行 ⌃⇧J 智能的将代码拼接成一行 ⌘↩ 智能的拆分拼接的行 ⇧↩ 开始新的一行 ⌘⇧U 大小写切换 ⌘⇧] / ⌘⇧[ 选择直到代码块结束/开始 ⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete） ⌥⌫ 删除到单词的开头 ⌘+ / ⌘- 展开 / 折叠代码块 ⌘⇧+ 展开所以代码块 ⌘⇧- 折叠所有代码块 ⌘W 关闭活动的编辑器选项卡 3、Search/Replace（查询/替换） Double ⇧ 查询任何东西 ⌘F 文件内查找 ⌘G 查找模式下，向下查找 ⌘⇧G 查找模式下，向上查找 ⌘R 文件内替换 ⌘⇧F 全局查找（根据路径） ⌘⇧R 全局替换（根据路径） ⌘⇧S 查询结构（Ultimate Edition 版专用，需要在Keymap中设置） ⌘⇧M 替换结构（Ultimate Edition 版专用，需要在Keymap中设置） Usage Search（使用查询） ⌥F7 / ⌘F7 在文件中查找用法 / 在类中查找用法 ⌘⇧F7 在文件中突出显示的用法 ⌘⌥F7 显示用法 4、Compile and Run（编译和运行） ⌘F9 编译Project ⌘⇧F9 编译选择的文件、包或模块 ⌃⌥R 弹出 Run 的可选择菜单 ⌃⌥D 弹出 Debug 的可选择菜单 ⌃R 运行 ⌃D 调试 ⌃⇧R, ⌃⇧D 从编辑器运行上下文环境配置 5、Debugging（调试） F8 进入下一步，如果当前行断点是一个方法，则不进入当前方法体内 F7 进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中 ⇧F7 智能步入，断点所在行上有多个方法调用，会弹出进入哪个方法 ⇧F8 跳出 ⌥F9 运行到光标处，如果光标前有其他断点会进入到该断点 ⌥F8 计算表达式（可以更改变量值使其生效） ⌘⌥R 恢复程序运行，如果该断点下面代码还有断点则停在下一个断点上 ⌘F8 切换断点（若光标当前行有断点则取消断点，没有则加上断点） ⌘⇧F8 查看断点信息 6、Navigation（导航） ⌘O 查找类文件 ⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/ ⌘⌥O 前往指定的变量 / 方法 ⌃← / ⌃→ 左右切换打开的编辑tab页 F12 返回到前一个工具窗口 ⎋ 从工具窗口进入代码文件窗口 ⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口 ⌘⇧F4 关闭活动run/messages/find/… tab ⌘L 在当前文件跳转到某一行的指定处 ⌘E 显示最近打开的文件记录列表 ⌘⌥← / ⌘⌥→ 退回 / 前进到上一个操作的地方 ⌘⇧⌫ 跳转到最后一个编辑的地方 ⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder) ⌘B / ⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处 ⌘⌥B 跳转到实现处，在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口 ⌥ Space, ⌘Y 快速打开光标所在方法、类的定义 ⌃⇧B 跳转到类型声明处 ⌘U 前往当前光标所在方法的父类的方法 / 接口定义 ⌃↓ / ⌃↑ 当前光标跳转到当前文件的前一个/后一个方法名位置 ⌘] / ⌘[ 移动光标到当前所在代码的花括号开始/结束位置 ⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法） ⌃H 显示当前类的层次结构 ⌘⇧H 显示方法层次结构 ⌃⌥H 显示调用层次结构 F2 / ⇧F2 跳转到下一个/上一个突出错误或警告的位置 F4 / ⌘↓ 编辑/查看代码源 ⌥ Home 显示到当前文件的导航条 F3选中文件/文件夹/代码行，添加/取消书签 ⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签 ⌃0…⌃9 定位到对应数值的书签位置 ⌘F3 显示所有书签 7、Refactoring（重构） F5 复制文件到指定目录 F6 移动文件到指定目录 ⌘⌫ 在文件上为安全删除文件，弹出确认框 ⇧F6 重命名文件 ⌘F6 更改签名 ⌘⌥N 一致性 ⌘⌥M 将选中的代码提取为方法 ⌘⌥V 提取变量 ⌘⌥F 提取字段 ⌘⌥C 提取常量 ⌘⌥P 提取参数 8、VCS/Local History（版本控制/本地历史记录） ⌘K 提交代码到版本控制器 ⌘T 从版本控制器更新代码 ⌥⇧C 查看最近的变更记录 ⌃C 快速弹出版本控制器操作面板 9、Live Templates（动态代码模板） ⌘⌥J 弹出模板选择窗口，将选定的代码使用动态模板包住 ⌘J 插入自定义动态代码模板 General（通用） ⌘1…⌘9 打开相应编号的工具窗口 ⌘S 保存所有 ⌘⌥Y 同步、刷新 ⌃⌘F 切换全屏模式 ⌘⇧F12 切换最大化编辑器 ⌥⇧F 添加到收藏夹 ⌥⇧I 检查当前文件与当前的配置文件 `§⌃, ⌃“ 快速切换当前的scheme（切换主题、代码样式等） ⌘, 打开IDEA系统设置 ⌘; 打开项目结构对话框 ⇧⌘A 查找动作（可设置相关选项） ⌃⇥ 编辑窗口标签和工具窗口之间切换（如果在切换的过程加按上delete，则是关闭对应选中的窗口） 10、Other（一些官方文档上没有体现的快捷键） ⌘⇧8 竖编辑模式 导航 ⌘O 查找类文件 Ctrl + N ⌘⌥O 前往指定的变量 / 方法 Ctrl + Shift + Alt + N ⌃← / ⌃→ 左右切换打开的编辑tab页Alt←/Alt→ ⎋ 从工具窗口进入代码文件窗口 ESC ⌘L 在当前文件跳转到某一行的指定处 Ctrl + G ⌘E 显示最近打开的文件记录列表 Ctrl + E ⌘⌥←/ ⌘⌥→退回 / 前进到上一个操作的地方 Ctrl + Alt + ←/Ctrl + Alt + → ⌘⇧⌫ 跳转到最后一个编辑的地方 ⌃H 显示当前类的层次结构Ctrl + H ⌘⇧H 显示方法层次结构 ⌃⌥H 显示调用层次结构 F4 /⌘↓ 编辑/查看代码源 ⌘⌥U 显示类UML图 ⌃J 查看注释 11、编辑 ⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete） ⌥⌫ 删除到单词的开头 ⌘+ /⌘- 展开 / 折叠代码块 ⌘F1 在错误或警告处显示具体描述信息 ⌘⌥L 格式化代码 ⌃⌥O 优化import ⇧↩ 开始新的一行 ⌘⇧↩ 自动结束代码，行末自动添加分号 ⌃I 实现方法（实现接口中的方法） ⇧F6 重命名文件或者变量 ⌘N,⌃↩,⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString） ⌘P 显示方法的参数信息 12、查找 Double⇧ 查找任何东西 ⌘⇧F 全局查找（根据路径） ⌘F 文件内查找 ⌘G 查找模式下，向下查找 ⌘⇧G 查找模式下，向上查找 13、导航 ⌘⌥B 跳转到接口的实现 ⌘U 查看接口定义 ⌘⌥← /⌘⌥→ 退回 / 前进到上一个操作的地方 ⌘B /⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处 ⌃⇧B 跳转到类型声明处 ⌥ Space,⌘Y 快速打开光标所在方法、类的定义 ⌘O 查找类文件 ⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/ F12 返回到前一个工具窗口 ⎋ 从工具窗口进入代码文件窗口 ⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口 F3选中文件/文件夹/代码行，添加/取消书签 ⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签 ⌃0…⌃9 定位到对应数值的书签位置 ⌘F3 显示所有书签 ⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder) ⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法） 14、通用 ⌃⌘F 切换全屏模式 原文地址：https://linmi.cc/836 I am still finding the way to home.]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[记录一次hive堆内存溢出问题]]></title>
     <url>%2F2019%2F11%2F24%2F%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1hive%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前运行环境是这样的： 123hive version: 3.1.0centos version: 7.4hadoop version: 3.1.4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认tez引擎 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此表数据量： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原来设置的参数如下： 1234567set hive.merge.mapfiles=true;set hive.merge.mapredfiles=true;set hive.merge.smallfiles.avgsize=60000000;set hive.auto.convert.join.noconditionaltask.size=10000000;set hive.exec.compress.intermediate=true;set hive.intermediate.compression.codec=org.apache.hadoop.io.compress.snappycodec;set hive.intermediate.compression.type=block; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行时 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行结果出现如下错误： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分析： 此表数据量很大； 运行时500个reducer中每个reducer所承载的数据量很大； &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨天此任务运行成功，去hdfs看下结果数据文件情况：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发现结果文件只有5个，而且每个文件34M，可想而知1个reducer当时拉取了大量的数据做聚合，这是导致reducer内存溢出的原因，于是设置reducer个数： 1set mapred.reduce.tasks=1000; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加参数后运行时： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加参数后运行结果文件如下： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决。 A man is not old until his regrets take place of his dreams.]]></content>
@@ -1452,6 +1457,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1461,17 +1477,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1587,17 +1592,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1606,6 +1600,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

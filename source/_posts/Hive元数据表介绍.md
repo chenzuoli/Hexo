@@ -23,8 +23,9 @@ VERSION   -- 查询版本信息
 ![version](Hive元数据表介绍/version.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表比较简单，但很重要。
+
 VER_ID | SCHEMA_VERSION | VERSION_COMMENT
-:-: | :-: | :-: |
+:-: | :-: | :-: 
 ID主键 | Hive版本 | 版本说明
 1 | 2.3.0 | Set by MetaStore
 
@@ -37,6 +38,7 @@ ID主键 | Hive版本 | 版本说明
 DBS　　　　 -- 存储Hive中所有数据库的基本信息
 ```
 ![dbs](Hive元数据表介绍/dbs.png)
+
 元数据表字段|说明|示例数据
 :-:|:-:|:-:|
 <b>DB_ID</b>|数据库ID|1
@@ -52,6 +54,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 ```
 ![dbs_param](Hive元数据表介绍/db_param.png)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH DBPROPERTIES (property_name=property_value, …)指定的参数。
+
 元数据表字段|说明|示例数据
 :-:|:-:|:-:|
 <b>DB_ID</b>|数据库ID	|2
@@ -65,6 +68,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 1、TBLS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表中存储Hive表、视图、索引表的基本信息。
+
 元数据表字段	|说明|	示例数据
 :-:|:-:|:-:|
 <b>TBL_ID</b>|	表ID|	1
@@ -81,6 +85,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 2、TABLE_PARAMS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的属性信息。
+
 元数据表字段|	说明|	示例数据
 :-:|:-:|:-:|
 <b>TBL_ID</b>	|表ID|	1
@@ -89,6 +94,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 3、TBL_PRIVS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的授权信息
+
 元数据表字段|	说明|	示例数据
 :-:|:-:|:-:|
 <b>TBL_GRANT_ID</b>|	授权ID|	1
@@ -108,6 +114,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 ## 1、SDS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表保存文件存储的基本信息，如INPUT_FORMAT、OUTPUT_FORMAT、是否压缩等。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TBLS表中的SD_ID与该表关联，可以获取Hive表的存储信息。
+
 元数据表字段|	说明	|示例数据
 :-:|:-:|:-:|
 <b>SD_ID</b>|	存储信息ID|	1
@@ -123,6 +130,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 ## 2、SD_PARAMS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储Hive存储的属性信息，在创建表时候使用
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)指定。
+
 元数据表字段|说明 	| 示例数据
 :-:|:-:|:-:|
 <b>SD_ID</b>|	存储配置ID |	1 
@@ -131,6 +139,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 3、SERDES
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化使用的类信息
+
 元数据表字段|	说明|	示例数据
 :-:|:-:|:-:|
 <b>SERDE_ID</b>	|序列化类配置ID	|1
@@ -139,6 +148,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 4、SERDE_PARAMS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化的一些属性、格式信息,比如：行、列分隔符
+
 元数据表字段|	说明|	示例数据
 :-:|:-:|:-:|
 <b>SERDE_ID</b>	|序列化类配置ID	|1
@@ -150,6 +160,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 1、COLUMNS_V2
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表对应的字段信息。
+
 元数据表字段|	说明	|示例数据
 :-:|:-:|:-:|
 <b>CD_ID</b>	|字段信息ID|	1
@@ -163,6 +174,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 1、PARTITIONS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表分区的基本信息。
+
 元数据表字段|	说明	|示例数据
 :-:|:-:|:-:|
 <b>PART_ID</b>	|分区ID|	1
@@ -174,6 +186,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 2、PARTITION_KEYS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的字段信息。
+
 元数据表字段	|说明	|示例数据
 :-:|:-:|:-:|
 <b>TBL_ID</b>	|表ID	|2
@@ -184,6 +197,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 3、PARTITION_KEY_VALS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区字段值。
+
 元数据表字段|	说明	|示例数据
 :-:|:-:|:-:|
 <b>PART_ID</b>	|分区ID|	2
@@ -192,6 +206,7 @@ DATABASE_PARAMS　　--该表存储数据库的相关参数，在CREATE DATABASE
 
 ## 4、PARTITION_PARAMS
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的属性信息。
+
 元数据表字段|	说明	|示例数据
 :-:|:-:|:-:|
 <b>PART_ID</b>	|分区ID	|2
@@ -247,6 +262,10 @@ sds
 columns_v2
     cd_id
     column_name
+partitions
+    part_name
+    sd_id
+    tbl_id
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表字段：
 ```
@@ -271,6 +290,16 @@ where dbs.name = ?
     and dbs.db_id = tbls.db_id
     and tbls.sd_id = sds.sd_id
 ```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表分区：
+select
+    dbs.name,
+    tbls.tbl_name,
+    part.part_name
+from dbs, tbls, partitions as part
+where dbs.name = ?
+    and tbls.tbl_name = ?
+    and dbs.db_id = tbls.db_id
+    and tbls.tbl_id = part.tbl_id
 
 - - -
 <b>Where there is a will, there is a way.</b>

@@ -16,7 +16,7 @@
   <entry>
     <title><![CDATA[Hive元数据表介绍]]></title>
     <url>%2F2019%2F12%2F01%2FHive%E5%85%83%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%BB%8B%E7%BB%8D%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive的元数据信息通常存储在关系型数据库中，常用MySQL数据库作为元数据库管理。上一篇hive的安装也是将元数据信息存放在MySQL数据库中。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive的元数据信息在MySQL数据中有57张表 一、存储Hive版本的元数据表（VERSION）1VERSION -- 查询版本信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表比较简单，但很重要。VER_ID | SCHEMA_VERSION | VERSION_COMMENT:-: | :-: | :-: |ID主键 | Hive版本 | 版本说明1 | 2.3.0 | Set by MetaStore &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果该表出现问题，根本进入不了Hive-Cli。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如该表不存在，当启动Hive-Cli时候，就会报错”Table ‘hive.version’ doesn’t exist”。 二、Hive数据库相关的元数据表（DBS、DATABASE_PARAMS）1、DBS1DBS -- 存储Hive中所有数据库的基本信息 元数据表字段|说明|示例数据:-:|:-:|:-:|DB_ID|数据库ID|1DESC|数据库描述|测试库DB_LOCATION_URI|数据库HDFS路径|hdfs://mycluster/user/hive/warehouseNAME|数据库名OWNER_NAME|数据库所有者用户名OWNER_TYPE|所有者角色|USER 2、DATABASE_PARAMS1DATABASE_PARAMS --该表存储数据库的相关参数，在CREATE DATABASE时候用 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH DBPROPERTIES (property_name=property_value, …)指定的参数。元数据表字段|说明|示例数据:-:|:-:|:-:|DB_ID|数据库ID |2PARAM_KEY |参数名 |createdbyPARAM_VALUE |参数值 |lxw1234 注意： DBS和DATABASE_PARAMS这两张表通过DB_ID字段关联。 三、Hive表和视图相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要有TBLS、TABLE_PARAMS、TBL_PRIVS，这三张表通过TBL_ID关联。 1、TBLS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表中存储Hive表、视图、索引表的基本信息。元数据表字段 |说明| 示例数据:-:|:-:|:-:|TBL_ID| 表ID| 1CREATE_TIME| 创建时间| 1436317071DB_ID |数据库ID| 2，对应DBS中的DB_IDLAST_ACCESS_TIME| 上次访问时间| 1436317071OWNER |所有者 |adminRETENTION |保留字段 |0SD_ID |序列化配置信息 |86，对应SDS表中的SD_IDTBL_NAME| 表名| studentTBL_TYPE| 表类型 |MANAGED_TABLE、EXTERNAL_TABLE、INDEX_TABLE、VIRTUAL_VIEWVIEW_EXPANDED_TEXT |视图的详细HQL语句 |select lxw1234.pt, lxw1234.pcid from liuxiaowen.lxw1234VIEW_ORIGINAL_TEXT |视图的原始HQL语句 |select * from lxw1234 2、TABLE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的属性信息。元数据表字段| 说明| 示例数据:-:|:-:|:-:|TBL_ID |表ID| 1PARAM_KEY |属性名 |totalSize、numRows、EXTERNALPARAM_VALUE |属性值| 970107336、21231028、TRUE 3、TBL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的授权信息元数据表字段| 说明| 示例数据:-:|:-:|:-:|TBL_GRANT_ID| 授权ID| 1CREATE_TIME |授权时间 |1436320455GRANT_OPTION| |0GRANTOR |授权执行用户 |liuxiaowenGRANTOR_TYPE |授权者类型 |USERPRINCIPAL_NAME |被授权用户 |usernamePRINCIPAL_TYPE |被授权用户类型 |USERTBL_PRIV| 权限| Select、AlterTBL_ID |表ID |22，对应TBLS表中的TBL_ID 四、Hive文件存储信息相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及SDS、SD_PARAMS、SERDES、SERDE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于HDFS支持的文件格式很多，而建Hive表时候也可以指定各种文件格式，Hive在将HQL解析成MapReduce时候，需要知道去哪里，使用哪种格式去读写HDFS文件，而这些信息就保存在这几张表中。 1、SDS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表保存文件存储的基本信息，如INPUT_FORMAT、OUTPUT_FORMAT、是否压缩等。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TBLS表中的SD_ID与该表关联，可以获取Hive表的存储信息。元数据表字段| 说明 |示例数据:-:|:-:|:-:|SD_ID| 存储信息ID| 1CD_ID |字段信息ID |21，对应CDS表INPUT_FORMAT|文件输入格式 |org.apache.hadoop.mapred.TextInputFormatIS_COMPRESSED |是否压缩 |0IS_STOREDASSUBDIRECTORIES| 是否以子目录存储| 0LOCATION |HDFS路径 |hdfs://namenode/hivedata/warehouse/ut.db/t_lxwNUM_BUCKETS |分桶数量 |5OUTPUT_FORMAT |文件输出格式 |org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormatSERDE_ID| 序列化类ID| 3，对应SERDES表 2、SD_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储Hive存储的属性信息，在创建表时候使用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)指定。元数据表字段|说明 | 示例数据:-:|:-:|:-:|SD_ID| 存储配置ID | 1PARAM_KEY |存储属性名 |PARAM_VALUE |存储属性值 | 3、SERDES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化使用的类信息元数据表字段| 说明| 示例数据:-:|:-:|:-:|SERDE_ID |序列化类配置ID |1NAME |序列化类别名 |SLIB |序列化类 |org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe 4、SERDE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化的一些属性、格式信息,比如：行、列分隔符元数据表字段| 说明| 示例数据:-:|:-:|:-:|SERDE_ID |序列化类配置ID |1PARAM_KEY |属性名 |field.delimPARAM_VALUE |属性值 |, 五、Hive表字段相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及COLUMNS_V2 1、COLUMNS_V2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表对应的字段信息。元数据表字段| 说明 |示例数据:-:|:-:|:-:|CD_ID |字段信息ID| 1COMMENT |字段注释|COLUMN_NAME |字段名 |ptTYPE_NAME |字段类型 |stringINTEGER_IDX| 字段顺序| 2 六、Hive表分区相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及PARTITIONS、PARTITION_KEYS、PARTITION_KEY_VALS、PARTITION_PARAMS 1、PARTITIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表分区的基本信息。元数据表字段| 说明 |示例数据:-:|:-:|:-:|PART_ID |分区ID| 1CREATE_TIME |分区创建时间|LAST_ACCESS_TIME| 最后一次访问时间|PART_NAME| 分区名| pt=2015-06-12SD_ID |分区存储ID |21TBL_ID |表ID |2 2、PARTITION_KEYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的字段信息。元数据表字段 |说明 |示例数据:-:|:-:|:-:|TBL_ID |表ID |2PKEY_COMMENT |分区字段说明 |PKEY_NAME |分区字段名 |ptPKEY_TYPE |分区字段类型 |stringINTEGER_IDX |分区字段顺序 |1 3、PARTITION_KEY_VALS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区字段值。元数据表字段| 说明 |示例数据:-:|:-:|:-:|PART_ID |分区ID| 2PART_KEY_VAL| 分区字段值| 2015-06-12INTEGER_IDX |分区字段值顺序 |0 4、PARTITION_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的属性信息。元数据表字段| 说明 |示例数据:-:|:-:|:-:|PART_ID |分区ID |2PARAM_KEY |分区属性名| numFiles、numRowsPARAM_VALUE |分区属性值| 15、502195 七、其他不常用的元数据表DB_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据库权限信息表。通过GRANT语句对数据库授权后，将会在这里存储。 IDXS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引表，存储Hive索引相关的元数据 INDEX_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引相关的属性信息。 TAB_COL_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的统计信息。使用ANALYZE语句对表字段分析后记录在这里。 TBL_COL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的授权信息 PART_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区的授权信息 PART_COL_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的统计信息。 PART_COL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的权限信息。 FUNCS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册的函数信息 FUNC_RU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册函数的资源信息 八、从元数据表中获取表结构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看看主要信息概览： 123456789101112131415dbs db_id nametbls tbl_id db_id sd_id tbl_namesds sd_id cd_id locationcolumns_v2 cd_id column_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表字段： 12345678select COLUMNS_V2.column_namefrom dbs, tbls, sds, columns_v2where dbs.name = ? and tbls.tbl_name = ? and dbs.db_id = tbls.db_id and tbls.sd_id = sds.sd_id and sds.cd_id = columns_v2.cd_id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表location： 123456789select dbs.name, tbls.tbl_name, sds.locationfrom sds, tbls, dbswhere dbs.name = ? and tbls.tbl_name = ? and dbs.db_id = tbls.db_id and tbls.sd_id = sds.sd_id Where there is a will, there is a way.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive的元数据信息通常存储在关系型数据库中，常用MySQL数据库作为元数据库管理。上一篇hive的安装也是将元数据信息存放在MySQL数据库中。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hive的元数据信息在MySQL数据中有57张表 一、存储Hive版本的元数据表（VERSION）1VERSION -- 查询版本信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表比较简单，但很重要。 VER_ID SCHEMA_VERSION VERSION_COMMENT ID主键 Hive版本 版本说明 1 2.3.0 Set by MetaStore &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果该表出现问题，根本进入不了Hive-Cli。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如该表不存在，当启动Hive-Cli时候，就会报错”Table ‘hive.version’ doesn’t exist”。 二、Hive数据库相关的元数据表（DBS、DATABASE_PARAMS）1、DBS1DBS -- 存储Hive中所有数据库的基本信息 元数据表字段 说明 示例数据 DB_ID 数据库ID 1 DESC 数据库描述 测试库 DB_LOCATION_URI 数据库HDFS路径 hdfs://mycluster/user/hive/warehouse NAME 数据库名 OWNER_NAME 数据库所有者用户名 OWNER_TYPE 所有者角色 USER 2、DATABASE_PARAMS1DATABASE_PARAMS --该表存储数据库的相关参数，在CREATE DATABASE时候用 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH DBPROPERTIES (property_name=property_value, …)指定的参数。 元数据表字段 说明 示例数据 DB_ID 数据库ID 2 PARAM_KEY 参数名 createdby PARAM_VALUE 参数值 lxw1234 - 注意： - - DBS和DATABASE_PARAMS这两张表通过DB_ID字段关联。 三、Hive表和视图相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要有TBLS、TABLE_PARAMS、TBL_PRIVS，这三张表通过TBL_ID关联。 1、TBLS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表中存储Hive表、视图、索引表的基本信息。 元数据表字段 说明 示例数据 TBL_ID 表ID 1 CREATE_TIME 创建时间 1436317071 DB_ID 数据库ID 2，对应DBS中的DB_ID LAST_ACCESS_TIME 上次访问时间 1436317071 OWNER 所有者 admin RETENTION 保留字段 0 SD_ID 序列化配置信息 86，对应SDS表中的SD_ID TBL_NAME 表名 student TBL_TYPE 表类型 MANAGED_TABLE、EXTERNAL_TABLE、INDEX_TABLE、VIRTUAL_VIEW VIEW_EXPANDED_TEXT 视图的详细HQL语句 select lxw1234.pt, lxw1234.pcid from liuxiaowen.lxw1234 VIEW_ORIGINAL_TEXT 视图的原始HQL语句 select * from lxw1234 2、TABLE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的属性信息。 元数据表字段 说明 示例数据 TBL_ID 表ID 1 PARAM_KEY 属性名 totalSize、numRows、EXTERNAL PARAM_VALUE 属性值 970107336、21231028、TRUE 3、TBL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表/视图的授权信息 元数据表字段 说明 示例数据 TBL_GRANT_ID 授权ID 1 CREATE_TIME 授权时间 1436320455 GRANT_OPTION 0 GRANTOR 授权执行用户 liuxiaowen GRANTOR_TYPE 授权者类型 USER PRINCIPAL_NAME 被授权用户 username PRINCIPAL_TYPE 被授权用户类型 USER TBL_PRIV 权限 Select、Alter TBL_ID 表ID 22，对应TBLS表中的TBL_ID 四、Hive文件存储信息相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及SDS、SD_PARAMS、SERDES、SERDE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于HDFS支持的文件格式很多，而建Hive表时候也可以指定各种文件格式，Hive在将HQL解析成MapReduce时候，需要知道去哪里，使用哪种格式去读写HDFS文件，而这些信息就保存在这几张表中。 1、SDS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表保存文件存储的基本信息，如INPUT_FORMAT、OUTPUT_FORMAT、是否压缩等。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TBLS表中的SD_ID与该表关联，可以获取Hive表的存储信息。 元数据表字段 说明 示例数据 SD_ID 存储信息ID 1 CD_ID 字段信息ID 21，对应CDS表 INPUT_FORMAT 文件输入格式 org.apache.hadoop.mapred.TextInputFormat IS_COMPRESSED 是否压缩 0 IS_STOREDASSUBDIRECTORIES 是否以子目录存储 0 LOCATION HDFS路径 hdfs://namenode/hivedata/warehouse/ut.db/t_lxw NUM_BUCKETS 分桶数量 5 OUTPUT_FORMAT 文件输出格式 org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat SERDE_ID 序列化类ID 3，对应SERDES表 2、SD_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储Hive存储的属性信息，在创建表时候使用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)指定。 元数据表字段 说明 示例数据 SD_ID 存储配置ID 1 PARAM_KEY 存储属性名 PARAM_VALUE 存储属性值 3、SERDES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化使用的类信息 元数据表字段 说明 示例数据 SERDE_ID 序列化类配置ID 1 NAME 序列化类别名 SLIB 序列化类 org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe 4、SERDE_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储序列化的一些属性、格式信息,比如：行、列分隔符 元数据表字段 说明 示例数据 SERDE_ID 序列化类配置ID 1 PARAM_KEY 属性名 field.delim PARAM_VALUE 属性值 , 五、Hive表字段相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及COLUMNS_V2 1、COLUMNS_V2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表对应的字段信息。 元数据表字段 说明 示例数据 CD_ID 字段信息ID 1 COMMENT 字段注释 COLUMN_NAME 字段名 pt TYPE_NAME 字段类型 string INTEGER_IDX 字段顺序 2 六、Hive表分区相关的元数据表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要涉及PARTITIONS、PARTITION_KEYS、PARTITION_KEY_VALS、PARTITION_PARAMS 1、PARTITIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储表分区的基本信息。 元数据表字段 说明 示例数据 PART_ID 分区ID 1 CREATE_TIME 分区创建时间 LAST_ACCESS_TIME 最后一次访问时间 PART_NAME 分区名 pt=2015-06-12 SD_ID 分区存储ID 21 TBL_ID 表ID 2 2、PARTITION_KEYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的字段信息。 元数据表字段 说明 示例数据 TBL_ID 表ID 2 PKEY_COMMENT 分区字段说明 PKEY_NAME 分区字段名 pt PKEY_TYPE 分区字段类型 string INTEGER_IDX 分区字段顺序 1 3、PARTITION_KEY_VALS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区字段值。 元数据表字段 说明 示例数据 PART_ID 分区ID 2 PART_KEY_VAL 分区字段值 2015-06-12 INTEGER_IDX 分区字段值顺序 0 4、PARTITION_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该表存储分区的属性信息。 元数据表字段 说明 示例数据 PART_ID 分区ID 2 PARAM_KEY 分区属性名 numFiles、numRows PARAM_VALUE 分区属性值 15、502195 七、其他不常用的元数据表DB_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据库权限信息表。通过GRANT语句对数据库授权后，将会在这里存储。 IDXS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引表，存储Hive索引相关的元数据 INDEX_PARAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索引相关的属性信息。 TAB_COL_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的统计信息。使用ANALYZE语句对表字段分析后记录在这里。 TBL_COL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表字段的授权信息 PART_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区的授权信息 PART_COL_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的统计信息。 PART_COL_PRIVS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区字段的权限信息。 FUNCS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册的函数信息 FUNC_RU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户注册函数的资源信息 八、从元数据表中获取表结构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看看主要信息概览： 12345678910111213141516171819dbs db_id nametbls tbl_id db_id sd_id tbl_namesds sd_id cd_id locationcolumns_v2 cd_id column_namepartitions part_name sd_id tbl_id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表字段： 12345678select COLUMNS_V2.column_namefrom dbs, tbls, sds, columns_v2where dbs.name = ? and tbls.tbl_name = ? and dbs.db_id = tbls.db_id and tbls.sd_id = sds.sd_id and sds.cd_id = columns_v2.cd_id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表location： 123456789select dbs.name, tbls.tbl_name, sds.locationfrom sds, tbls, dbswhere dbs.name = ? and tbls.tbl_name = ? and dbs.db_id = tbls.db_id and tbls.sd_id = sds.sd_id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取表分区：select dbs.name, tbls.tbl_name, part.part_namefrom dbs, tbls, partitions as partwhere dbs.name = ? and tbls.tbl_name = ? and dbs.db_id = tbls.db_id and tbls.tbl_id = part.tbl_id Where there is a will, there is a way.]]></content>
       <categories>
         <category>数据仓库</category>
       </categories>
@@ -28,7 +28,7 @@
   <entry>
     <title><![CDATA[Mac下Idea快捷键大全]]></title>
     <url>%2F2019%2F12%2F01%2FMac%E4%B8%8BIdea%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这篇文章中大部分是IDEA统一的快捷键，先来看看Mac的一些快捷键及图表解释吧。 1、Mac键盘符号和修饰键说明 ⌘ Command ⇧ Shift ⌥ Option ⌃ Control ↩︎ Return/Enter ⌫ Delete ⌦ 向前删除键（Fn+Delete） ↑ 上箭头 ↓ 下箭头 ← 左箭头 → 右箭头 ⇞ Page Up（Fn+↑） ⇟ Page Down（Fn+↓） Home Fn + ← End Fn + → ⇥ 右制表符（Tab键） ⇤ 左制表符（Shift+Tab） ⎋ Escape (Esc) 2、编辑操作| 快捷键||:-:|:-:|移动光标至行首| CTRL+A第一次按时，移动光标至行首；再次按时，回到原有位置| CTRL+X移动光标至行尾 |CTRL+E光标向左移动一个字符 |CTRL+B光标向左移动一个单词 |ESC+B光标向右移动一个字符 |CTRL+F光标向右移动一个单词 |ESC+F删除光标前一个字符，即退格（Backspace） |CTRL+H删除光标后一个字符，（相当于Delete）无任何字符时相当于exit |CTRL+D删除光标前所有字符 |CTRL+U删除光标后所有字符；纵向制表符，在脚本中下移一行，用/x0b表示 |CTRL+K删除光标前一个单词（根据空格识别单词分隔） |CTRL+W粘贴之前（CTRL+U/K/W）删除的内容 |CTRL+Y清屏，相当于指令“clear” |CTRL+L查找并自动匹配之前使用过的指令 |CTRL+R回车，相当于Enter |CTRL+M跳到新行，等同于回车 |CTRL+O新起一行，命令行下等同于回车 |CTRL+J横行制表符，在命令行中补齐指令，效果和Tab键相同 |CTRL+I补齐指令 |TAB上一条指令，等同于向上箭 |CTRL+P下一条指令，等同于向下箭 |CTRL+N使下一个特殊字符可以插入在当前位置,如CTRL-V 可以在当前位置插入一个字符,其ASCII是9, 否则一般情况下按结果是命令补齐 |CTRL+V中断操作 |CTRL+C冻结终端操作（暂停脚本） |CTRL+S恢复冻结（继续执行脚本） |CTRL+Q使下一个单词首字母大写, 同时光标前进一个单词,如光标停留在单词的某个字母上,如word中的o字母上, 则o字母变大写. 而不是w |ESC+C使下一个单词所有字母变大写, 同时光标前进一个单词；如光标在o字母上, 则ord变大写, w不变. |ESC+U使下一个单词所有字母变小写, 同时光标前进一个单词；如光标在o字母上, 则ord变小写, w不变. |ESC+I将光标处的字符和光标前一个字符替换位置 |CTRL+T重复运行最近一条以“word”开头的指令，如!ls 或 !l |!word调用上一条指令的最后一个参数作为当前指令对象,如，假设上一条指令为： ls abc.txt bbc.txt 那么， vi !$ 相当于： vi bbc.txt |!$调用执行指定编号的历史记录指令,如!2, !11 |!number I am still finding the way to home.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这篇文章中大部分是IDEA统一的快捷键，先来看看Mac的一些快捷键及图表解释吧。 1、Mac键盘符号和修饰键说明 ⌘ Command ⇧ Shift ⌥ Option ⌃ Control ↩︎ Return/Enter ⌫ Delete ⌦ 向前删除键（Fn+Delete） ↑ 上箭头 ↓ 下箭头 ← 左箭头 → 右箭头 ⇞ Page Up（Fn+↑） ⇟ Page Down（Fn+↓） Home Fn + ← End Fn + → ⇥ 右制表符（Tab键） ⇤ 左制表符（Shift+Tab） ⎋ Escape (Esc) 2、编辑 操作 快捷键 移动光标至行首 CTRL+A 第一次按时，移动光标至行首；再次按时，回到原有位置 CTRL+X 移动光标至行尾 CTRL+E 光标向左移动一个字符 CTRL+B 光标向左移动一个单词 ESC+B 光标向右移动一个字符 CTRL+F 光标向右移动一个单词 ESC+F 删除光标前一个字符，即退格（Backspace） CTRL+H 删除光标后一个字符，（相当于Delete）无任何字符时相当于exit CTRL+D 删除光标前所有字符 CTRL+U 删除光标后所有字符；纵向制表符，在脚本中下移一行，用/x0b表示 CTRL+K 删除光标前一个单词（根据空格识别单词分隔） CTRL+W 粘贴之前（CTRL+U/K/W）删除的内容 CTRL+Y 清屏，相当于指令“clear” CTRL+L 查找并自动匹配之前使用过的指令 CTRL+R 回车，相当于Enter CTRL+M 跳到新行，等同于回车 CTRL+O 新起一行，命令行下等同于回车 CTRL+J 横行制表符，在命令行中补齐指令，效果和Tab键相同 CTRL+I 补齐指令 TAB 上一条指令，等同于向上箭 CTRL+P 下一条指令，等同于向下箭 CTRL+N 使下一个特殊字符可以插入在当前位置,如CTRL-V 可以在当前位置插入一个字符,其ASCII是9, 否则一般情况下按结果是命令补齐 CTRL+V 中断操作 CTRL+C 冻结终端操作（暂停脚本） CTRL+S 恢复冻结（继续执行脚本） CTRL+Q 使下一个单词首字母大写, 同时光标前进一个单词,如光标停留在单词的某个字母上,如word中的o字母上, 则o字母变大写. 而不是w ESC+C 使下一个单词所有字母变大写, 同时光标前进一个单词；如光标在o字母上, 则ord变大写, w不变. ESC+U 使下一个单词所有字母变小写, 同时光标前进一个单词；如光标在o字母上, 则ord变小写, w不变. ESC+I 将光标处的字符和光标前一个字符替换位置 CTRL+T 重复运行最近一条以“word”开头的指令，如!ls 或 !l !word 调用上一条指令的最后一个参数作为当前指令对象,如，假设上一条指令为： ls abc.txt bbc.txt 那么， vi !$ 相当于： vi bbc.txt !$ 调用执行指定编号的历史记录指令,如!2, !11 !number I am still finding the way to home.]]></content>
       <categories>
         <category>电脑</category>
       </categories>
@@ -1488,17 +1488,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1508,6 +1497,17 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1623,17 +1623,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1642,6 +1631,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>
@@ -1899,6 +1899,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -1908,17 +1919,6 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

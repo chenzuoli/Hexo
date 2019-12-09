@@ -765,8 +765,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -837,9 +837,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -864,9 +864,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -877,8 +877,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -1658,17 +1658,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1677,6 +1666,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

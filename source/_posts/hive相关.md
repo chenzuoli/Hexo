@@ -5,7 +5,7 @@ tags: hive
 categories: Hive
 ---
 
-下面的内容包含hive的简单操作，增删改查，权限，一些异常的解决方案。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面的内容包含hive的简单操作，增删改查，权限，一些异常的解决方案。
 
 <!-- more -->
 
@@ -153,3 +153,12 @@ set mapred.min.split.size.per.node=400000000;
 set mapred.min.split.size.per.rack=400000000;
 set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
 ```
+
+# 28.数据分析
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看该表的统计信息（分区数、文件数、条数、数据量大小），包括表描述、最后一次更新时间等：
+```
+desc formatted table_name;
+```
+
+- - -
+<b>You should be more careful about the detail, before you push the result, check, check, check.</b>

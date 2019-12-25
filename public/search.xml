@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据质量稽核系统]]></title>
+    <url>%2F2019%2F12%2F25%2F%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E7%A8%BD%E6%A0%B8%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据仓库中数据质量稽核是我们建设仓库中的重要部分，及时监控，及时发现问题，解决问题，尽量将问题范围缩小到最小。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个简单的数据质量稽核自动化工具，通过配置稽核sql，自动化发送报警。实现常见的稽核规则的检查,例：数据的一致性、完整性、及时性检查，指标的历史波动检查、关联检查、指标平衡检查、其他根据实际业务制定的业务规则检查。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;监控规则： 监控周期：每10分钟； 监控内容：a. 24小时内有数据；b. 【累计指标】本批次大于等于上一批次值；c. 字段值是否重复； Where there is a problem, there is a way.]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>数据质量</tag>
+        <tag>稽核</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OLAP的基本分析操作]]></title>
     <url>%2F2019%2F12%2F23%2FOLAP%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%88%86%E6%9E%90%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OLAP作为数据仓库的自然扩展功能，是数据分析的重要组成部分，下面来看下基于数据仓库的OLAP基本分析操作。 切片&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在多维数据集的某一维上选定一个维成员的操作称为切片，例如，在多维数组（维1，维2，维3，…，维n，度量列表）中选定一维，即维i，并取其中一维成员v1，所的的多维数组的子集（维1，维2，维3，…，v1，维i+1，…，维n，度量列表）称为v1上的一个切片； 切块&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在多维数据集（维1，维2，维3，…，维n，度量列表）中通过对2个或多个维执行选择得到子集的操作称为切块； 旋转&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;又称为转轴，是一种视图操作，即改变一个报告或页面显示的维方向，可以得到不同视角的数据，即转动数据的视角以提供数据的替代表示，例如旋转可能包含交换行和列，即维的位置互换，就像是二维表的行列转换，或是把某一个行维移动到列维中取，或把页面显示中的一个维和页面外的维进行交换。 上卷&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上卷操作通过维的概念分层向上攀升或者通过维规约（即将4个季度的值加到一起为一年的结果）在数据立方体上进行聚集。如在产品维度上，由产品向小类上卷，可得到小类的聚集数据，再由小类向大类上卷，可得到大类层次的聚集数据。 下钻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下钻是上卷的逆操作，它由不太详细的数据到更详细的数据。使用户在多层数据中能通过导航信息而获得更多的细节数据。下钻可以沿维的概念分层向下或引入新的维或维的层次来实现。 You must always do some investment in yourself anytime.]]></content>
@@ -1379,7 +1391,7 @@
   <entry>
     <title><![CDATA[hive相关]]></title>
     <url>%2F2019%2F07%2F21%2Fhive%E7%9B%B8%E5%85%B3%2F</url>
-    <content type="text"><![CDATA[下面的内容包含hive的简单操作，增删改查，权限，一些异常的解决方案。 1. 在linux命令行端执行hql语句1hive -e &apos;show table tableName&apos; 2. 在linux命令行端执行hql文件1hive -f fileName 3. 按照分区查看hive表中的数据量1hive -e &apos;select dt, count(1) from test_hive.wps_android_uuid_userid group by dt&apos; 4. 添加分区1alter table test_hive.wps_android_uuid_userid add if not exists partition (dt=&apos;2018-08-04&apos;) 5. 赋表权限1grant select on table usersdb.account_src to user w_wangzhe 6. 赋库权限12345GRANT ALL ON DATABASE DEFAULT TO USER fatkun;GRANT ALL ON TABLE test TO GROUP kpi;REVOKE ALL ON TABLE test FROM GROUP kpi;GRANT ALL TO USER fatkun;REVOKE ALL FROM fatkun; 7. 重命名1alter table data_platform.td_request_log rename to data_platform.td_request_log_old 8. Errorwhile processing statement: FAILED: Execution Error, return code 2 from org.apache.hadoop.hive.ql.exec.mr.MapredLocalTask 1set hive.auto.convert.join = false; 9.执行sql文件1hive -d etldate=&apos;2018-08-16&apos; -f loan_periods.hql 10.add jar1add jar /usr/hdp/current/hive-client/lib/commons-httpclient-3.0.1.jar; 11.add column1hive -e &quot;alter table report.user_detail_20180614 add columns(identifier_type string comment &apos;注册类型&apos;,channel string comment &apos;注册渠道&apos;)&quot; 12.load 文件到hive表本地文件： 1hive -e &quot;load data local inpath &apos;/data/code/app_list_0814.csv&apos; into table dim.dim_app_list&quot; hdfs文件： 1hive -e &quot;load data inpath &apos;/data/code/app_list_0814.csv&apos; into table dim.dim_app_list&quot; 13.列13.1修改列位置alter table factor.mf_bus_finc_app change column submit_op_no submit_op_no string after company_id 13.2增加列hive -e “alter table data_platform_new.face_request_log add columns(channel string)” 14.修改权限hive -e “grant select on table stg.risk_apply_users to user userName” 15.自定义函数12create function dateformat as &apos;com.kso.dw.hive.udf.DateFormat&apos; using jar &apos;hdfs://hdfs-ha/hiveudf/dw_hive_udf.jar&apos;;mysql -h10.0.1.160 -uadmin -pmd854NHmv3bF0kl9 hive4fac31f3 -e &apos;select name from dbs&apos; | xargs -n 1 -i echo &quot;create function &#123;&#125;.mymd5_kc as &apos;com.kso.dw.hive.udf.MyMd5_KeyCenter&apos; using jar &apos;hdfs://hdfs-ha/hiveudf/dw_hive_udf.jar&apos;;&quot; 16.全局替换1sed -i &apos;s/CREATE TABLE/CREATE EXTERNAL TABLE/g&apos; *.hql 17.not a file exceptionnot a file ks3://online-hadoop/ods/report/dt=2019-01-01/1 1set mapreduce.input.fileinputformat.input.dir.recursive=true; 18.exception1set hive.execution.engine=mr; 19. too many countersorg.apache.hadoop.mapreduce.counters.LimitExceededException: Too many counters: 121 max=120resolved:change the tez configuration 1tez.counters.max= 200 20.SHOW TRANSACTIONS12345ABORT TRANSACTIONS 4951;show locks;mysql:select * from hive_locks;select * from hive_locks where HL_TXNID &gt; 0; 21.acquiring locksFAILED: Error in acquiring locks: Lock acquisition for LockRequest(component:[LockComponent(type:EXCLUSIVE关闭事务： set hive.support.concurrency=false 22.事务表查询12345set hive.support.concurrency=true;set hive.exec.dynamic.partition.mode=nonstrict;set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;set hive.compactor.initiator.on=true;set hive.compactor.worker.threads=1; 23. 内部表转外部表1alter table default.test set TBLPROPERTIES(&apos;EXTERNAL&apos;=&apos;true&apos;); 24. 外部表转内部表1alter table tableA set TBLPROPERTIES(&apos;EXTERNAL&apos;=&apos;false&apos;) 25.修改元数据路径元数据库：123UPDATE dbs SET DB_LOCATION_URI=REPLACE(DB_LOCATION_URI,&apos;hdfs-ha&apos;,&apos;bjCluster&apos;);``` 元数据表： UPDATE sds SET LOCATION=REPLACE(LOCATION,’ks-jinrong-dw’,’online-hadoop’);UPDATE sds SET LOCATION=REPLACE(LOCATION,’hdfs-ha’,’bjCluster’); 1自定义函数： UPDATE func_ru SET RESOURCE_URI=REPLACE(RESOURCE_URI,’hdfs-ha’,’bjCluster’); 123# 26.set role admin# 27.控制map个数 set mapred.max.split.size=400000000;set mapred.min.split.size.per.node=400000000;set mapred.min.split.size.per.rack=400000000;set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面的内容包含hive的简单操作，增删改查，权限，一些异常的解决方案。 1. 在linux命令行端执行hql语句1hive -e &apos;show table tableName&apos; 2. 在linux命令行端执行hql文件1hive -f fileName 3. 按照分区查看hive表中的数据量1hive -e &apos;select dt, count(1) from test_hive.wps_android_uuid_userid group by dt&apos; 4. 添加分区1alter table test_hive.wps_android_uuid_userid add if not exists partition (dt=&apos;2018-08-04&apos;) 5. 赋表权限1grant select on table usersdb.account_src to user w_wangzhe 6. 赋库权限12345GRANT ALL ON DATABASE DEFAULT TO USER fatkun;GRANT ALL ON TABLE test TO GROUP kpi;REVOKE ALL ON TABLE test FROM GROUP kpi;GRANT ALL TO USER fatkun;REVOKE ALL FROM fatkun; 7. 重命名1alter table data_platform.td_request_log rename to data_platform.td_request_log_old 8. Errorwhile processing statement: FAILED: Execution Error, return code 2 from org.apache.hadoop.hive.ql.exec.mr.MapredLocalTask 1set hive.auto.convert.join = false; 9.执行sql文件1hive -d etldate=&apos;2018-08-16&apos; -f loan_periods.hql 10.add jar1add jar /usr/hdp/current/hive-client/lib/commons-httpclient-3.0.1.jar; 11.add column1hive -e &quot;alter table report.user_detail_20180614 add columns(identifier_type string comment &apos;注册类型&apos;,channel string comment &apos;注册渠道&apos;)&quot; 12.load 文件到hive表本地文件： 1hive -e &quot;load data local inpath &apos;/data/code/app_list_0814.csv&apos; into table dim.dim_app_list&quot; hdfs文件： 1hive -e &quot;load data inpath &apos;/data/code/app_list_0814.csv&apos; into table dim.dim_app_list&quot; 13.列13.1修改列位置alter table factor.mf_bus_finc_app change column submit_op_no submit_op_no string after company_id 13.2增加列hive -e “alter table data_platform_new.face_request_log add columns(channel string)” 14.修改权限hive -e “grant select on table stg.risk_apply_users to user userName” 15.自定义函数12create function dateformat as &apos;com.kso.dw.hive.udf.DateFormat&apos; using jar &apos;hdfs://hdfs-ha/hiveudf/dw_hive_udf.jar&apos;;mysql -h10.0.1.160 -uadmin -pmd854NHmv3bF0kl9 hive4fac31f3 -e &apos;select name from dbs&apos; | xargs -n 1 -i echo &quot;create function &#123;&#125;.mymd5_kc as &apos;com.kso.dw.hive.udf.MyMd5_KeyCenter&apos; using jar &apos;hdfs://hdfs-ha/hiveudf/dw_hive_udf.jar&apos;;&quot; 16.全局替换1sed -i &apos;s/CREATE TABLE/CREATE EXTERNAL TABLE/g&apos; *.hql 17.not a file exceptionnot a file ks3://online-hadoop/ods/report/dt=2019-01-01/1 1set mapreduce.input.fileinputformat.input.dir.recursive=true; 18.exception1set hive.execution.engine=mr; 19. too many countersorg.apache.hadoop.mapreduce.counters.LimitExceededException: Too many counters: 121 max=120resolved:change the tez configuration 1tez.counters.max= 200 20.SHOW TRANSACTIONS12345ABORT TRANSACTIONS 4951;show locks;mysql:select * from hive_locks;select * from hive_locks where HL_TXNID &gt; 0; 21.acquiring locksFAILED: Error in acquiring locks: Lock acquisition for LockRequest(component:[LockComponent(type:EXCLUSIVE关闭事务： set hive.support.concurrency=false 22.事务表查询12345set hive.support.concurrency=true;set hive.exec.dynamic.partition.mode=nonstrict;set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;set hive.compactor.initiator.on=true;set hive.compactor.worker.threads=1; 23. 内部表转外部表1alter table default.test set TBLPROPERTIES(&apos;EXTERNAL&apos;=&apos;true&apos;); 24. 外部表转内部表1alter table tableA set TBLPROPERTIES(&apos;EXTERNAL&apos;=&apos;false&apos;) 25.修改元数据路径元数据库：123UPDATE dbs SET DB_LOCATION_URI=REPLACE(DB_LOCATION_URI,&apos;hdfs-ha&apos;,&apos;bjCluster&apos;);``` 元数据表： UPDATE sds SET LOCATION=REPLACE(LOCATION,’ks-jinrong-dw’,’online-hadoop’);UPDATE sds SET LOCATION=REPLACE(LOCATION,’hdfs-ha’,’bjCluster’); 1自定义函数： UPDATE func_ru SET RESOURCE_URI=REPLACE(RESOURCE_URI,’hdfs-ha’,’bjCluster’); 123# 26.set role admin# 27.控制map个数 set mapred.max.split.size=400000000;set mapred.min.split.size.per.node=400000000;set mapred.min.split.size.per.rack=400000000;set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; 123# 28.数据分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;查看该表的统计信息（分区数、文件数、条数、数据量大小），包括表描述、最后一次更新时间等： desc formatted table_name;``` You should be more careful about the detail, before you push the result, check, check, check.]]></content>
       <categories>
         <category>Hive</category>
       </categories>
@@ -1623,6 +1635,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1632,17 +1655,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1758,17 +1770,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1777,6 +1778,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>
@@ -2034,17 +2046,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -2054,6 +2055,17 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

@@ -7,7 +7,7 @@ categories: 宠物
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大家都是铲屎官，有时候想知道关于宠物的答案，有时候想跟别人分享自己的小狗狗的精彩瞬间，那么咱们去哪个平台呢，下面来给大家说说下面几个，都是我亲自用过的。
 
-<img src="推荐几个关于宠物的app和网站/dog.jpeg" width="500" height="300"/>
+<img src="推荐几个关于宠物的app和网站/dog.jpg" width="500" height="300"/>
 
 <!-- more -->
 

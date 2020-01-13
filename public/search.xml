@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[偏导函数]]></title>
+    <url>%2F2020%2F01%2F12%2F%E5%81%8F%E5%AF%BC%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个多变量的函数的偏导数，就是它关于其中一个变量的导数而保持其他变量恒定，对某个变量求偏导数，就把别的变量都看作常数即可，比如f(x,y)=x^2+2xy+y^2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对x求偏导就是f’x=(x^2)’+2y *(x)’=2x+2y x方向的偏导 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设有二元函数 z=f(x,y) ，点(x0,y0)是其定义域D 内一点。把 y 固定在 y0而让 x 在 x0 有增量 △x ，相应地函数 z=f(x,y) 有增量（称为对 x 的偏增量）△z=f(x0+△x,y0)-f(x0,y0)。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果 △z 与 △x 之比当 △x→0 时的极限存在，那么此极限值称为函数 z=f(x,y) 在 (x0,y0)处对 x 的偏导数，记作 f’x(x0,y0)或。函数 z=f(x,y) 在(x0,y0)处对 x 的偏导数，实际上就是把 y 固定在 y0看成常数后，一元函数z=f(x,y0)在 x0处的导数。 y方向的偏导 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同样，把 x 固定在 x0，让 y 有增量 △y ，如果极限存在那么此极限称为函数 z=(x,y) 在 (x0,y0)处对 y 的偏导数。记作f’y(x0,y0)。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;偏导数 f’x(x0,y0) 表示固定面上一点对 x 轴的切线斜率；偏导数 f’y(x0,y0) 表示固定面上一点对 y 轴的切线斜率。 高阶偏导数 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果二元函数 z=f(x,y) 的偏导数 f’x(x,y) 与 f’y(x,y) 仍然可导，那么这两个偏导函数的偏导数称为 z=f(x,y) 的二阶偏导数。二元函数的二阶偏导数有四个：f”xx，f”xy，f”yx，f”yy。 Don’t be afraid of, just do it.]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>偏导函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[机器学习算法-线性回归算法介绍]]></title>
+    <url>%2F2020%2F01%2F12%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线性回归模型，处理连续数据，得到一个一维或者多维线性函数，新来一个自变量值，可对因变量的值进行预测。下面来看看介绍吧。 1.线性回归模型介绍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线性回归，就是能够用一个直线较为精确地描述数据之间的关系。这样当出现新的数据时，就能够预测出一个简单的结果值。线性回归中最常见的就是房价的问题。一直存在很多房屋面积和房价的数据，如下图所示： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这种情况下，就可以利用线性回归构造出一条直线来近似地描述房价与房屋面积之间的关系，从而就可以根据房屋面积推测出房价。 2.线性回归的函数模型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过线性回归构造出来的函数一般称之为线性回归模型，线性回归函数一般写作为： 3.线性回归模型的代价函数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过线性回归算法，我们可能会得到很多的线性回归模型，但是不同的模型对于数据的拟合或者是描述能力是不一样的。我们的目的最终是需要找到一个能够精确地描述数据之间关系的线性回归模型。这时就需要用到代价函数。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代价函数就是用来描述线性回归模型与正式数据之间的差异。如果完全没有差异，则说明此线性回归模型完全描述数据之间的关系。如果需要找到最佳拟合的线性回归模型，就需要使得对应的代价函数最小，相关的公示描述如下：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中： Hypothesis表示线性回归模型 Cost Function表示代价函数 Goal表示要求对应的代价函数最小 4.线性回归模型求解&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设在线性回归模型中仅仅只存在一个函数，就是斜率参数。即theta-0=0。如果存在如下的数据：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图中对应的3个点分别为（1，1），（2，2），（3，3），那么很明显，最佳线性回归模型就是h(x) = x。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如何通过实验证明呢？我们画出在theta-1处于不同值的代价函数。 5.线性回归模型的特点： 建模速度快，不需要很复杂的计算，在数据量大的情况下依然运行速度很快； 可以根据系数给出每个变量的理解和解释； 对异常值很敏感； Family is the most one you should protect.]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>线性回归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hive对URL的解析]]></title>
     <url>%2F2020%2F01%2F03%2FHive%E5%AF%B9URL%E7%9A%84%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时，业务库直接将页面的url存储在日志表中，访问的page携带参数，此时获取参数就成为了问题，需要从字段中截取，那么hive sql如何解析url呢，来看看。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Every HTTP URL conforms to the syntax of a generic URI. A generic URI is of the form: 1scheme:[//[user:password@]host[:port]][/]path[?query][#fragment] 1.从url返回PROTOCOL123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;PROTOCOL&apos;);OKhttps 2.从url返回HOST123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;HOST&apos;);OKwww.baidu.com 3.从url返回PATH123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;PATH&apos;);OK/s 4.从url返回QUERY123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;QUERY&apos;);OKcl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage 5.从url返回QUERY中指定的参数的值123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;QUERY&apos;, &apos;wd&apos;);OK大唐不夜城着火 6.从url返回FRAGMENT标识符123hive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage#REGEXP_REPLACT&apos;, &apos;REF&apos;);OKREGEXP_REPLACT 7.从url返回FILE123456789101112//一般为 path?queryhive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;FILE&apos;);OK/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage hive&gt; select parse_url(&apos;https://tester:123456@www.baidu.com:8888/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;FILE&apos;);OK/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage hive&gt; select parse_url(&apos;https://tester:123456@www.baidu.com:8888/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage#REGEXP_REPLACT&apos;, &apos;FILE&apos;);OK/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage 8.从url返回AUTHORITY123456789101112//userinfo@host:porthive&gt; select parse_url(&apos;https://www.baidu.com/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;AUTHORITY&apos;);OKwww.baidu.com hive&gt; select parse_url(&apos;https://www.baidu.com:8888/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;AUTHORITY&apos;);OKwww.baidu.com:8888 hive&gt; select parse_url(&apos;https://tester:123456@www.baidu.com:8888/s?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;AUTHORITY&apos;);OKtester:123456@www.baidu.com:8888 9.从url返回USERINFO123hive&gt; select parse_url(&apos;http://tester:123456@www.baidu.com?cl=3&amp;tn=baidutop10&amp;fr=top1000&amp;wd=大唐不夜城着火&amp;rsv_idx=2&amp;rsv_dl=fyb_n_homepage&apos;, &apos;USERINFO&apos;);OKtester:123456 It’s never too late to learn.]]></content>
@@ -924,8 +948,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -996,9 +1020,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1023,9 +1047,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1036,8 +1060,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -1682,6 +1706,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1691,17 +1726,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1716,17 +1740,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -1735,6 +1748,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -1773,17 +1797,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2019世界上城市生活成本排行]]></title>
-    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
-    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>城市生活成本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2018世界医药顶尖大学]]></title>
     <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
     <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
@@ -1792,6 +1805,17 @@
       </categories>
       <tags>
         <tag>医药大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019世界上城市生活成本排行]]></title>
+    <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
+    <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>城市生活成本</tag>
       </tags>
   </entry>
   <entry>
@@ -1817,17 +1841,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1836,6 +1849,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>
@@ -2093,6 +2117,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2019年世界上最好的机场]]></title>
+    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
+    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>世界机场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spark基于zookeeper的高可用搭建]]></title>
     <url>%2F2017%2F12%2F26%2Fspark%E5%9F%BA%E4%BA%8Ezookeeper%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[spark提供服务时，master的角色非常的重要，它负责任务分发、任务调度，可谓任重道远啊，所以我们要对master做高可用，基于zookeeper的高可用，可以自动实现master挂掉后备用的master启动，堆外提供服务。 节点分布：zookeeper: node1 node2 node3spark: node1 node2 node3 node4 编辑SPARK_HOME/conf/spark-env.sh注释掉HADOOP_CONF_DIR，添加SPARK_DAEMON_JAVA_OPTS，其他配置不变。 1export SPARK_DAEMON_JAVA_OPTS=&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark20170302&quot; 同步该配置文件spark-env.sh到其他节点scp spark-env.sh root@node2:$SPARK_HOME/confscp spark-env.sh root@node3:$SPARK_HOME/confscp spark-env.sh root@node4:$SPARK_HOME/conf 在node2节点上编辑spark-env.sh，将SPARK_MASTER_HOST修改为node21SPARK_MASTER_HOST=node2 启动spark服务在node1节点上启动spark集群 1$ ./sbin/start-all.sh 启动另一个master在node2节点上只启动master 1$ ./sbin/start-master.sh 访问webUI查看启动情况如果配置正确，启动正常，那么master会有两个（node1， node2），一个为ACTIVE状态，一个为STANDBY状态。]]></content>
@@ -2102,17 +2137,6 @@
       <tags>
         <tag>spark</tag>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2019年世界上最好的机场]]></title>
-    <url>%2F2017%2F12%2F26%2F2019%E5%B9%B4%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%2F</url>
-    <content type="text"><![CDATA[机场的好坏，决定因素：1.要看城市的经济规模，政治、文化聚集度；2.有强大的基地航空公司或者合作关系；3.地理位置；4.政治环境； 如下是综合评价得到的世界机场排名： 1.樟宜（新加坡）2.羽田（东京）3.仁川（首尔）4.哈马德（多哈）5.香港机场（中国）6.中部国际机场（日本）7.慕尼黑机场（德国）8.希思罗机场（伦敦）9.成田（东京）10.苏黎世机场（瑞士）]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>世界机场</tag>
       </tags>
   </entry>
   <entry>

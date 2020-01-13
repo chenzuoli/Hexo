@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a62ebd;
+  background: #ffb01f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2904,7 +2904,7 @@ hr {
   }
 }
 body {
-  background: url("https://source.unsplash.com/random");
+  background: url("/images/star_sky.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;

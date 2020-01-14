@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[线性回归-最小二乘法推导公式]]></title>
     <url>%2F2020%2F01%2F13%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%8E%A8%E5%AF%BC%E5%85%AC%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有兴趣的可以对照看看和你推倒的过程一样不。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先回顾一下，我们定义观测结果y和预测结果y’之间的差别为Rss: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设若参数的矩阵为,则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照我们的定义，这个Rss的意思是y和y’之间的差，那么当Rss无限趋近于0的时候，则y≈y’，即我们求得的预测结果就等于实际结果。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是，令Rss等于某一极小值，则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对参数求导，得： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;展开，得 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进而就可以得到 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是我们就得到正规方程了。 在这短暂的一生里，我们最终都会失去，不妨大胆一些：爱一个人，攀一座山，追一个梦。]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有兴趣的可以对照看看和你推倒的过程一样不。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先回顾一下，我们定义观测结果y和预测结果y’之间的差别为Rss: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设若参数的矩阵为&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照我们的定义，这个Rss的意思是y和y’之间的差，那么当Rss无限趋近于0的时候，则y≈y’，即我们求得的预测结果就等于实际结果。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是，令Rss等于某一极小值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;，则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对参数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;求导，得： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;展开，得 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进而就可以得到 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是我们就得到正规方程了。 在这短暂的一生里，我们最终都会失去，不妨大胆一些：爱一个人，攀一座山，追一个梦。]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -117,8 +117,8 @@
       </categories>
       <tags>
         <tag>OLAP</tag>
-        <tag>数据仓库</tag>
         <tag>OLTP</tag>
+        <tag>数据仓库</tag>
       </tags>
   </entry>
   <entry>
@@ -419,8 +419,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
         <tag>OLAP</tag>
         <tag>Presto</tag>
       </tags>
@@ -626,8 +626,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -638,8 +638,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -690,8 +690,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
         <tag>数据分析</tag>
       </tags>
   </entry>
@@ -703,8 +703,8 @@
         <category>Hive</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -715,8 +715,8 @@
         <category>Hive</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -763,8 +763,8 @@
         <category>数据仓库</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>SQL</tag>
+        <tag>Hive</tag>
       </tags>
   </entry>
   <entry>
@@ -960,8 +960,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>PBFT</tag>
+        <tag>共识算法</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -1032,9 +1032,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1059,9 +1059,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
+        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
-        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1072,8 +1072,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>一致性协议</tag>
         <tag>共识算法</tag>
+        <tag>一致性协议</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -1718,6 +1718,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[德国的世界品牌]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
+    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>德国</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[恒星币（XLM）]]></title>
     <url>%2F2019%2F01%2F04%2F%E6%81%92%E6%98%9F%E5%B8%81%EF%BC%88XLM%EF%BC%89%2F</url>
     <content type="text"><![CDATA[下面介绍全球数字货币市值排名第九的恒星币（XLM） 概述：代码是基于瑞波币的基础上修改的。用于搭建一个数字货币与法定货币之间传输的去中心化网关，是一个用于价值交换的开源协议； 该协议由非营利性、非股票型组织因此，基金的创始人无法从其经营或出售其股份中获益； Stellar Development Foundation基金会提供支持； 平台完全对外开源； 该平台承诺发布涵盖其活动的各种报告：关于雇员工资的报告;关于流氓补助金工作人员的报告;预算;分布流明数;流明的分布机制等； 在平台上可以看到发行量，每周产生的流量（每年产生1%的认为通胀），基金的发展将要花多少钱（总数的5%）； 大多数免费发放，5%作为运营使用，25%流向非营利组织； 拥有大量恒星币的组织或个人必须拥有5年以上才能出售其资产； Stellar平台的组织者已经尽一切可能从这个项目中排除任何赌博组件； 2019年3月，IBM发布公告称，包括Banco Bradesco，Bank Rusan和Rizal Commercial Banking Corporation在内的六家国际银行签署了在World Wire上发行自己的稳定币的意向书，这是IBM利用Stellar公共区块链的支付网络。 创始人：瑞波币的前创始人Jed McCaleb，电驴（BT下载软件）的创始人 发行量：1000亿枚，95%用于免费发放。目前流通量约为191亿枚： 50%通过直接分发计划分配给全世界； 25%通过增加覆盖计划分配给非营利组织以给予金融服务匮乏的人群； 20%通过比特币计划分配； 5%留作运营费用恒星币运营。 发行时间：2014年 用途：去中心化网关，通过转换全球各国之间的稳定加密货币的方式，进行跨境支付 客户：IBM、菲律宾的RCBC、巴西的Banco Bradesco、韩国的Bank Busan 2017年10月Stellar宣布与IBM合作，成为IBM Blockchain平台战略的一部分，为跨国界提供更便宜，更快速的支付]]></content>
@@ -1727,17 +1738,6 @@
       <tags>
         <tag>XLM</tag>
         <tag>恒星币</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[德国的世界品牌]]></title>
-    <url>%2F2019%2F01%2F04%2F%E5%BE%B7%E5%9B%BD%E7%9A%84%E4%B8%96%E7%95%8C%E5%93%81%E7%89%8C%2F</url>
-    <content type="text"><![CDATA[Companies based in Germany:德国的世界品牌： 品牌如下： 1234567891011121314151617181920- Volkswagen 大众 汽车- Allianz 安联 保险- Mercedes Benz 奔驰 汽车- Audi 奥迪 汽车- BMW 宝马 汽车- Porsche 保时捷 汽车- Lufthansa 汉莎 航空- Siemens 西门子 电子电器工程- BASF 巴斯夫 化工- Bayer 拜耳 医疗保健、化工及农业- Fresenius 费森尤斯 医药- Merck 默克 生物科技- Linde 林德 工业机械- ThyssenKrupp Group蒂森克虏伯 工业工程、钢铁- SAP 思爱普 企业管理、咨询- Deutsche Telekom 德国电信 电信- Aldi 阿尔迪 食品连锁超市- Bosch 博世 工业、交通- Lidl 历德 零售（欧洲的沃尔玛）- Adidas 阿迪达斯 服装 你用到了哪些呢？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>德国</tag>
       </tags>
   </entry>
   <entry>
@@ -1752,17 +1752,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[各国诺贝尔奖数]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>诺贝尔奖</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[印度处于领先地位的产品]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
     <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
@@ -1771,6 +1760,17 @@
       </categories>
       <tags>
         <tag>印度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各国诺贝尔奖数]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>诺贝尔奖</tag>
       </tags>
   </entry>
   <entry>
@@ -1853,17 +1853,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1872,6 +1861,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Sklearn实现线性回归模型构建]]></title>
+    <url>%2F2020%2F01%2F16%2FSklearn%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线性回归，数理统计学中的一种统计方法，描述自变量和因变量之间的关系的一种统计分析方法，获得回归模型后，在不知道因变量的情况下，通过模型可以预测新增的自变量对应的因变量。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有以下几种方法来求得回归方程： 最小二乘代数法; 最小二乘矩阵法; sklearn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三种方法中sklearn很简单，不需要自己推导公式，python库已帮你实现，下面来看看这种方法，直接看代码吧： Github &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看效果图： 学会和自己独处，拒绝无效社交]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>线性回归</tag>
+        <tag>Sklearn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线性回归-最小二乘法推导公式]]></title>
     <url>%2F2020%2F01%2F13%2F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%8E%A8%E5%AF%BC%E5%85%AC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有兴趣的可以对照看看和你推倒的过程一样不。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先回顾一下，我们定义观测结果y和预测结果y’之间的差别为Rss: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设若参数的矩阵为&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照我们的定义，这个Rss的意思是y和y’之间的差，那么当Rss无限趋近于0的时候，则y≈y’，即我们求得的预测结果就等于实际结果。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是，令Rss等于某一极小值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;，则 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对参数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;求导，得： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;展开，得 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进而就可以得到 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是我们就得到正规方程了。 在这短暂的一生里，我们最终都会失去，不妨大胆一些：爱一个人，攀一座山，追一个梦。]]></content>
@@ -8,8 +20,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
         <tag>线性回归</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +44,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
         <tag>线性回归</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -1752,17 +1764,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[印度处于领先地位的产品]]></title>
-    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
-    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>印度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各国诺贝尔奖数]]></title>
     <url>%2F2019%2F01%2F02%2F%E5%90%84%E5%9B%BD%E5%BE%97%E8%AF%BA%E5%A5%96%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Nobel prizes.诺贝尔奖数： 排名如下：US: 377 美国UK: 130 英国Germany: 108 德国France: 70 法国Sweden: 32 瑞典Japan: 27 日本Canada: 26 加拿大Switzerland: 26 瑞士Russia 25 俄国Austria: 21 奥地利Netherlands: 21 荷兰Italy: 20 意大利Poland: 14 波兰Denmark: 13 丹麦Norway: 13 挪威Hungary: 13 匈牙利Australia: 12 澳大利亚Israel: 12 以色列Belgium: 11 比利时India: 10 印度South Africa: 10 南非China: 8 中国Spain: 8 西班牙 中国： 大陆：第十四世达赖喇嘛 刘晓波 莫言 屠呦呦 台湾：丁肇中 李遠哲 李政道 杨振宁]]></content>
@@ -1771,6 +1772,17 @@
       </categories>
       <tags>
         <tag>诺贝尔奖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[印度处于领先地位的产品]]></title>
+    <url>%2F2019%2F01%2F02%2F%E5%8D%B0%E5%BA%A6%E5%A4%84%E4%BA%8E%E9%A2%86%E5%85%88%E5%9C%B0%E4%BD%8D%E7%9A%84%E4%BA%A7%E5%93%81%2F</url>
+    <content type="text"><![CDATA[印度处于领先地位的产品： 香蕉 芒果 番木瓜 柠檬 水牛奶 山羊奶 辣椒 生姜 鹰嘴豆 小米 黄麻 木材燃料 你用过或者吃过吗？]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>印度</tag>
       </tags>
   </entry>
   <entry>
@@ -1853,17 +1865,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[日本近几年的经济数据]]></title>
-    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
-    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
-      <categories>
-        <category>经济</category>
-      </categories>
-      <tags>
-        <tag>日本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[全球各国家离婚率排行]]></title>
     <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
     <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
@@ -1872,6 +1873,17 @@
       </categories>
       <tags>
         <tag>离婚率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日本近几年的经济数据]]></title>
+    <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
+    <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
+      <categories>
+        <category>经济</category>
+      </categories>
+      <tags>
+        <tag>日本</tag>
       </tags>
   </entry>
   <entry>

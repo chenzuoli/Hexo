@@ -82,7 +82,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="百草园">
-<meta property="og:url" content="http://wetech.top/tags/java/index.html">
+<meta property="og:url" content="http://wetech.top/tags/Java/index.html">
 <meta property="og:site_name" content="百草园">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://wetech.top/tags/java/">
+  <link rel="canonical" href="http://wetech.top/tags/Java/">
 
 
 
@@ -131,7 +131,7 @@
 <script data-ad-client="ca-pub-6592717531467819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
-  <title>标签: java | 百草园</title>
+  <title>标签: Java | 百草园</title>
   
 
 
@@ -318,7 +318,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>java<small>标签</small>
+        <h1>Java<small>标签</small>
         </h1>
       </div>
 
@@ -330,17 +330,69 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/04/03/读取配置文件工具类/" itemprop="url">
+            <a class="post-title-link" href="/2019/11/04/Java和Python语言的区别/" itemprop="url">
               
-                <span itemprop="name">读取配置文件工具类</span>
+                <span itemprop="name">Java和Python语言的区别</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-04-03T20:45:53+08:00" content="2018-04-03">
-          04-03
+        <time class="post-time" itemprop="dateCreated" datetime="2019-11-04T10:26:38+08:00" content="2019-11-04">
+          11-04
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/11/03/Java多线程与Python多线程性能比较/" itemprop="url">
+              
+                <span itemprop="name">Java多线程与Python多线程性能比较</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-11-03T13:15:35+08:00" content="2019-11-03">
+          11-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/10/17/Java集合对比/" itemprop="url">
+              
+                <span itemprop="name">Java集合对比</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-10-17T11:55:19+08:00" content="2019-10-17">
+          10-17
         </time>
       </div>
 
@@ -1296,43 +1348,6 @@ function addCount(Counter) {
 					},
 					error: function(counter, error) {
 						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
-</script>
-	
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
-</html>
-r message: ' + error.message);
 					}
 				});
 			} else {

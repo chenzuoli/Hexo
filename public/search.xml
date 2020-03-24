@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微信小程序]]></title>
+    <url>%2F2020%2F03%2F24%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[介绍下微信小程序开发。 1.tarbar: 在页面底部添加不同的tarbar 123456789101112&quot;tabBar&quot;: &#123; &quot;list&quot;: [ &#123; &quot;pagePath&quot;: &quot;pages/login/login&quot;, &quot;text&quot;: &quot;登陆&quot; &#125;, &#123; &quot;pagePath&quot;: &quot;pages/register/register&quot;, &quot;text&quot;: &quot;注册&quot; &#125; ]&#125; You must change yourself.]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MacOS解压文件]]></title>
+    <url>%2F2020%2F03%2F23%2FMacOS%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[来看看mac os如何解压rar文件和zip文件。 rar文件： 12brew install unrarunrar x abc.rar zip文件：双击 challenge yourself.]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+        <tag>解压</tag>
+        <tag>rar</tag>
+        <tag>zip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据仓库-报表规则]]></title>
     <url>%2F2020%2F03%2F04%2F%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93-%E6%8A%A5%E8%A1%A8%E8%A7%84%E5%88%99%2F</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作中做了许多报表，发现需求方的一些通用规则，下面介绍下，避免重复修改。 表名第一部分标明仓库层次； 表名第二部分标明仓库主题； 表名第三部分标明业务类型； 表名第四部分标明计算周期（日、月、季度、年）； 编码和对应的中文名称（字典）一起要形影不离； Love yourself, understand yourself, then believe yourself.]]></content>
@@ -154,8 +179,8 @@
       </categories>
       <tags>
         <tag>OLAP</tag>
-        <tag>OLTP</tag>
         <tag>数据仓库</tag>
+        <tag>OLTP</tag>
       </tags>
   </entry>
   <entry>
@@ -275,8 +300,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>zip</tag>
+        <tag>Linux</tag>
         <tag>unzip</tag>
       </tags>
   </entry>
@@ -1846,17 +1871,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2018世界医药顶尖大学]]></title>
-    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
-    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>医药大学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[2019世界上城市生活成本排行]]></title>
     <url>%2F2018%2F12%2F29%2FWorld's%20most%20expensive%20cities%2C%202019.%20(cost%20of%20livi%2F</url>
     <content type="text"><![CDATA[World’s most expensive cities, 2019. (cost of living)2019世界上城市生活成本排行： 排名如下： 1234567891011=1.🇸🇬Singapore 新加坡 新加坡=1.🇫🇷Paris 巴黎 法国=1.🇭🇰Hong Kong 香港 中国4.🇨🇭Zurich 苏黎世 瑞士=5.🇨🇭Geneva 日内瓦 瑞士=5.🇯🇵Osaka 大阪 日本=7.🇰🇷Seoul 首尔 韩国=7.🇩🇰Copenhagen 哥本哈根 丹麦=7.🇺🇸New York 纽约 美国=10.🇮🇱Tel Aviv 特拉维夫 以色列=10.🇺🇸Los Angeles 洛杉矶 美国 The Economist Intelligence Unit, 2019]]></content>
@@ -1865,6 +1879,17 @@
       </categories>
       <tags>
         <tag>城市生活成本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018世界医药顶尖大学]]></title>
+    <url>%2F2018%2F12%2F29%2FTop%20universities%20in%20medicine%2C%202018%2F</url>
+    <content type="text"><![CDATA[Top universities in medicine, 2018.2018世界医药顶尖大学： 排名如下： 123456789101. Harvard 哈佛大学 美国2. Oxford 牛津大学 英国 3. Cambridge 剑桥大学 英国4. Stanford 斯坦福大学 美国5. John Hopkins 约翰·霍普金斯大学 美国6. Karolinska Institutet 卡罗林斯卡学院 瑞典7. Uni of California, LA 加州大学洛杉矶分校 美国8. Yale 耶鲁大学 美国9. MIT 麻省理工学院 美国10. University College London 伦敦大学学院 英国]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>医药大学</tag>
       </tags>
   </entry>
   <entry>
@@ -1890,17 +1915,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[全球各国家离婚率排行]]></title>
-    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
-    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
-      <categories>
-        <category>世界排名</category>
-      </categories>
-      <tags>
-        <tag>离婚率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[日本近几年的经济数据]]></title>
     <url>%2F2018%2F12%2F26%2FJapan%20Economy%20Data%2F</url>
     <content type="text"><![CDATA[Japan Economy Data ![日本近几年经济数据](Japan Economy Data/japan_economy_data.jpg) 你看到了什么？]]></content>
@@ -1909,6 +1923,17 @@
       </categories>
       <tags>
         <tag>日本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全球各国家离婚率排行]]></title>
+    <url>%2F2018%2F12%2F26%2FHighest%20Divorce%20Rate%20by%20Country%2F</url>
+    <content type="text"><![CDATA[Highest Divorce Rate by Country全球各国家离婚率排行： 1.Luxembourg : 87% 卢森堡2.Spain: 65% 西班牙3.France: 55% 法国4.Russia: 51% 俄国5.United States: 46% 美国6.Germany: 44% 德国7.United Kingdom: 42% 英国8.New Zealand: 42% 新西兰9.Australia: 38% 澳大利亚10.Canada 38% 加拿大. .. India 1% 印度 你们国家的离婚率大概是多少呢？let me know in the comments.]]></content>
+      <categories>
+        <category>世界排名</category>
+      </categories>
+      <tags>
+        <tag>离婚率</tag>
       </tags>
   </entry>
   <entry>

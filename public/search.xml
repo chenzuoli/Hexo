@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微信开发者工具的坑]]></title>
+    <url>%2F2020%2F04%2F06%2F%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E7%9A%84%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在开发小程序，碰到了一些小问题，但是很棘手，是开发者工具的原因，大家来看一下。 wx.showModal content内容在开发者工具上不换行，居左显示，在真实手机上自动换行，居中显示 没有什么能阻挡我前进。]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
+        <tag>微信开发者工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SSL证书操作]]></title>
     <url>%2F2020%2F03%2F29%2FSSL%E8%AF%81%E4%B9%A6%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[如果你的应用需要用到https，那么来看看ssl证书怎么用吧。 申请ssl证书 1https://www.aliyun.com/product/cas?spm=5176.10695662.1171680.2.5358481aEeXS2O 下载证书如果你是spring boot项目，下载tomcat类型 查看证书信息12# 查看证书的信息keytool -list -v -keystore 证书文件路径/文件名 -storepass [密码] 4.配置spring按照证书信息去配置alias，类型 1234567### https configurationserver.ssl.enabled=trueserver.port=7443server.ssl.key-store=/mnt/certificate/ssl_certificate.pfxserver.ssl.key-alias=aliasserver.ssl.key-store-password=xxxxserver.ssl.key-store-type=JKS 始终朝着一个目标前进。]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果你的应用需要用到https，那么来看看ssl证书怎么用吧。 申请ssl证书 1https://www.aliyun.com/product/cas?spm=5176.10695662.1171680.2.5358481aEeXS2O 下载证书如果你是spring boot项目，下载tomcat类型 查看证书信息12# 查看证书的信息keytool -list -v -keystore 证书文件路径/文件名 -storepass [密码] 4.配置spring按照证书信息去配置alias，类型 1234567### https configurationserver.ssl.enabled=trueserver.port=7443server.ssl.key-store=/mnt/certificate/ssl_certificate.pfxserver.ssl.key-alias=aliasserver.ssl.key-store-password=xxxxserver.ssl.key-store-type=JKS 始终朝着一个目标前进。]]></content>
       <categories>
         <category>SSL证书</category>
       </categories>
@@ -14,7 +26,7 @@
   <entry>
     <title><![CDATA[微信小程序]]></title>
     <url>%2F2020%2F03%2F24%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%2F</url>
-    <content type="text"><![CDATA[介绍下微信小程序开发。 1.tarbar: 在页面底部添加不同的tarbar 123456789101112&quot;tabBar&quot;: &#123; &quot;list&quot;: [ &#123; &quot;pagePath&quot;: &quot;pages/login/login&quot;, &quot;text&quot;: &quot;登陆&quot; &#125;, &#123; &quot;pagePath&quot;: &quot;pages/register/register&quot;, &quot;text&quot;: &quot;注册&quot; &#125; ]&#125; You must change yourself.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介绍下微信小程序开发。 1.tarbar: 在页面底部添加不同的tarbar 123456789101112&quot;tabBar&quot;: &#123; &quot;list&quot;: [ &#123; &quot;pagePath&quot;: &quot;pages/login/login&quot;, &quot;text&quot;: &quot;登陆&quot; &#125;, &#123; &quot;pagePath&quot;: &quot;pages/register/register&quot;, &quot;text&quot;: &quot;注册&quot; &#125; ]&#125; You must change yourself.]]></content>
       <categories>
         <category>微信小程序</category>
       </categories>
@@ -25,7 +37,7 @@
   <entry>
     <title><![CDATA[MacOS解压文件]]></title>
     <url>%2F2020%2F03%2F23%2FMacOS%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[来看看mac os如何解压rar文件和zip文件。 rar文件： 12brew install unrarunrar x abc.rar zip文件：双击 challenge yourself.]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看看mac os如何解压rar文件和zip文件。 rar文件： 12brew install unrarunrar x abc.rar zip文件：双击 challenge yourself.]]></content>
       <categories>
         <category>操作系统</category>
       </categories>
@@ -1033,8 +1045,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>PBFT</tag>
         <tag>共识算法</tag>
+        <tag>PBFT</tag>
         <tag>区块链</tag>
         <tag>联盟链</tag>
       </tags>
@@ -1076,9 +1088,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>zookeeper</tag>
         <tag>共识算法</tag>
         <tag>分布式</tag>
+        <tag>zookeeper</tag>
         <tag>ZAB</tag>
       </tags>
   </entry>
@@ -1105,9 +1117,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1132,9 +1144,9 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
         <tag>raft</tag>
+        <tag>共识算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1145,8 +1157,8 @@
         <category>共识算法</category>
       </categories>
       <tags>
-        <tag>共识算法</tag>
         <tag>一致性协议</tag>
+        <tag>共识算法</tag>
         <tag>paxos</tag>
       </tags>
   </entry>
@@ -2184,8 +2196,8 @@
         <category>操作系统</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>windows</tag>
+        <tag>linux</tag>
         <tag>vnc</tag>
       </tags>
   </entry>

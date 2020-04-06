@@ -6,7 +6,9 @@ categories: 操作系统
 notebook: 笔记
 ---
 
-来看看mac os如何解压rar文件和zip文件。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来看看mac os如何解压rar文件和zip文件。
+
+<img src="MacOS解压文件/macos.jpeg" width="500" height="300"/>
 
 <!-- more -->
 rar文件：

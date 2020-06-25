@@ -24,7 +24,7 @@
     "hexo-tag-tencent": "^0.1.3",
     "hexo-tag-youku": "^1.0.2",
     "hexo-theme-greyshade": "0.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "live2d-widget-model-chitose": "^1.0.5",
     "live2d-widget-model-shizuku": "^1.0.5",
     "wangeditor": "^3.0.15"
